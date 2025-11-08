@@ -4,6 +4,17 @@ feed: show
 date: 2024-01-15
 ---
 
+> If $det(A) = 0$ the system has either,
+> 
+> - no solution **OR**
+> - infinitely many solutions
+
+$x = y$
+
+Text 
+
+$$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
+
 You can customize your Jekyll Garden site by editing a few key files.
 
 ## Basic Settings
