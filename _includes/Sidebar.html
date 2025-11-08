@@ -1,16 +1,72 @@
 <nav class="sidebar-nav" aria-label="Notes">
   <h2 class="sidebar-title">Notes</h2>
   {%- comment -%}
-    Build a list of public notes from the notes collection.
-    On some systems note.path may contain backslashes, so check both.
+    Hierarchical sidebar
+    --------------------
+    We build a nested folder → notes listing from the `site.notes` collection.
+    Only notes under `_notes/Public/` are shown. Subfolders inside `Public/` become
+    collapsible sections. Root-level notes (directly under `Public/`) are listed first.
+
+    Liquid limitations: We simulate a set of unique folder names using an array we push into.
+    Paths may contain either forward or backslashes depending on OS, so we check both.
+    "Relative path" here means the portion after `_notes/Public/`.
   {%- endcomment -%}
+
   {%- assign public_notes = site.notes | where_exp: "n", "n.path contains '/Public/' or n.path contains '\\Public\\'" -%}
   {%- assign public_notes = public_notes | sort: 'title' -%}
+
+  {%- comment -%} Build unique folder list {%- endcomment -%}
+  {%- assign folders = '' | split: '' -%}
+  {%- for n in public_notes -%}
+    {%- assign rel = n.path | replace: '_notes/Public/', '' | replace: '_notes\\Public\\', '' -%}
+    {%- if rel contains '/' or rel contains '\\' -%}
+      {%- if rel contains '/' -%}
+        {%- assign folder = rel | split: '/' | first -%}
+      {%- else -%}
+        {%- assign folder = rel | split: '\\' | first -%}
+      {%- endif -%}
+      {%- unless folders contains folder -%}
+        {%- assign folders = folders | push: folder -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign folders = folders | sort -%}
+
   <ul class="sidebar-list">
-    {%- for note in public_notes -%}
-      <li class="sidebar-item{%- if page.url == note.url -%} active{%- endif -%}">
-        <a class="sidebar-link" href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
+    {%- comment -%} Folder sections {%- endcomment -%}
+    {%- for folder in folders -%}
+      <li class="sidebar-folder">
+        <details class="sidebar-details" {% if page.path contains folder %}open{% endif %}>
+          <summary class="sidebar-folder-name">{{ folder }}</summary>
+          <ul class="sidebar-sublist">
+            {%- for note in public_notes -%}
+              {%- assign rel = note.path | replace: '_notes/Public/', '' | replace: '_notes\\Public\\', '' -%}
+              {%- if rel contains '/' or rel contains '\\' -%}
+                {%- if rel contains '/' -%}
+                  {%- assign segments = rel | split: '/' -%}
+                {%- else -%}
+                  {%- assign segments = rel | split: '\\' -%}
+                {%- endif -%}
+                {%- if segments[0] == folder -%}
+                  <li class="sidebar-item sidebar-subitem{%- if page.url == note.url -%} active{%- endif -%}">
+                    <a class="sidebar-link" href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
+                  </li>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </details>
       </li>
+    {%- endfor -%}
+
+    {%- comment -%} Root-level notes (no subfolder) after folders {%- endcomment -%}
+    {%- for note in public_notes -%}
+      {%- assign rel = note.path | replace: '_notes/Public/', '' | replace: '_notes\\Public\\', '' -%}
+      {%- unless rel contains '/' or rel contains '\\' -%}
+        <li class="sidebar-item{%- if page.url == note.url -%} active{%- endif -%}">
+          <a class="sidebar-link" href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
+        </li>
+      {%- endunless -%}
     {%- endfor -%}
   </ul>
 </nav>

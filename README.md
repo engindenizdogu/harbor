@@ -65,6 +65,22 @@ The linking system works just like Obsidian. Write `[[note title]]` and the link
 ### Search
 Finding content is easy with the built-in search. It searches through all your notes instantly as you type, looking at both titles and content to help you find exactly what you need.
 
+### Hierarchical Sidebar
+Organize your notes inside `_notes/Public/` using subfolders. Each first-level subfolder becomes a collapsible section in the left sidebar. Notes placed directly under `Public/` appear after the folders. Example:
+
+```
+_notes/
+	Public/
+		Math/
+			Derivatives.md
+			Integrals.md
+		Programming/
+			Python Tips.md
+		Inbox.md   # root-level note
+```
+
+This will render two folder groups (Math, Programming) followed by the root-level note (Inbox). Folders use native `<details>` / `<summary>` for zero‑JS toggling.
+
 ### Backlinks
 See which notes link to the current one you're reading. This helps you discover related content and explore the connections between your ideas, just like the backlinks feature in Obsidian.
 

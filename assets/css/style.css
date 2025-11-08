@@ -172,6 +172,41 @@ body.home {
   padding: 0;
 }
 
+/* Sidebar tree (folders + nested notes) */
+.sidebar-folder {
+  margin: 0.1rem 0;
+}
+
+.sidebar-details {
+  margin: 0; /* native details/summary for simple collapse without JS */
+}
+
+.sidebar-folder-name {
+  display: block;
+  padding: 0.35rem 0.5rem;
+  color: var(--title);
+  font-size: var(--scale-sm);
+  font-weight: var(--weight-bold);
+  cursor: pointer;
+  border-radius: 0.35rem;
+}
+
+.sidebar-folder-name:hover {
+  background: var(--bg);
+  color: var(--brand);
+}
+
+.sidebar-sublist {
+  list-style: none;
+  margin: 0rem 0rem 0rem 0rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--border);
+}
+
+.sidebar-subitem .sidebar-link {
+  padding-left: 0.25rem;
+}
+
 .sidebar-item {
   margin: 0;
   padding: 0;
@@ -196,7 +231,6 @@ body.home {
 .sidebar-item.active .sidebar-link {
   background: var(--brand);
   color: var(--bg);
-  font-weight: var(--weight-bold);
 }
 
 .main-content {
