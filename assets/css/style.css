@@ -74,6 +74,41 @@ body {
   font-size: var(--scale-base);
 }
 
+/* Homepage background image layer (transparent PNG/SVG sits behind sidebar stripe) */
+body.home {
+  /* Layer order: sidebar stripe (top) → semi-transparent overlay → image (bottom) */
+  background-image:
+    linear-gradient(
+      to right,
+      var(--bg2) 0,
+      var(--bg2) var(--sidebar-width),
+      transparent var(--sidebar-width)
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.8)
+    ),
+    url('/assets/img/home-bg.png'); /* Replace with your file name */
+  background-size: auto, auto, cover; /* Keep gradient dimensions, scale image */
+  background-position: left top, center center, center center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed, fixed, fixed;
+}
+
+/* Optional: dark theme variant if you want a different image (commented out) */
+/*
+[data-theme="dark"] body.home {
+  background-image: linear-gradient(
+      to right,
+      var(--bg2) 0,
+      var(--bg2) var(--sidebar-width),
+      transparent var(--sidebar-width)
+    ),
+    url('/assets/img/home-bg-dark.png');
+}
+*/
+
 .container {
   width: 100%;
   min-height: 100vh;

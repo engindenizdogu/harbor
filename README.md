@@ -85,6 +85,25 @@ Test your site locally before publishing. Run `bundle install` to install depend
 ### Customization
 Change the look of your site by editing the `assets/css/style.css` file. You can modify colors, fonts, and other visual elements to match your preferences. If you want to customize the layout, you can modify files in the `_layouts/` folder. Add your own CSS and JavaScript as needed, but remember to keep it simple.
 
+#### Homepage background image
+You can show a transparent background image only on the homepage.
+
+Steps:
+
+1. Place your transparent PNG/SVG file under `assets/img/` (for example: `assets/img/home-bg.png`).
+2. The layout automatically adds a `home` class to the `<body>` on the homepage (see `_layouts/Post.html`).
+3. In `assets/css/style.css`, update the image path in the `body.home` rule:
+
+	- `url('/assets/img/home-bg.png')` → change the filename if needed.
+	- The CSS keeps the left sidebar stripe gradient and layers your image underneath so it shows through transparent areas.
+
+Optional tweaks:
+
+- Provide a dark mode variant by uncommenting the `[data-theme="dark"] body.home` block and supplying `home-bg-dark.png`.
+- Adjust scaling: Replace `background-size: auto, cover;` with `auto, contain` if you want the whole image visible without cropping.
+- Remove `background-attachment: fixed` for the image layer if you prefer it to scroll with content.
+- To disable the gradient stripe on the homepage, remove the first gradient from `background-image` inside `body.home`.
+
 ## Contributing
 Found a bug or have an idea for improvement? Contributions are welcome. Fork the repository, make your changes, and submit a pull request.
 
