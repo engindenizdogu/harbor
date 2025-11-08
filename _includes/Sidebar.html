@@ -1,0 +1,16 @@
+<nav class="sidebar-nav" aria-label="Notes">
+  <h2 class="sidebar-title">Notes</h2>
+  {%- comment -%}
+    Build a list of public notes from the notes collection.
+    On some systems note.path may contain backslashes, so check both.
+  {%- endcomment -%}
+  {%- assign public_notes = site.notes | where_exp: "n", "n.path contains '/Public/' or n.path contains '\\Public\\'" -%}
+  {%- assign public_notes = public_notes | sort: 'title' -%}
+  <ul class="sidebar-list">
+    {%- for note in public_notes -%}
+      <li class="sidebar-item{%- if page.url == note.url -%} active{%- endif -%}">
+        <a class="sidebar-link" href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
