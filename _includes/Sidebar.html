@@ -35,7 +35,7 @@
     {%- comment -%} Folder sections {%- endcomment -%}
     {%- for folder in folders -%}
       <li class="sidebar-folder">
-        <details class="sidebar-details" {% if page.path contains folder %}open{% endif %}>
+        <details class="sidebar-details" data-folder-name="{{ folder }}" {% if page.path contains folder %}open{% endif %}>
           <summary class="sidebar-folder-name">{{ folder }}</summary>
           <ul class="sidebar-sublist">
             {%- for note in public_notes -%}
@@ -69,3 +69,71 @@
     {%- endfor -%}
   </ul>
 </nav>
+
+<script>
+  (function () {
+    // Persist sidebar folder open/closed state across page navigations
+    var STORAGE_KEY = 'sidebarOpenFolders';
+    function readOpenSet() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return new Set();
+        var arr = JSON.parse(raw);
+        return new Set(Array.isArray(arr) ? arr : []);
+      } catch (e) {
+        return new Set();
+      }
+    }
+    function writeOpenSet(set) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(set)));
+      } catch (e) {
+        // ignore write errors (e.g., private mode)
+      }
+    }
+
+    function init() {
+      var detailsList = document.querySelectorAll('.sidebar-details[data-folder-name]');
+      if (!detailsList.length) return;
+
+      var openSet = readOpenSet();
+
+      detailsList.forEach(function (det) {
+        var name = det.getAttribute('data-folder-name');
+        if (!name) return;
+        // Apply persisted state (if exists)
+        if (openSet.has(name)) {
+          det.setAttribute('open', '');
+        } else {
+          // If not in persisted set, keep whatever Liquid rendered
+          // and later we will sync current open states on first run
+        }
+
+        // Update persistence on user toggle
+        det.addEventListener('toggle', function () {
+          if (det.open) {
+            openSet.add(name);
+          } else {
+            openSet.delete(name);
+          }
+          writeOpenSet(openSet);
+        });
+      });
+
+      // Prime storage the first time (to reflect any default-open sections)
+      if (openSet.size === 0) {
+        var initiallyOpen = Array.prototype.filter.call(detailsList, function (d) { return d.open; })
+          .map(function (d) { return d.getAttribute('data-folder-name'); });
+        if (initiallyOpen.length) {
+          writeOpenSet(new Set(initiallyOpen));
+        }
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
