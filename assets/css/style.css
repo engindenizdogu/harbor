@@ -24,6 +24,7 @@
   --line-height: 1.5;
   
   /* 5-level typography scale (1rem = 15px) */
+  --scale-xxs: 0.6rem;     /* 9px */
   --scale-xs: 0.8rem;     /* 12px */
   --scale-sm: 0.933rem;   /* 14px */
   --scale-base: 1rem;     /* 15px */
@@ -231,6 +232,32 @@ body.home {
 .sidebar-item.active .sidebar-link {
   background: var(--brand);
   color: var(--bg);
+}
+
+.sidebar-collapse-all {
+  display: block;
+  width: calc(100% - 1rem);
+  margin: 1rem 0.5rem 0.5rem 0.5rem;
+  padding: var(--space-xxs) var(--space-xs);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  color: var(--text-light);
+  font-size: var(--scale-xs);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.sidebar-collapse-all:hover {
+  background: var(--bg);
+  color: var(--brand);
+  border-color: var(--brand);
+}
+
+.sidebar-collapse-all:active {
+  transform: scale(0.98);
 }
 
 .main-content {

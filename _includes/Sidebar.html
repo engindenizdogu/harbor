@@ -75,6 +75,8 @@
       {%- endunless -%}
     {%- endfor -%}
   </ul>
+  
+  <button class="sidebar-collapse-all" onclick="collapseAllFolders()">Collapse All ↑</button>
 </nav>
 
 <script>
@@ -88,7 +90,7 @@
     function readOpenSet() {
       try {
         var raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return new Set();
+        if (!raw) return new Set(); // Start with all folders collapsed
         var arr = JSON.parse(raw);
         return new Set(Array.isArray(arr) ? arr : []);
       } catch (e) {
@@ -102,6 +104,17 @@
         // ignore write errors (e.g., private mode)
       }
     }
+
+    window.collapseAllFolders = function() {
+      var detailsList = document.querySelectorAll('.sidebar-details[data-folder-name]');
+      detailsList.forEach(function(det) {
+        if (det.open) {
+          det.removeAttribute('open');
+        }
+      });
+      // Clear storage
+      writeOpenSet(new Set());
+    };
 
     function init() {
       var nav = document.querySelector('.sidebar-nav');
