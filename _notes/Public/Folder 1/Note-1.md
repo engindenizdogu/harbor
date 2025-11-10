@@ -1,5 +1,5 @@
 ---
-title: Obsidian Setup
+title: Obsidian Setup Test
 feed: show
 date: 2024-01-15
 ---
