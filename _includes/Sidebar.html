@@ -1,3 +1,10 @@
+<style>
+  /* Hide sublists until JS applies persisted state to avoid flicker */
+  .sidebar-nav:not(.ready) .sidebar-sublist { visibility: hidden; }
+  /* Optional: give smoother paint when animating */
+  .sidebar-sublist { will-change: height; }
+</style>
+
 <nav class="sidebar-nav" aria-label="Notes">
   {%- comment -%}
     Hierarchical sidebar
@@ -35,7 +42,7 @@
     {%- comment -%} Folder sections {%- endcomment -%}
     {%- for folder in folders -%}
       <li class="sidebar-folder">
-        <details class="sidebar-details" data-folder-name="{{ folder }}" {% if page.path contains folder %}open{% endif %}>
+        <details class="sidebar-details" data-folder-name="{{ folder }}">
           <summary class="sidebar-folder-name">{{ folder }}</summary>
           <ul class="sidebar-sublist">
             {%- for note in public_notes -%}
@@ -73,6 +80,10 @@
 <script>
   (function () {
     // Persist sidebar folder open/closed state across page navigations
+    // Runs only once on initial page load (not on client-side navigation)
+    if (window.sidebarInitialized) return;
+    window.sidebarInitialized = true;
+
     var STORAGE_KEY = 'sidebarOpenFolders';
     function readOpenSet() {
       try {
@@ -93,41 +104,78 @@
     }
 
     function init() {
+      var nav = document.querySelector('.sidebar-nav');
       var detailsList = document.querySelectorAll('.sidebar-details[data-folder-name]');
-      if (!detailsList.length) return;
+      if (!detailsList.length) {
+        if (nav) nav.classList.add('ready');
+        return;
+      }
 
       var openSet = readOpenSet();
+      var isInitialLoad = true;
+
+      function animateOpen(sub) {
+        if (!sub) return;
+        // Start from 0, then expand to scrollHeight
+        sub.style.overflow = 'hidden';
+        sub.style.height = '0px';
+        sub.style.transition = 'height 200ms ease';
+        requestAnimationFrame(function () {
+          sub.style.height = sub.scrollHeight + 'px';
+        });
+        sub.addEventListener('transitionend', function onEnd() {
+          sub.removeEventListener('transitionend', onEnd);
+          sub.style.transition = '';
+          sub.style.overflow = '';
+          sub.style.height = '';
+        });
+      }
+
+      function animateClose(sub) {
+        if (!sub) return;
+        // Collapse from current height to 0
+        sub.style.overflow = 'hidden';
+        sub.style.height = sub.scrollHeight + 'px';
+        sub.style.transition = 'height 200ms ease';
+        requestAnimationFrame(function () {
+          sub.style.height = '0px';
+        });
+        sub.addEventListener('transitionend', function onEnd() {
+          sub.removeEventListener('transitionend', onEnd);
+          sub.style.transition = '';
+          sub.style.overflow = '';
+          sub.style.height = '';
+        });
+      }
 
       detailsList.forEach(function (det) {
         var name = det.getAttribute('data-folder-name');
         if (!name) return;
-        // Apply persisted state (if exists)
-        if (openSet.has(name)) {
-          det.setAttribute('open', '');
-        } else {
-          // If not in persisted set, keep whatever Liquid rendered
-          // and later we will sync current open states on first run
-        }
+        var sub = det.querySelector('.sidebar-sublist');
 
-        // Update persistence on user toggle
+        // Add toggle listener (skips animation on initial load)
         det.addEventListener('toggle', function () {
+          if (isInitialLoad) return; // No animation on page load
           if (det.open) {
             openSet.add(name);
+            writeOpenSet(openSet);
+            animateOpen(sub);
           } else {
             openSet.delete(name);
+            writeOpenSet(openSet);
+            animateClose(sub);
           }
-          writeOpenSet(openSet);
         });
+
+        // Apply persisted state (triggers toggle but animation skipped)
+        if (openSet.has(name) && !det.open) {
+          det.setAttribute('open', '');
+        }
       });
 
-      // Prime storage the first time (to reflect any default-open sections)
-      if (openSet.size === 0) {
-        var initiallyOpen = Array.prototype.filter.call(detailsList, function (d) { return d.open; })
-          .map(function (d) { return d.getAttribute('data-folder-name'); });
-        if (initiallyOpen.length) {
-          writeOpenSet(new Set(initiallyOpen));
-        }
-      }
+      // Mark initial load done, reveal sidebar
+      isInitialLoad = false;
+      if (nav) nav.classList.add('ready');
     }
 
     if (document.readyState === 'loading') {
