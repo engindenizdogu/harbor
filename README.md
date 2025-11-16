@@ -4,11 +4,25 @@ A simple Jekyll theme that turns your Obsidian notes into a beautiful website. P
 
 ### What it does
 
-Jekyll Garden connects your notes together with simple `[[note title]]` links, just like in Obsidian. You can find any note quickly with the built-in search that works as you type. The design focuses on your content with a clean, minimal look that works great on phones, tablets, and computers. Choose between dark and light themes, and when you want to write traditional blog posts, you can do that too. The theme also supports mathematical expressions if you need to write equations.
+Jekyll Garden connects your notes together with simple `[[note title]]` links, just like in Obsidian. You can find any note quickly with the built-in search that works as you type. The design focuses on your content with a clean, minimal look that works great on phones, tablets, and computers. Dark theme support is optional (UI toggle removed by default in this fork). The theme also supports mathematical expressions if you need to write equations.
 
 ## Getting Started
 
 Getting started is straightforward. First, download this theme to your computer. Then edit the settings in the `_config.yml` file with your website information. Add your notes to the `_notes` folder, and finally deploy to GitHub Pages, Netlify, or any web hosting service.
+
+### Add Your First Note
+
+Create a file under `_notes/Public/`:
+
+```yaml
+---
+title: "My First Note"
+date: 2024-01-15
+feed: "show"
+---
+```
+
+Write content in Markdown and connect ideas using `[[Wiki Links]]`.
 
 ## Basic Setup
 
@@ -20,6 +34,30 @@ heading: "Your Name"
 description: "A brief description of your site"
 url: "https://yoursite.com"
 ```
+
+### Obsidian Setup
+
+Use the `_notes` folder as your Obsidian vault for a seamless write→publish flow.
+
+- Front matter per note:
+	```yaml
+	---
+	title: "Your Note Title"
+	date: 2024-01-15
+	feed: "show"   # or "hide" for private notes
+	---
+	```
+- Recommended `.gitignore` entries:
+	```gitignore
+	.obsidian/
+	.trash/
+	_site/
+	.sass-cache/
+	.jekyll-cache/
+	```
+- Keep private notes out of the site by placing them under a separate folder (e.g. `_notes/Private/`) and ignoring it, or by setting `feed: "hide"`.
+
+Workflow: write notes in Obsidian → use `[[Wiki Links]]` → commit and push → site updates.
 
 ### Deployment Options
 
@@ -62,7 +100,22 @@ Connect your notes by using `[[note title]]` to link to other notes. This create
 
 
 ### Simple Linking
-The linking system works just like Obsidian. Write `[[note title]]` and the links are created automatically. When you hover over a link, you'll see a preview of the connected note.
+The linking system works just like Obsidian:
+
+- Internal: `[[Note Title]]`
+- External: `[[Google::https://google.com]]`
+- Example:
+	```markdown
+	This note connects to [[Getting Started]] and [[Markdown Guide]].
+	For more information, check out [[Jekyll::https://jekyllrb.com]].
+	```
+
+Backlinks are automatic: when a note links to another, the linked note shows a Backlinks section.
+
+Troubleshooting wiki links:
+- Ensure the target note exists under `_notes/`
+- Match the title exactly
+- Set `feed: "show"` in front matter for published notes
 
 ### Search
 Finding content is easy with the built-in search. It searches through all your notes instantly as you type, looking at both titles and content to help you find exactly what you need.
@@ -89,6 +142,9 @@ See which notes link to the current one you're reading. This helps you discover 
 ### Math
 If you need to write mathematical expressions, the theme supports it. Use `$x = y$` for inline math and `$$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$` for complex equations.
 
+### Blog Integration
+Write chronological posts under `_posts/` in standard Jekyll format. Posts coexist with evergreen notes and can link to them.
+
 ## How to Publishing Your Site
 
 ### GitHub Pages (Free)
@@ -98,29 +154,130 @@ GitHub Pages is the easiest way to get started. Upload your files to GitHub, ena
 Netlify is another great option. Connect your GitHub repository to Netlify, and it will build and host your site. Every time you update your files, your site updates automatically.
 
 ### Local Testing
-Test your site locally before publishing. Run `bundle install` to install dependencies, then `bundle exec jekyll serve` to start a local server and see your site in action.
+Test your site locally before publishing:
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
 
 ### Customization
 Change the look of your site by editing the `assets/css/style.css` file. You can modify colors, fonts, and other visual elements to match your preferences. If you want to customize the layout, you can modify files in the `_layouts/` folder. Add your own CSS and JavaScript as needed, but remember to keep it simple.
 
+#### Site Configuration (`_config.yml`)
+
+Basic settings:
+```yaml
+title: "My Digital Garden"
+heading: "Your Name"
+description: "A brief description of your site"
+url: "https://yoursite.com"
+```
+
+Menu items:
+```yaml
+menu:
+	- title: "Notes"
+		url: "/notes"
+	- title: "About"
+		url: "/about"
+	- title: "Blog"
+		url: "/blog"
+```
+
+Preferences:
+```yaml
+preferences:
+	homepage:
+		enabled: true      # Show custom homepage
+	search:
+		enabled: true      # Enable search
+	backlinks:
+		enabled: true      # Show backlinks
+```
+
+Colors and fonts (CSS):
+```css
+:root {
+	--primary-color: #007acc;
+	--text-color: #333;
+	--background-color: #fff;
+	--font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+```
+
+Dark mode: The UI toggle is intentionally removed in this fork. You can re‑introduce a toggle in your layout and switch `data-theme` via JavaScript if desired.
+
+Custom fonts:
+```css
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+	--font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+```
+
 #### Homepage background image
-You can show a transparent background image only on the homepage.
+Disabled by default in this fork. If you want a homepage background image, add a `body.home` rule in `assets/css/style.css` with your `background-image` and place the asset under `assets/img/`.
 
-Steps:
+#### Markdown Cheatsheet
 
-1. Place your transparent PNG/SVG file under `assets/img/` (for example: `assets/img/home-bg.png`).
-2. The layout automatically adds a `home` class to the `<body>` on the homepage (see `_layouts/Post.html`).
-3. In `assets/css/style.css`, update the image path in the `body.home` rule:
+Headings:
+```markdown
+# Main heading
+## Section heading
+### Subsection heading
+```
 
-	- `url('/assets/img/home-bg.png')` → change the filename if needed.
-	- The CSS keeps the left sidebar stripe gradient and layers your image underneath so it shows through transparent areas.
+Text formatting:
+```markdown
+*Italic* _italic_  **Bold** __bold__  `inline code`  ~~strike~~
+```
 
-Optional tweaks:
+Lists:
+```markdown
+- Item
+- Nested
+  - Child
 
-- Provide a dark mode variant by uncommenting the `[data-theme="dark"] body.home` block and supplying `home-bg-dark.png`.
-- Adjust scaling: Replace `background-size: auto, cover;` with `auto, contain` if you want the whole image visible without cropping.
-- Remove `background-attachment: fixed` for the image layer if you prefer it to scroll with content.
-- To disable the gradient stripe on the homepage, remove the first gradient from `background-image` inside `body.home`.
+1. First
+2. Second
+```
+
+Links:
+```markdown
+[External](https://example.com)
+[[Wiki link]]
+[[External link::https://example.com]]
+```
+
+Code blocks:
+```markdown
+```javascript
+function hello() {
+  console.log("Hello, World!");
+}
+```
+```
+
+Blockquotes:
+```markdown
+> This is a blockquote.
+> It can span multiple lines.
+```
+
+Tables:
+```markdown
+| Header | Header |
+|--------|--------|
+| Cell   | Cell   |
+```
+
+Math (KaTeX):
+```markdown
+Inline: $x = y$
+Block: $$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
+```
 
 ## Contributing
 Found a bug or have an idea for improvement? Contributions are welcome. Fork the repository, make your changes, and submit a pull request.
