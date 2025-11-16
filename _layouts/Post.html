@@ -63,7 +63,6 @@
                             {%- include Content.html -%}
                         {%- else -%}
                             <!--- Show content from notes.md + search + feed when homepage is disabled -->
-                            <h1>{{page.title}}</h1>
                             {%- include Content.html -%}
                             {%- include Search.html -%}
                         {%- endif -%}
@@ -71,7 +70,6 @@
 
                     <!--- Notes Feed Layout-->
                     {%- if page.permalink == "/notes" -%}
-                        <h1>{{page.title}}</h1>
                         {%- include Content.html -%}
                         {%- include Search.html -%}
                         {%- include Feed.html -%}
@@ -79,7 +77,6 @@
 
                     <!--- Notes Layout-->
                     {%- if page.content-type == "notes" -%}
-                        <h1>{{page.title}}</h1>
                         {%- include Content.html -%}
                         {%- if site.preferences.backlinks.enabled -%}
                         {%- include Backlinks.html -%}
@@ -88,7 +85,6 @@
 
                      <!--- Post Layout-->
                      {%- if page.content-type == "post"  -%}
-                         <h1>{{page.title}}</h1>
                          {%- include Content.html -%}
                          {%- if site.preferences.backlinks.enabled -%}
                          {%- include Backlinks.html -%}
@@ -97,7 +93,6 @@
 
                     <!--- Static Page Layout-->
                     {%- if page.content-type == "static" -%}
-                        <h1>{{page.title}}</h1>                        
                         {%- include Content.html -%}
                     {%- endif -%}
                     
