@@ -59,7 +59,7 @@ menu:
 footer:
   copyright: "© 2024 Your Name. Contents under CC-BY-NC"
   credits:
-    enabled: true
+    enabled: false
     url: "/credits"
     text: "Credits"
 

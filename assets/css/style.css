@@ -339,20 +339,20 @@ body.home {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font);
   color: var(--title);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
   line-height: 1.5;
 }
 
 h1 {
   font-size: clamp(1.2rem, 4vw, 1.4rem);
   font-weight: var(--weight-bold);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xs);
 }
 
 h2 {
   font-size: clamp(1.1rem, 3vw, 1.2rem);
   font-weight: var(--weight-bold);
-  margin-top: var(--space-xl);
+  margin-top: var(--space-md);
   margin-bottom: var(--space-md);
 }
 
@@ -370,7 +370,7 @@ h4, h5, h6 {
 
 p {
   font-size: var(--scale-base); 
-  margin-bottom: var(--space-md);
+  margin: var(--space-xs) 0;
   color: var(--text);
   line-height: 1.7;
   font-weight: 400;
@@ -543,13 +543,18 @@ a:hover {
 blockquote {
   border-left: 4px solid var(--brand);
   padding-left: var(--space-md);
-  margin: var(--space-lg) 0;
+  margin: var(--space-sm) 0;
   font-style: italic;
   color: var(--text);
   line-height: 1.6;
   background: var(--bg2);
   padding: var(--space-md);
   border-radius: 0.25rem;
+}
+
+/* Tighter paragraph spacing inside blockquotes without affecting global <p> */
+blockquote p {
+  margin-bottom: 0;
 }
 
 code {
@@ -566,7 +571,7 @@ pre {
   padding: var(--space-md);
   border-radius: 0.5rem;
   overflow-x: auto;
-  margin: var(--space-lg) 0;
+  margin: var(--space-sm) 0;
   border: 1px solid var(--border);
 }
 
@@ -585,7 +590,7 @@ hr {
 }
 
 ul, ol {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   padding-left: var(--space-lg);
 }
 
