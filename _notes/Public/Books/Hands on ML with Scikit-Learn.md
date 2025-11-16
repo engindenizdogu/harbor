@@ -1,6 +1,7 @@
 ---
 title: Hands on ML with Scikit-Learn, Keras & Tensorflow
 ---
+# Hands on ML with Scikit-Learn
 ###### Aurélien Geron, 2nd Edition
 
 Find code examples at: [ageron/handson-ml3: A series of Jupyter notebooks that walk you through the fundamentals of ML and DL in Python](https://github.com/ageron/handson-ml3/tree/main)

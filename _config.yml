@@ -35,9 +35,9 @@ preferences:
     enabled: true
 
 # Site Configuration
-title: "Your Site Title"
-heading: "Your Name"
-description: "A brief description of your site"
+title: "Edd's Harbor ⚓🌊"
+heading: "Deniz"
+description: "Edd's personal knowledge harbor."
 url: "https://yoursite.com"
 baseurl: ""
 

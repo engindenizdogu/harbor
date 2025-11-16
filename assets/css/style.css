@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 :root {
-  --bg: rgba(242, 240, 229, 0.5);
-  --bg2: rgb(227, 225, 211);
-  --text: #6f6e69;
-  --title: #343331;
-  --brand: rgb(36, 138, 240);
-  --border: rgb(230, 228, 217);
-  --sidebar-width: 240px;
+  --bg: rgb(255, 255, 255);
+  --bg2: rgb(237, 237, 237);
+  --text: #1b1b1b;
+  --title: rgb(0, 105, 170);/*rgb(44, 95, 126)*/
+  --brand: rgb(0, 105, 170); /*rgb(44, 95, 126)*/
+  --border: rgb(254, 105, 30);
+  --code-bg: rgba(87, 191, 255, 0.3);
+  --td-bg: rgba(245, 245, 245, 0.25);
+  --border-width: 2px;
+  --sidebar-width: 300px;
   
   --font: "Inter", sans-serif;
   --weight-medium: 400;
@@ -19,6 +22,7 @@
   --space-md: 1.5rem;
   --space-lg: 2rem;
   --space-xl: 3rem;
+  --space-xxl: 4rem;
   
   --max-width: 56rem;
   --line-height: 1.5;
@@ -30,22 +34,6 @@
   --scale-base: 1rem;     /* 15px */
   --scale-lg: 1.2rem;     /* 18px */
   --scale-xl: 1.4rem;     /* 21px */
-}
-
-/* Dark theme variables */
-[data-theme="dark"] {
-  --bg: #18181c;
-  --bg2: #23232a;
-  --text: #d6d6d6;
-  --title: #fff;
-  --brand: #3ac9b0;
-  --border: #33343a;
-}
-
-/* smooth transition on theme switching */
-html.theme-transition,
-body.theme-transition {
-  transition: background 0.3s, color 0.3s;
 }
 
 * {
@@ -75,21 +63,6 @@ body {
   background-attachment: fixed;
   font-size: var(--scale-base);
 }
-
-/* Homepage background image removed; fallback to base body background */
-
-/* Optional: dark theme variant if you want a different image (commented out) */
-/*
-[data-theme="dark"] body.home {
-  background-image: linear-gradient(
-      to right,
-      var(--bg2) 0,
-      var(--bg2) var(--sidebar-width),
-      transparent var(--sidebar-width)
-    ),
-    url('/assets/img/home-bg-dark.png');
-}
-*/
 
 .container {
   width: 100%;
@@ -124,7 +97,7 @@ body {
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
   /*column-gap: var(--space-xl);*/
-  column-gap: 12rem;
+  column-gap: 8rem;
   align-items: start;
   width: 100%;
 }
@@ -135,7 +108,6 @@ body {
   position: sticky;
   top: var(--space-xl);
   padding: 0 var(--space-sm) 0 var(--space-sm);
-  border-right: 1px solid var(--border);
   background: transparent; /* Background handled by body gradient */
 }
 
@@ -181,7 +153,7 @@ body {
   list-style: none;
   margin: 0rem 0rem 0rem 0rem;
   padding-left: 0.75rem;
-  border-left: 1px solid var(--border);
+  border-left: var(--border-width) solid var(--border);
 }
 
 .sidebar-subitem .sidebar-link {
@@ -220,7 +192,7 @@ body {
   margin: 1rem 0.5rem 0.5rem 0.5rem;
   padding: var(--space-xxs) var(--space-xs);
   background: transparent;
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: 0.35rem;
   color: var(--text-light);
   font-size: var(--scale-xs);
@@ -256,7 +228,7 @@ body {
     top: 0;
     max-height: none;
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: var(--border-width) solid var(--border);
     background: var(--bg2); /* visible panel on mobile */
     margin-bottom: var(--space-lg);
   }
@@ -272,7 +244,7 @@ body {
   align-items: center;
   margin-bottom: var(--space-sm);
   /* Left padding reduced so brand text aligns with sidebar note text */
-  padding: 0 var(--space-xl) 0 var(--space-sm);
+  padding: 0 var(--space-xxl) 0 var(--space-sm);
 }
 
 .nav-left a {
@@ -301,8 +273,8 @@ body {
 }
 
 .nav-right a {
-  margin-left: var(--space-md);
-  text-decoration: none;
+  margin-left: var(--space-sm);
+  text-decoration: underline;
   font-size: var(--scale-sm);
   color: var(--text);
   position: relative;
@@ -401,7 +373,7 @@ a:hover {
 }
 
 .note-list li {
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width) solid var(--border);
   padding: var(--space-xs) 0;
   display: flex;
   align-items: center;
@@ -409,7 +381,7 @@ a:hover {
 }
 
 .note-list > li:first-child {
-  border-top: 1px solid var(--border);
+  border-top: var(--border-width) solid var(--border);
 }
 
 .note-title {
@@ -547,12 +519,12 @@ code {
 }
 
 pre {
-  background: var(--bg2);
+  background: var(--code-bg);
   padding: var(--space-md);
   border-radius: 0.5rem;
   overflow-x: auto;
   margin: var(--space-sm) 0;
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
 }
 
 pre code {
@@ -565,7 +537,7 @@ pre code {
 
 hr {
   border: none;
-  border-top: 1px solid var(--border);
+  border-top: var(--border-width) solid var(--border);
   margin: var(--space-xl) 0;
 }
 
@@ -603,7 +575,7 @@ table {
 th, td {
   padding: var(--space-sm) var(--space-md);
   text-align: left;
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width) solid var(--border);
 }
 
 th {
@@ -613,7 +585,7 @@ th {
 }
 
 td {
-  background: var(--bg);
+  background: var(--td-bg);
   color: var(--text);
 }
 
@@ -626,7 +598,7 @@ td {
 .search-input {
   width: 100%;
   padding: var(--space-sm);
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: 0.25rem;
   font-size: var(--scale-base);
   background: var(--bg);
@@ -653,7 +625,7 @@ td {
 
 .search-active .search-results {
   display: block;
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-top: none;
   border-radius: 0 0 0.25rem 0.25rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -675,7 +647,7 @@ td {
   text-decoration: none;
   color: var(--text);
   transition: all 0.2s ease;
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width) solid var(--border);
   line-height: 1.5;
 }
 
@@ -738,7 +710,7 @@ td {
 
 /* Feed styles */
 .notelist-feed {
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width) solid var(--border);
   padding: var(--space-sm) 0;
   transition: background 0.3s ease;
 }
@@ -760,7 +732,7 @@ td {
 }
 
 .list-feed {
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width) solid var(--border);
   padding: var(--space-sm) 0;
 }
 
@@ -802,7 +774,7 @@ td {
   background-color: var(--bg2);
   color: var(--text);
   border-radius: 6px;
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   opacity: 0;
   visibility: hidden;
@@ -836,7 +808,7 @@ td {
 .wiki-link {
   color: var(--brand);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  border-bottom: var(--border-width) solid transparent;
   transition: border-color 0.2s ease;
 }
 
@@ -846,7 +818,7 @@ td {
 
 .link-preview {
   background: var(--bg2);
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   border-radius: 6px;
   padding: var(--space-sm);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
