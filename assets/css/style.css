@@ -134,7 +134,7 @@ body {
   overflow-y: auto;
   position: sticky;
   top: var(--space-xl);
-  padding: 0 var(--space-sm) 0 var(--space-lg);
+  padding: 0 var(--space-sm) 0 var(--space-sm);
   border-right: 1px solid var(--border);
   background: transparent; /* Background handled by body gradient */
 }

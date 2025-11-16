@@ -128,37 +128,11 @@
       var isInitialLoad = true;
 
       function animateOpen(sub) {
-        if (!sub) return;
-        // Start from 0, then expand to scrollHeight
-        sub.style.overflow = 'hidden';
-        sub.style.height = '0px';
-        sub.style.transition = 'height 200ms ease';
-        requestAnimationFrame(function () {
-          sub.style.height = sub.scrollHeight + 'px';
-        });
-        sub.addEventListener('transitionend', function onEnd() {
-          sub.removeEventListener('transitionend', onEnd);
-          sub.style.transition = '';
-          sub.style.overflow = '';
-          sub.style.height = '';
-        });
+        return; // animation removed
       }
 
       function animateClose(sub) {
-        if (!sub) return;
-        // Collapse from current height to 0
-        sub.style.overflow = 'hidden';
-        sub.style.height = sub.scrollHeight + 'px';
-        sub.style.transition = 'height 200ms ease';
-        requestAnimationFrame(function () {
-          sub.style.height = '0px';
-        });
-        sub.addEventListener('transitionend', function onEnd() {
-          sub.removeEventListener('transitionend', onEnd);
-          sub.style.transition = '';
-          sub.style.overflow = '';
-          sub.style.height = '';
-        });
+        return; // animation removed
       }
 
       detailsList.forEach(function (det) {
@@ -172,11 +146,9 @@
           if (det.open) {
             openSet.add(name);
             writeOpenSet(openSet);
-            animateOpen(sub);
           } else {
             openSet.delete(name);
             writeOpenSet(openSet);
-            animateClose(sub);
           }
         });
 
