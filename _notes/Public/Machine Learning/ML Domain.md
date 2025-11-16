@@ -1,6 +1,5 @@
 ---
 title: ML Domain
-parent: Machine Learning
 ---
 1. **Discriminant Functions**: When you just need accurate classifications and don't care about probabilities (e.g., image classification for labeling)
 	- Perceptron, Support Vector Machines (SVM), Decision Trees

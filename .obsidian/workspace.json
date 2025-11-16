@@ -1,0 +1,195 @@
+{
+  "main": {
+    "id": "46b6821c8fcfd642",
+    "type": "split",
+    "children": [
+      {
+        "id": "6571fbdd51b5738d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c8b0f34d1c0ffb29",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a7d400a535fb890a",
+    "type": "split",
+    "children": [
+      {
+        "id": "a9260030497d0647",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1834b920ed986005",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "42e0cafc6dfc2fcb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "96a058afd367d8e6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a801625d581fa52e",
+    "type": "split",
+    "children": [
+      {
+        "id": "ca51ec79a5bd569c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6c39eb5171a6d3f3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "e6912eb0fc4e3782",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "cdf9d08e1dd12198",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "51488dd7ec841be8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "1834b920ed986005",
+  "lastOpenFiles": [
+    "_notes/Public/Machine Learning/Algorithms.md",
+    "_notes/Public/Jekyll/Commands.md",
+    "_site/assets/img/linear_classifiers_example.png",
+    "_notes/Public/Math for ML/Glossary (ML Math).md",
+    "_notes/Public/Machine Learning/Code Snippets.md",
+    "_notes/Public/Machine Learning/EDA.md",
+    "_site/notes/eda.html",
+    "_notes/Public/Machine Learning/Glossary (ML).md",
+    "_notes/Public/Machine Learning/ML Domain.md",
+    "_notes/Public/Machine Learning/Model Evaluation.md",
+    "_notes/Public/Machine Learning/Normalization.md",
+    "_site/notes/glossary-ml.html",
+    "_site/notes/glossary-ml-math.html",
+    "_notes/Public/Machine Learning/index.md",
+    "_notes/Public/Math for ML/Probability.md",
+    "_notes/Public/Math for ML/Linear Algebra.md",
+    "assets/img/determinant_3by3.png",
+    "_notes/Public/Math for ML/index.md",
+    "_site/assets/img/lsc_teaser.png",
+    "_site/assets/img/linear_classfiers_example.png",
+    "_site/assets/img/least_squares_class.png",
+    "_site/assets/img/least_squares_3class.png",
+    "_site/assets/img/inverted_2by2.png",
+    "_site/assets/img/fishers_linear_disc.png",
+    "_site/assets/img/determinant_3by3.png",
+    "assets/img/lsc_teaser.png",
+    "_notes/Public/Math for ML/Images"
+  ]
+}

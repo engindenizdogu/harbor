@@ -1,8 +1,7 @@
 ---
 title: Linear Algebra
-parent: Math for ML
 ---
-## Vector Operations:
+# Vector Operations:
 - Addition
 - Scalar multiplication
 
@@ -10,7 +9,7 @@ parent: Math for ML
 * c***u*** + d***v***
 * c***u*** + d***v*** + e***w***
 
-## Properties of Dot Product:
+# Properties of Dot Product:
 - Distributive: $u^T(v + w) = u^Tv+u^Tw$
 - Non-Associative: $u^T(v^Tw) \ne (u^Tv)^Tw$
 - Commutative: $u^Tv = v^Tu$
@@ -18,8 +17,7 @@ parent: Math for ML
 **Cosine Formula for Dot Product:** $v^Tw = \|v\| . \|w\| . cos(θ)$ (**note:** cos(θ) = 0 when θ = 90°)
 
 **Length of a vector:** $\left\| \mathbf{v} \right\| = \sqrt{v_1^2 + v_2^2 + v_3^2 + ...}$
-
-## Matrix operations:
+# Matrix operations:
 - Addition (both matrices should have the same dimensions)
 - Scalar multiplication
 - Transpose: mapping A ∈ $\mathbb{R}^{n \times m}$ to B ∈ $\mathbb{R}^{m \times n}$ with $a_{ij} = b_{ji}$
@@ -36,7 +34,7 @@ parent: Math for ML
 - $(A+B)^T =A^T +B^T$ and $(A - B)^T =A^T - B^T$
 - $(AB)^T =B^TA^T$
 
-## Systems of Linear Equations Recap:
+# Systems of Linear Equations Recap:
 - $Ax = b$
 - Gaussian Elimination
 - Row Echelon/Reduced Row Echelon Form
@@ -50,7 +48,7 @@ A matrix is in **reduced row echelon form** if:
 - the leading entry in each nonzero row is 1 (called a leading one)
 - each column containing a leading 1 has zeros in all its other entries (or in other words, above the pivot if condition one is achieved)
 
-## Properties of Determinants:
+# Properties of Determinants:
 - Matrix must be square
 - The determinant of the identity matrix is 1.
 - The exchange of two rows multiplies the determinant by −1.
@@ -63,8 +61,7 @@ A matrix is in **reduced row echelon form** if:
 - $det(A^T) = det(A)$
 
 **Laplace Expansion Example:**
-
-![](../../../assets/images/determinant_3by3.png)
+![](/assets/img/determinant_3by3.png)
 
 **Invertibility:**
 - Matrix must be square
@@ -73,16 +70,15 @@ A matrix is in **reduced row echelon form** if:
 	- $[A \vert I]$  -> $[I \vert A^-1]$
 * Inverse for a 2x2:
 
-![](../../../assets/images/inverted_2by2.png)
+![](/assets/img/inverted_2by2.png)
 
-## Vector Spaces and Subspaces
+# Vector Spaces and Subspaces
 A subspace is defined as a set of all vectors that can be created by taking linear combinations of some vectors or a set of vectors. 
 
 Formally, a subspace is the set of all vectors that satisfy the following conditions:
 * Must be closed under addition and multiplication
 * Must contain the zero vector
 
-{: .note-title }
 > Note
 > 
 > A vector space needs to contain all linear combinations of its vectors.
@@ -96,14 +92,11 @@ Formally, a subspace is the set of all vectors that satisfy the following condit
 | 2         | All of $R^2$                       | Planes that pass through the origin |
 | 3         | -                                  | All of $R^3$                        |
 
-{: .note-title }
 > Dimension of a subspace
 > 
 > The dimension of a subspace is always ≤ the dimension of the space it lives in.
 
-
 **Example 2: What does NOT qualify as a subspace?**
-
 Think about a line that doesn't pass through the origin - say, all points where $y = x + 1$. If we pick a vector on that line, like (0, 1), and we multiply it by the scalar 0, we get (0, 0) - which is **NOT** on the line $y = x + 1$. So that line isn't closed under scalar multiplication, and therefore *can't* be a subspace.
 
 **The distinction:**
@@ -120,33 +113,28 @@ Think about a line that doesn't pass through the origin - say, all points where 
 | Row Space       | C($A^T$)∈$R^n$ | Pivot rows                                                                                                   |
 | Left Null Space | N($A^T$)∈$R^m$ | Solve for y where $y^T.A=0$                                                                                  |
 
-{: .note-title }
 > Dimensions
 > 
 > For matrix A with dimensions mxn:
 > - $dim(C(A)) + dim(N(A)) = n$ (# of columns)
 > - $dim(C(A^T)) + dim(N(A^T)) = m$ (# of rows) 
 
-{: .note-title }
 > Orthogonal Subspaces
 > 
 > - $N(A) \bot C(A^T)$
 > - $N(A^T) \bot C(A)$ 
 
-{: .note-title }
 > If the null space is {(0,0,0)} then (only consists of the zero vector),
 > 
 > - Dimension of null space = **0**
 > - Number of free columns = **0**
 > - All columns are pivot columns
 
-{: .note-title }
 > Null space of A
 >
 > If vector $\vec{v}$ is in the null space of matrix A, then A$\vec{v}=0$.
 
 **Complete Solution System of Linear Equations**
-
 $x_{particular}$ : Set all free variables to 0, then solve $Ax=b$ (or $Rx=b$ where R is the echelon/reduced echelon form)
 
 $x_{null space}$ : Set free columns to 1 and solve $Rx=0$. If there are more than one, set them respectively. For example, if there are two free variables (let's say $x_2$ and $x_3$) first set $x_2 = 1$, $x_3 = 0$ and solve for $Rx=0$. Then set $x_2 = 0$, $x_3 = 1$ and solve for $Rx=0$. Two free variables mean there will be two special solutions.
@@ -158,7 +146,6 @@ A system's solution set has three possibilities:
 2. infinite solutions
 3. no solution
 
-{: .note-title }
 > If $det(A) = 0$ the system has either,
 > 
 > - no solution **OR**
@@ -170,8 +157,6 @@ A system's solution set has three possibilities:
 - **The rank of A = # of independent rows = # of independent columns *(very important)***
 
 **Basis**
-
-{: .note-title }
 > Tip for Finding the Span
 > 
 > If we want to find that $$\vec{v}=\begin{bmatrix} 1 \\ 2 \\ 0 \end{bmatrix}$$ in the span of $$S = \{\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 1 \\ 1 \\ 7 \end{bmatrix}\}$$, we can just look at the rank of

@@ -1,6 +1,5 @@
 ---
 title: Model Evaluation
-parent: Machine Learning
 ---
 #### Common Classification Metrics
 

@@ -1,6 +1,5 @@
 ---
 title: Probability
-parent: Math for ML
 ---
 * $Var(X) = E(X - E(X))^2 = E(X^2) - E(X)^2 = M2 - M1$ (moments)
 
@@ -18,18 +17,24 @@ parent: Math for ML
 
 - A and B are *conditionally independent* if: $P((A ∩ B)/C) = P(A \vert C) . P(B \vert C)$
 
-**Bayes' Formula:**
+### Bayes' Formula:
+
 $$P(A \vert B) = {P(B \vert A)P(A) \over P(B)}$$
 
 $$P(A \vert B) = {P(A \cap B) \over P(B)} \text{ or } P(A ∩ B) = P(A \vert B) . P(B) = P(B \vert A) . P(A)$$
 
 In other words:
+
 $$\text{posterior} = {\text{likelihood} * \text{prior} \over \text{evidence}}$$
 
-**Law of Total Probability**
+### Law of Total Probability
+
 $$P(A) = P(A \vert B1).P(B1) + P(A \vert B2).P(B2) + ... + P(A \vert Bn).P(Bn)$$
+
 or,
+
 $$p(x)=\sum_1^cp(x  \vert y_i)P(y_i)$$
+
 
 **TODO:**
 - *Distributions*

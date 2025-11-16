@@ -1,6 +1,5 @@
 ---
 title: Code Snippets
-parent: Machine Learning
 ---
 ```python
 # Train/Test split
