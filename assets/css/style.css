@@ -526,7 +526,6 @@ blockquote {
   border-left: 4px solid var(--brand);
   padding-left: var(--space-md);
   margin: var(--space-sm) 0;
-  font-style: italic;
   color: var(--text);
   line-height: 1.6;
   background: var(--bg2);
