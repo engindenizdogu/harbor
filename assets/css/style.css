@@ -97,7 +97,7 @@ body {
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
   /*column-gap: var(--space-xl);*/
-  column-gap: 8rem;
+  column-gap: 9rem;
   align-items: start;
   width: 100%;
 }

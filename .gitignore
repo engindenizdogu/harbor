@@ -2,6 +2,9 @@ _site
 .jekyll-cache
 pages/.DS_Store
 pages/tags.md
+
+# Obsidian related files and folders
 _notes/.obsidian
 _notes/Public/.obsidian
+_notes/Private
 .obsidian

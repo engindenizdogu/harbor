@@ -28,7 +28,7 @@ preferences:
   search:
     enabled: true
   backlinks:
-    enabled: true
+    enabled: false
   pagepreview:
     enabled: true
   wiki_style_link:
@@ -36,7 +36,7 @@ preferences:
 
 # Site Configuration
 title: "Edd's Harbor ⚓🌊"
-heading: "Deniz"
+heading: " Edd's Harbor"
 description: "Edd's personal knowledge harbor."
 url: "https://yoursite.com"
 baseurl: ""
