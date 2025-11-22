@@ -70,7 +70,6 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: var(--space-sm);
 }
 
 .container > div {
@@ -137,7 +136,7 @@ body {
 
 .sidebar-folder-name {
   display: block;
-  padding: var(--space-xxs) 0.5rem var(--space-xxs) 0.5rem;
+  padding: var(--space-xxs);
   color: var(--title);
   font-size: var(--scale-sm);
   font-weight: var(--weight-bold);
@@ -238,13 +237,32 @@ body {
   }
 }
 
+
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: var(--space-xs) var(--space-xxl) var(--space-xs) var(--space-sm);
   margin-bottom: var(--space-sm);
-  /* Left padding reduced so brand text aligns with sidebar note text */
-  padding: 0 var(--space-xxl) 0 var(--space-sm);
+  background: var(--bg2);
+}
+
+.nav-sticky {
+  position: sticky;
+  background: var(--bg2);
+  top: 0;
+  z-index: 1002;
+  width: 100%;
+}
+
+@media (max-width: 960px) {
+  .nav-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1002;
+    width: 100%;
+    margin-bottom: var(--space-sm);
+  }
 }
 
 .nav-left a {
@@ -265,7 +283,7 @@ body {
   letter-spacing: 0.02em;
   display: inline-block;
   /* Match sidebar link vertical rhythm and left indent math: nav left padding (1rem) + brand padding-left (0.5rem) = sidebar padding (1rem) + link padding-left (0.5rem) */
-  padding: 0.4rem 0.5rem;
+  padding: 0.3rem 0.4rem;
 }
 
 .brand:hover {
@@ -273,7 +291,7 @@ body {
 }
 
 .nav-right a {
-  margin-left: var(--space-sm);
+  margin-left: var(--space-xs);
   text-decoration: underline;
   font-size: var(--scale-sm);
   color: var(--text);
@@ -286,6 +304,18 @@ body {
 .nav-right a:hover {
   background: var(--bg2);
   color: var(--brand);
+}
+
+/* Specific hover styles for LinkedIn link (first link) */
+.nav-right a:first-child:hover {
+  background: rgb(0, 105, 170);
+  color: white;
+}
+
+/* Specific hover styles for GitHub link (second link) */
+.nav-right a:nth-child(2):hover {
+  background: black;
+  color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
