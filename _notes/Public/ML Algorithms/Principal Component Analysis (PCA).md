@@ -7,4 +7,4 @@ title: Principal Component Analysis (PCA)
 | --------------------------------------- |
 | Preprocessing, Dimensionality Reduction |
 
-⛵ 💬 Sailed too far out... nothing to see in these waters! 🌊
+⛵ 💬 Sailed too far out... Nothing to see in these waters! 🌊
