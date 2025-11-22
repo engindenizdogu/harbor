@@ -35,25 +35,17 @@ preferences:
     enabled: true
 
 # Site Configuration
-title: "Edd's Harbor ⚓🌊"
-heading: " Edd's Harbor"
+title: "Edd's Harbor ⛵"
+heading: " Harbor"
 description: "Edd's personal knowledge harbor."
 url: "https://yoursite.com"
 baseurl: ""
 
 # Asset Configuration
+favicon: "/assets/img/favicon.png"
 apple_touch_icon: "/assets/img/profile.png"
 css_file: "/assets/css/style.css"
 ie_css: "/assets/css/ie-target.css"
-
-# Menu Items
-menu:
-  - title: "About"
-    url: "/about"
-
-# Footer
-footer:
-  copyright: "© 2024 Your Name. Contents under CC-BY-NC"
 
 # Collections
 collections:
@@ -75,11 +67,6 @@ defaults:
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-
-# Private links (for broken wiki links)
-privatelinks:
-  title: "Private Note"
-  msg: "This note hasn't been published yet."
 
 # Math rendering
 katex: true

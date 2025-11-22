@@ -472,30 +472,6 @@ a:hover {
   }
 }
 
-.footer {
-  margin-top: var(--space-xl);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.footer h6 {
-  color: var(--title);
-  font-size: var(--scale-xs);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-}
-
-.footer-left {
-  text-align: left;
-}
-
-.footer-right {
-  flex: 1;
-  text-align: right;
-}
-
 .theme-toggle {
   display: inline-flex;
   align-items: center;
