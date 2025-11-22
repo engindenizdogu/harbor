@@ -4,7 +4,9 @@ permalink: /
 title: Home
 ---
 ## Hi, I'm Deniz...
-I'm a master's student in *Machine Learning @ Stevens Institute of Technology*. I created this site to keep my notes organized and build my own knowledge base (and since it could also double as a portfolio, I thought, why not turn it into a documentation blog). I’ll also be using it as a personal blog. Feel free to look around. I hope you’ll find something helpful here!
+I'm a master's student in *Machine Learning @ Stevens Institute of Technology*. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my work and studies. While not all entries are fully detailed, they serve as a reminder that I’ve engaged with or need to explore the topic further. For my yearly log see, [[Year in Review ✨]].
+
+*Feel free to look around. I hope you’ll find something helpful here!* 
 
 ![](/assets/img/dithered-image-cropped.png)
 
