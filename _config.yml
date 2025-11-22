@@ -48,20 +48,12 @@ ie_css: "/assets/css/ie-target.css"
 
 # Menu Items
 menu:
-  - title: "Notes"
-    url: "/notes"
-  - title: "Blog"
-    url: "/blog"
   - title: "About"
     url: "/about"
 
 # Footer
 footer:
   copyright: "© 2024 Your Name. Contents under CC-BY-NC"
-  credits:
-    enabled: false
-    url: "/credits"
-    text: "Credits"
 
 # Collections
 collections:
@@ -78,14 +70,6 @@ defaults:
       layout: "Post"
       content-type: "notes"
       feed: "show"
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "Post"
-      content-type: "post"
-      feed: "show"
-      permalink: /blog/:title/
 
 # Plugins
 plugins:

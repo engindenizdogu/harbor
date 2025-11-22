@@ -69,11 +69,7 @@
                     {%- endif -%}
 
                     <!--- Notes Feed Layout-->
-                    {%- if page.permalink == "/notes" -%}
-                        {%- include Content.html -%}
-                        {%- include Search.html -%}
-                        {%- include Feed.html -%}
-                    {%- endif -%}
+                    
 
                     <!--- Notes Layout-->
                     {%- if page.content-type == "notes" -%}
@@ -83,33 +79,9 @@
                         {%- endif -%}
                     {%- endif -%}
 
-                     <!--- Post Layout-->
-                     {%- if page.content-type == "post"  -%}
-                         {%- include Content.html -%}
-                         {%- if site.preferences.backlinks.enabled -%}
-                         {%- include Backlinks.html -%}
-                         {%- endif -%}
-                     {%- endif -%}
-
                     <!--- Static Page Layout-->
                     {%- if page.content-type == "static" -%}
                         {%- include Content.html -%}
-                    {%- endif -%}
-                    
-                    <!--- Blog Feed Layout-->
-                    {%- if page.permalink == "/blog" -%}
-                        <div class="related-wrapper">
-                        {% assign post_items = site.posts | sort: "date" | reverse %}
-                        {% for post_items in post_items %}
-                            {%- if post_items.feed == "show" -%}
-                                    <div class="notelist-feed">
-                                        <a href="{{ site.baseurl }}{{post_items.url}}">
-                                            <p>{{ post_items.title }}</p>
-                                        </a>
-                                    </div>
-                            {%- endif -%}
-                        {%- endfor -%}
-                        </div>
                     {%- endif -%}
 
                     

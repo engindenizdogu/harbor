@@ -277,12 +277,11 @@ body {
 
 /* Simplified nav after removing hamburger */
 .brand {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: var(--weight-bold);
   color: var(--title);
   letter-spacing: 0.02em;
   display: inline-block;
-  /* Match sidebar link vertical rhythm and left indent math: nav left padding (1rem) + brand padding-left (0.5rem) = sidebar padding (1rem) + link padding-left (0.5rem) */
   padding: 0.3rem 0.4rem;
 }
 
