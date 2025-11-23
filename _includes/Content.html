@@ -3,8 +3,8 @@
 </div>
 
 <script>
-// Process wiki links after page load, excluding code blocks
-document.addEventListener('DOMContentLoaded', function() {
+// Make wiki link processing globally available
+window.processWikiLinksInContent = function() {
     const contentDiv = document.querySelector('.content');
     if (!contentDiv) return;
     
@@ -150,5 +150,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Process all nodes in the content
     processWikiLinks(contentDiv);
+};
+
+// Process wiki links after page load, excluding code blocks
+document.addEventListener('DOMContentLoaded', function() {
+    window.processWikiLinksInContent();
 });
 </script> 
