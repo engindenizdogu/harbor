@@ -8,6 +8,6 @@ I'm a master's student in *Machine Learning @ Stevens Institute of Technology*. 
 
 *Feel free to look around. I hope you’ll find something helpful here!* 
 
-![]({{ "/assets/img/dithered-image-cropped.png" | relative_url }})
+![](../../../assets/img/dithered-image-cropped.png)
 
 > **Fun Fact:** This site was based on [Jekyll Garden](https://jekyll-garden.github.io/). I use Obsidian to write and organize my markdown notes, which are then publish directly to GitHub. If you’re curious, you can check out my notes about Jekyll.

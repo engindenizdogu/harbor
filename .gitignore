@@ -3,6 +3,9 @@ _site
 pages/.DS_Store
 pages/tags.md
 
+# GitHub related
+.github/instructions
+
 # Obsidian related files and folders
 _notes/.obsidian
 _notes/Public/.obsidian
