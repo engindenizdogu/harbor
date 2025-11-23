@@ -52,6 +52,15 @@
           if (typeof renderMath === 'function') {
             renderMath();
           }
+
+          // Re-process wiki links in newly injected content
+          if (typeof window.processWikiLinksInContent === 'function') {
+            try {
+              window.processWikiLinksInContent();
+            } catch (err) {
+              console.error('Wiki link processing failed:', err);
+            }
+          }
         }
       })
       .catch(function (err) {

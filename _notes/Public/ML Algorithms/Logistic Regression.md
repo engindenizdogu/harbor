@@ -9,7 +9,7 @@ title: Logistic Regression
 
 Usually performs better than these linear classifiers:
 - [[Least-Square Classification]]
-- [[Fisher’s Linear Discriminant]]
+- [[Fisher's Linear Discriminant]]
 - [[Rosenblatt's Perceptron]]
 - [[Support Vector Machines]]
 

@@ -1,7 +1,7 @@
 ---
-title: Fisher’s Linear Discriminant
+title: Fisher's Linear Discriminant
 ---
-# Linear Discriminant Analysis / Fisher’s Linear Discriminant
+# Linear Discriminant Analysis / Fisher's Linear Discriminant
 
 | Type              |
 | ----------------- |

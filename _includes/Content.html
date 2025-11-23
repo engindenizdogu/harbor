@@ -76,6 +76,7 @@ window.processWikiLinksInContent = function() {
                         link.className = 'wiki-link';
                         
                         // Add hover preview functionality
+                        /*
                         link.addEventListener('mouseenter', function() {
                             showPreview(this, foundNote.title, foundNote.excerpt);
                         });
@@ -83,6 +84,7 @@ window.processWikiLinksInContent = function() {
                         link.addEventListener('mouseleave', function() {
                             hidePreview();
                         });
+                        */
                     } else {
                         // Note doesn't exist - create a placeholder
                         link.href = 'javascript:void(0)';
@@ -117,6 +119,7 @@ window.processWikiLinksInContent = function() {
     }
     
     // Function to show hover preview
+    /*
     function showPreview(link, title, excerpt) {
         // Remove any existing preview
         hidePreview();
@@ -139,14 +142,17 @@ window.processWikiLinksInContent = function() {
         preview.style.top = (rect.bottom + 5) + 'px';
         preview.style.zIndex = '1000';
     }
+    */
     
     // Function to hide hover preview
+    /*
     function hidePreview() {
         const existingPreview = document.querySelector('.link-preview');
         if (existingPreview) {
             existingPreview.remove();
         }
     }
+    */
     
     // Process all nodes in the content
     processWikiLinks(contentDiv);

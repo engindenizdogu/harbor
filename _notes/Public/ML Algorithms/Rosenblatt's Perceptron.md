@@ -1,5 +1,5 @@
 ---
-title: Rosenblatts’ Perceptron
+title: Rosenblatt's Perceptron
 ---
 # Rosenblatt's Perceptron
 
