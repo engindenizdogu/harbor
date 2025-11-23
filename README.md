@@ -37,6 +37,7 @@ bundle exec jekyll serve
 - `_notes/Public/` - Published notes organized by topic
 - `assets/` - CSS, images, and JavaScript
 - `_layouts/` - Jekyll templates
+- `_plugins/image_path_normalizer.rb` - Rewrites root `/assets/img/...` paths to include `baseurl` for project sites.
 
 ## Credits
 
