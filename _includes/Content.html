@@ -19,11 +19,52 @@ window.processWikiLinksInContent = function() {
         {%- endfor -%}
     ];
     
-    // Function to find note by title (case-insensitive)
-    function findNoteByTitle(title) {
-        return availableNotes.find(note => 
-            note.title.toLowerCase() === title.toLowerCase()
-        );
+    // Helper: decode HTML entities and normalize smart quotes/apostrophes
+    function normalizeTitle(str) {
+        if (!str) return '';
+        // Decode HTML entities by leveraging a temporary textarea
+        var el = document.createElement('textarea');
+        el.innerHTML = str;
+        var decoded = el.value;
+        // Normalize curly quotes/apostrophes to straight apostrophe
+        decoded = decoded.replace(/[’‘`]/g, "'");
+        // Collapse consecutive whitespace
+        decoded = decoded.replace(/\s+/g, ' ').trim();
+        return decoded.toLowerCase();
+    }
+
+    // Generate a slug similar to Jekyll's for fallback matching
+    function slugify(str) {
+        if (!str) return '';
+        // Normalize quotes first
+        str = str.replace(/[’‘`]/g, "'");
+        // Replace apostrophes with hyphen (matches existing fisher-s pattern)
+        str = str.replace(/'/g, '-');
+        // Remove any character not alphanumeric, space or hyphen
+        str = str.replace(/[^a-zA-Z0-9\s-]/g, '');
+        // Collapse whitespace to single hyphen
+        str = str.trim().toLowerCase().replace(/\s+/g, '-');
+        return str;
+    }
+
+    // Function to find note by title (case-insensitive) with normalization + slug fallback
+    function findNoteByTitle(rawTitle) {
+        var normalizedQuery = normalizeTitle(rawTitle);
+        // First attempt: direct normalized title match
+        var found = availableNotes.find(function(note){
+            return normalizeTitle(note.title) === normalizedQuery;
+        });
+        if (found) return found;
+        // Fallback: slug match against note URLs (expects /notes/<slug>)
+        var querySlug = slugify(rawTitle);
+        found = availableNotes.find(function(note){
+            try {
+                var urlParts = note.url.split('/');
+                var last = urlParts[urlParts.length - 1];
+                return last === querySlug;
+            } catch(e) { return false; }
+        });
+        return found || null;
     }
     
     // Function to process wiki links in text nodes only

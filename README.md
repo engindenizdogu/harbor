@@ -14,6 +14,10 @@ This site serves as an organized collection of notes from my studies in Machine 
 
 The notes are written in Obsidian and published directly to GitHub Pages, with wiki-style `[[links]]` connecting related concepts.
 
+### Wiki Links & Apostrophes
+
+Obsidian sometimes converts straight apostrophes `'` to smart quotes `’` in `[[wiki links]]` (e.g. `[[Fisher’s Linear Discriminant]]`). The site now normalizes these characters client‑side so links resolve even if the stored note title uses a straight apostrophe (`Fisher's Linear Discriminant`). If you encounter a non‑resolving link, ensure it is wrapped in double brackets; the normalization will handle both `'` and `’`.
+
 ## Tech Stack
 
 - **Jekyll** - Static site generator
