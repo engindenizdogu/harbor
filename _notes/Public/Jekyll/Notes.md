@@ -41,6 +41,7 @@ my-jekyll-site
 HUGO is an alternative framework I found along the way. Might try to use it later on.
 * Documentation: [The world's fastest framework for building websites](https://gohugo.io/)
 * A simple HUGO theme: [Book](https://themes.gohugo.io/themes/hugo-book/)
+* [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
 
 > Advice from the Obsidian Team itself (on hosting .md files) 🙂
 > [Link to Reddit post...](https://www.reddit.com/r/ObsidianMD/comments/16e5jek/comment/jzv38ja/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)i

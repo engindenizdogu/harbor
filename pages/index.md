@@ -10,4 +10,4 @@ I'm a master's student in *Machine Learning @ Stevens Institute of Technology*. 
 
 ![](/assets/img/dithered-image-cropped.png)
 
-> **Fun Fact:** This site was based on [Jekyll Garden](https://jekyll-garden.github.io/). I use Obsidian to write and organize my markdown notes, which are then publish directly to GitHub. If you’re curious, you can check out my notes about Jekyll.
+> **Fun Fact:** This site was based on [Jekyll Garden](https://jekyll-garden.github.io/). I use Obsidian to write and organize my markdown notes, which are then published directly to GitHub. If you’re curious, you can check out my notes about Jekyll.
