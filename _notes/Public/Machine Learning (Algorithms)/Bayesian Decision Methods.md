@@ -7,6 +7,8 @@ title: Bayesian Decision Methods
 | ------------------------------- |
 | Generative Classification Model |
 
+Also see, [[4. Bayesian Decision Theory]]
+
 Given observation x, the decision is based on posterior probability:
 - Decide $y_1$, if $P(y_1 \vert x) > P(y_2 \vert x)$
 - Decide $y_2$, if $P(y_2 \vert x) > P(y_1 \vert x)$

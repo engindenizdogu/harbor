@@ -1,5 +1,5 @@
 ---
-title: Linear Regression (&Gradient Descent)
+title: Linear Regression
 ---
 # Linear Regression
 
