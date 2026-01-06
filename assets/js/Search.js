@@ -74,7 +74,8 @@
     }
 
     function searchInit() {
-        var dataUrl = "/SearchData.json";
+        var baseurl = document.documentElement.getAttribute('data-baseurl') || '';
+        var dataUrl = baseurl + "/SearchData.json";
 
         getSearchData(dataUrl)
             .then(function(responseText) {

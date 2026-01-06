@@ -39,12 +39,15 @@ Graphical models are used in fields where variables have complex interdependenci
 ### Medical Diagnosis
 - **Scenario:** Predicting the likelihood of a disease based on symptoms and test results.
 - **Structure:** Nodes represent "Smoking," "Lung Cancer," "Cough," and "X-ray result." A Bayesian network can calculate the probability of cancer given a positive X-ray and a history of smoking.
+
 ### Spam Filtering
 - **Scenario:** Determining if an email is spam based on the presence of certain words.
 - **Structure:** A "Naive Bayes" model (a simple form of PGM) uses a central "Spam/Not Spam" node that influences the probability of seeing words like "Winner," "Offer," or "Meeting."
+
 ### Fault Diagnosis in Engineering
 - **Scenario:** Identifying which component failed in a complex system (like a car engine or a power grid).
 - **Structure:** Nodes represent different components (battery, alternator, spark plugs) and observable signals (lights flickering, engine not starting).
+
 ### Genetics and Bioinformatics
 - **Scenario:** Modeling the inheritance of traits or the interaction between different genes.
 - **Structure:** Pedigree charts are essentially Bayesian networks where nodes are individuals and edges represent the passing of genetic material from parents to offspring.

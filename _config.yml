@@ -38,8 +38,8 @@ preferences:
 title: "Edd's Harbor ⛵"
 heading: " Harbor"
 description: "Edd's personal knowledge harbor."
-url: "https://yoursite.com"
-baseurl: ""
+url: "https://engindenizdogu.github.io"
+baseurl: "/harbor"
 
 # Asset Configuration
 favicon: "/assets/img/favicon.png"
