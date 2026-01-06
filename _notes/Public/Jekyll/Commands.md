@@ -7,7 +7,7 @@ title: Commands
 bundle init
 ```
 
-**Installing gems with Bundler:** Instead of using `gem install`, you use Bundler's command (this let's you isolate instead of installing globally).
+**Installing gems with Bundler:** Instead of using `gem install`, you use Bundler's command (this let's you isolate instead of installing globally). If there are issues with packages, remove `Gemfile.lock` and run `bundle install` again.
 
 ```
 bundle install
