@@ -48,3 +48,57 @@ In Python, `__init__.py` is a special file that serves two primary purposes wi
     - **Simplifying Imports:** Importing specific modules, functions, or classes from submodules directly into the package's namespace. This allows users to import these elements directly from the package instead of needing to specify the submodule.
     - Defining `__all__`: The `__all__` variable (a list of strings) can be defined in `__init__.py` to control which names are imported when a "star import" (`from package import *`) is used. This allows for explicit control over the package's public API.
 
+
+
+# Context Manager Protocol (`with` statement)
+**Context managers** provide setup/cleanup guarantees using the `with` statement.
+## Execution Order
+
+```python
+with expression as variable:
+    # body
+```
+
+1. `expression.__enter__()` runs → returns value bound to `variable`
+2. `body` executes
+3. `expression.__exit__()` **always** runs (even if exception occurs)
+## Implementation: `@contextmanager` Decorator
+Converts a generator function into a context manager:
+
+```python
+from contextlib import contextmanager
+
+@contextmanager
+def my_context():
+    # Setup code runs first
+    resource = setup()
+    try:
+        yield resource  # ← Pauses; value goes to 'as' variable
+        # Execution jumps to 'with' body
+    finally:
+        cleanup(resource)  # ← Always runs on exit
+```
+
+**Usage:**
+```python
+with my_context() as resource:
+    # Use resource here
+    ...
+# cleanup() called automatically
+```
+
+## Why Use a Context Manager?
+- **Fail-safe cleanup**: `finally` block guarantees cleanup even on exceptions. Ensure exit code always runs.
+- **No decorator needed**: Manual implementation requires `__enter__` and `__exit__` methods
+
+> Without `@contextmanager`
+> A generator alone **cannot** be used in a `with` statement, it crashes. The decorator bridges this gap automatically.
+
+```python
+def my_gen():
+    yield resource  # Just a generator, NOT a context manager
+
+with my_gen():  # ❌ TypeError: object does not support context manager protocol
+    pass
+```
+
