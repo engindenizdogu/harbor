@@ -28,6 +28,8 @@ module Jekyll
             "<a href=\"#{site.baseurl}#{note.url}\" class=\"wiki-link\">#{link_text}</a>"
           else
             # Note not found - create a stale link
+            # Add the searched title for debugging
+            Jekyll.logger.warn "Wikilink Converter:", "Could not find note: '#{link_text}'"
             "<span class=\"stale-link\" title=\"Note not found: #{link_text}\">#{link_text}</span>"
           end
         end
