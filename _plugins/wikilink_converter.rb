@@ -38,8 +38,13 @@ module Jekyll
       normalized_title = normalize_title(title)
       
       # Search through all notes
-      site.collections['notes'].docs.find do |note|
-        normalize_title(note.data['title']) == normalized_title
+      notes_collection = site.collections['notes']
+      return nil unless notes_collection && notes_collection.docs
+      
+      notes_collection.docs.find do |note|
+        note_title = note.data['title']
+        next unless note_title
+        normalize_title(note_title) == normalized_title
       end
     end
     
@@ -57,9 +62,22 @@ module Jekyll
 end
 
 # Hook into Jekyll's rendering process
-Jekyll::Hooks.register [:documents, :pages], :pre_render do |doc|
-  # Only process markdown files
-  if doc.extname == '.md'
-    doc.content = Jekyll::WikilinkConverter.convert_wikilinks(doc.content, doc.site)
+# Use :post_read to ensure collections are loaded
+Jekyll::Hooks.register :site, :post_read do |site|
+  # Process all documents in the notes collection
+  notes_collection = site.collections['notes']
+  if notes_collection && notes_collection.docs
+    notes_collection.docs.each do |doc|
+      if doc.content
+        doc.content = Jekyll::WikilinkConverter.convert_wikilinks(doc.content, site)
+      end
+    end
+  end
+  
+  # Also process pages
+  site.pages.each do |page|
+    if page.content && page.path.end_with?('.md')
+      page.content = Jekyll::WikilinkConverter.convert_wikilinks(page.content, site)
+    end
   end
 end
