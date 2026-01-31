@@ -19,7 +19,6 @@ title: Keyword Extraction & Topic Modelling
 
 > **Alternative approach:** Using LLMs (could be local, LLMs could be better understanding context compared to the libraries above)
 
-
 **List of approaches:**
 
 | Method                         | Supervised/Unsupervised | Description                                                   | Notes                                                                           |

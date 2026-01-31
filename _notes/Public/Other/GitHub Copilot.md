@@ -2,6 +2,8 @@
 title: GitHub Copilot
 ---
 > [GitHub Copilot in VSCode cheat sheet](https://code.visualstudio.com/docs/copilot/reference/copilot-vscode-features)
+
+> AI model comparison: [Link](https://docs.github.com/en/copilot/reference/ai-models/model-comparison)
 # Agent Instructions
 There are 3 types of instructions:
 - The global instruction markdown: **.github/copilot-instructions.md file -** apply instructions automatically to all chat requests.

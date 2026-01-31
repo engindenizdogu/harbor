@@ -11,6 +11,8 @@ title: Linear Regression
 
 $$fw(x) = y = w^Tx + \beta = w_1x + w_0$$
 
+> Linear regression assumes the target is a weighted average of input features.
+
 **Loss:**
 
 $$L(x,y,w) = (fw(x) − y)^2$$
@@ -33,6 +35,13 @@ $$ {\vartheta L(w) \over \vartheta(w)} = X^TXw-y^TX = 0$$
 Solution:
 
 $$w^∗ =(X^TX)^−1X^Ty$$
+
+> Linear Regression has a closed form solution because the loss function is **convex** and **quadratic**.
+
+>For small to medium feature sets, the closed-form solution is typically preferred since it's exact and direct. *For very large feature sets or when $X^T X$ isn't invertible, gradient descent becomes more practical.*
+
+> **IMPORTANT NOTE:**
+> Only a handful of ML problems have closed-form solutions such as Linear Regression, Ridge Regression (Linear Regression with L2 Regularization), Linear Discriminant Analysis, some simple Bayesian models etc. Most problems do NOT have a closed form solution, hence we need to solve using iterative optimization algorithms like gradient descent. Examples to problems without closed form solutions: Logistic Regression, Neural Networks, Support Vector Machines etc.
 
 ## Gradient Descent
 Update weights using ($\alpha$ is the learning rate):
