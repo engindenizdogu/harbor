@@ -1,5 +1,5 @@
 ---
-title: Title
+title: LM Benchmarks
 ---
 **For Coding:**
 - **HumanEval**: Python coding tasks (higher % = better)
