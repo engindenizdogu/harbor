@@ -26,7 +26,7 @@ Usually performs better than these linear classifiers:
     - **Decision Boundary:** By selecting a threshold of 0.5, the decision boundary simplifies to $w^{\top}x = 0$, which is linear with respect to $x$.
 - **Multi-class Logistic Regression ($K>2$):**
     - Uses the **Softmax function** to ensure the sum of probabilities across all $K$ classes equals 1.
-    - Calculation involves two steps: computing the inner product $f_k = w_k^{\top}x$ for each class, then applying the softmax to get normalized probabilities.       
+    - Calculation involves two steps: computing the inner product $f_k = w_k^{\top}x$ for each class, then applying the softmax to get normalized probabilities.
 
 ### Optimization and Loss Functions
 - **Cross-Entropy Loss:** The model is optimized by maximizing the likelihood (or minimizing the negative log-likelihood) of the correct class. This is equivalent to minimizing the cross-entropy between the true distribution (one-hot encoded labels) and the predicted distribution.

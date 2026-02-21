@@ -102,29 +102,3 @@ with my_gen():  # ❌ TypeError: object does not support context manager protoco
     pass
 ```
 
-# Package Management with `uv
-Docs: https://docs.astral.sh/uv/
-
-```python
-cd your-project
-uv venv                    # Creates .venv in project directory
-source .venv/bin/activate  # or: . .venv/bin/activate
-uv pip install pandas numpy
-```
-
-**Advantages over managing with `conda`:** `conda` can introduce dependency duplication. uv uses aggressive [caching](https://docs.astral.sh/uv/concepts/cache/) to avoid re-downloading (and re-building) dependencies that have already been accessed in prior runs. Let's say two projects are using the same 'pandas' version. Even if you have a separate environments for the projects, uv does not install the dependency twice (like it would do with `conda` environments).
-
-Additional `uv` commands:
-```
-# Install uv (first time)
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Setup project
-uv init && uv venv --python 3.12
-
-# Activate environment
-source .venv/bin/activate
-
-# Install project in editable mode
-uv pip install -e .
-```

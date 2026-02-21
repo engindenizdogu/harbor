@@ -7,4 +7,4 @@ title: k-Means
 | ---------- |
 | Clustering |
 
-Similar concept to [[k-Nearest Neighbors]].
+⛵ 💬 Sailed too far out... Nothing to see in these waters! 🌊
