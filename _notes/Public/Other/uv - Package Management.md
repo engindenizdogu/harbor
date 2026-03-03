@@ -50,5 +50,21 @@ uv pip install pandas
 ```bash
 uv run example.py
 ```
+
+**Using Jupyter from VS Code**
+```bash
+Create a project.
+uv init project
+
+Move into the project directory.
+cd project
+
+Add ipykernel as a dev dependency.
+uv add --dev ipykernel
+
+Open the project in VS Code.
+code .
+```
+
 ## Links
 - [Using uv with Jupyter](https://docs.astral.sh/uv/guides/integration/jupyter/#using-uv-with-jupyter)

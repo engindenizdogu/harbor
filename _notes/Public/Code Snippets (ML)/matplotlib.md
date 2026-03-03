@@ -2,6 +2,7 @@
 title: matplotlib
 ---
 ```python
+```python
 # Different ways to define a figure
 fig = plt.figure()             # an empty figure with no Axes
 fig, ax = plt.subplots()       # a figure with a single Axes
