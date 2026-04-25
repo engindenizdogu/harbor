@@ -2,7 +2,21 @@
 title: Preprocessing
 ---
 ```python
-# Train/Test split (manual)
+# Train/Test split with numpy (shuffle indices)
+shuffled_indices = np.random.permutation(x_train.shape[0])
+x_tr = x_train[shuffled_indices[:40000]]
+y_tr = y_train_vec[shuffled_indices[:40000]]
+x_val = x_train[shuffled_indices[40000:]]
+y_val = y_train_vec[shuffled_indices[40000:]]
+
+print('Shape of x_tr: ' + str(x_tr.shape))
+print('Shape of y_tr: ' + str(y_tr.shape))
+print('Shape of x_val: ' + str(x_val.shape))
+print('Shape of y_val: ' + str(y_val.shape))
+```
+
+```python
+# Train/Test split with ratio
 def train_test_split(X, y, split_size=0.2):
     # Generate shuffled indices
     num_data_points = X.shape[0]
@@ -23,6 +37,17 @@ def train_test_split(X, y, split_size=0.2):
 ```
 
 ```python
+# one-hot-encoding implementation
+def to_one_hot(y, num_class=10):
+	y_encoded = np.zeros((y.shape[0], num_class))
+	for i in range(y.shape[0]):
+		# numpy.org/doc/stable/user/basics.indexing.html#integer-array-indexing
+		y_encoded[i, y[i]] = 1 # or y_encoded[i, y[i][0]] = 1
+
+	return y_encoded
+```
+
+```python
 # Z-score standardization
 def standardize(X_train, X_test):
     # Calculate the mean and standard deviation of the training set
@@ -30,7 +55,7 @@ def standardize(X_train, X_test):
     std = np.std(X_train, axis=0)
 
     # To prevent division by zero, set std=1 where std is zero
-    std[std == 0] = 1
+    std[std == 0] = 1 # note: could add an epsilon term
 
     # Standardize the training set
     X_train_scaled = (X_train - mean) / std

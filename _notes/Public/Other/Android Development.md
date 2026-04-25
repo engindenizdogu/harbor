@@ -158,10 +158,12 @@ title: Android Development
 - **Material Design Guidelines** - Design principles
 
 # Testing the Application
+
 | Command                                    | Purpose                      |
 | ------------------------------------------ | ---------------------------- |
 | `./gradlew test`                           | Run all unit tests           |
 | `./gradlew test --tests "*HomeViewModel*"` | Run HomeViewModel tests      |
 | `./gradlew testDebug`                      | Run debug variant tests only |
 | `./gradlew clean test`                     | Clean and run fresh tests    |
+
 or run directly in Android Studio.

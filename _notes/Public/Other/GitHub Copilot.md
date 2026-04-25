@@ -4,11 +4,13 @@ title: GitHub Copilot
 > [GitHub Copilot in VSCode cheat sheet](https://code.visualstudio.com/docs/copilot/reference/copilot-vscode-features)
 
 > AI model comparison: [Link](https://docs.github.com/en/copilot/reference/ai-models/model-comparison)
+
 # Agent Instructions
 There are 3 types of instructions:
 - The global instruction markdown: **.github/copilot-instructions.md file -** apply instructions automatically to all chat requests.
 - Specific instruction sets that you can use for different programming languages, frameworks, or project types: **.github/instructions/*instruction-name*.instructions.md**. These instructions have a [front-matter](https://code.visualstudio.com/docs/copilot/customization/custom-instructions#_instructions-file-format) to indicate where the instructions should apply to.
 - If you work with multiple AI agents in your workspace, you can define custom instructions for all agents in an `AGENTS.md`. This feature is experimental as of 01/09/2026.
+
 # Agent Skills (Experimental)
 There is also a feature called [agent skills](https://code.visualstudio.com/docs/copilot/customization/overview#_agent-skills-preview) that enables you to teach agents specialized capabilities through folders containing instructions, scripts, and resources. It is similar to instructions, however, there are some important differences:
 
@@ -48,6 +50,7 @@ The skills subdirectory could include files like:
 	- can code review integration and feedback addressing
 
 To be honest, it feels like most of the time I would use the local agent. I can't think of specific use case where you don't have to supervise the changes and work with the local agent (maybe with custom agents and task delegation it could make sense?).
+
 # Custom Agents
 You can define custom agents for specific purposes such as planning, implementation or testing. Agents can be bundled up in a pipeline using [handoffs](https://code.visualstudio.com/docs/copilot/customization/custom-agents#_handoffs). 
 
@@ -55,12 +58,14 @@ You can define custom agents for specific purposes such as planning, implementat
 
 # MCP and Tools
 [MCP and Tools](https://code.visualstudio.com/docs/copilot/customization/overview#_mcp-and-tools) let you connect external services and specialized tools through Model Context Protocol (MCP).
+
 # Manage Context in Chat
 * \#-mentions (initializes tools or context items)
 * /-commands (shortcut specific functionality)
 * @-mentions (initializes chat participants)
 * Codebase search (use `#codebase`)
 * [Copilot - All Supported Context Items](https://code.visualstudio.com/docs/copilot/reference/copilot-vscode-features)
+
 # [Workspace Indexing](https://code.visualstudio.com/docs/copilot/reference/workspace-context)
 - Two types of indexing: [Local Index](https://code.visualstudio.com/docs/copilot/reference/workspace-context#_local-index) and [Remote Index](https://code.visualstudio.com/docs/copilot/reference/workspace-context#_remote-index)
 - If the project has less than 750 indexable files: VS Code automatically builds an advanced local index.
@@ -74,6 +79,7 @@ You can define custom agents for specific purposes such as planning, implementat
 > VSCode recommends to use `#codebase` in your chat prompts as it provides more flexibility. [What is the difference between @workspace and #codebase?](https://code.visualstudio.com/docs/copilot/reference/workspace-context#_what-is-the-difference-between-atworkspace-and-hashcodebase)
 
 To summarize, **while you don't have to configure anything about indexing initially**, it is a nice feature to keep in mind especially if your project grows larger in size. Keep in mind, if you find that chat is struggling to provide relevant answers to questions about your codebase, you might want to upgrade to a [remote index](https://code.visualstudio.com/docs/copilot/reference/workspace-context#_remote-index).
+
 # Using MCP servers in VS Code
 VSCode also supports use of [MCP servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers).
 

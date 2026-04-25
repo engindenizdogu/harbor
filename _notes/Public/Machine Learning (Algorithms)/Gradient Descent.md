@@ -36,3 +36,18 @@ The gradient tells the direction of steepest _ascent_ of the loss. We go in the 
 	- Reduces the variance of the parameter/model updates, which can lead to more stable convergence
 	- Can make use of highly optimized matrix optimizations
 * Adaptive learning rates (see AdaGrad algorithm)
+
+> **Why Mini-Batch SGD is Preferred Over Full Gradient Descent in Neural Networks (even if you had unlimited compute!):**
+> Neural network loss functions are non-convex, meaning they have multiple local minima, saddle points, and flat regions. Full gradient descent computes the exact gradient and follows it too precisely, causing it to get stuck in sharp local minima or saddle points that it cannot escape. Mini-batch SGD introduces randomness/noise into the gradient estimates, which helps in two ways. First, the noise helps the optimizer escape sharp local minima and saddle points. Second, it tends to find flatter, wider minima which generalize better to unseen data. A flat minimum is preferred because small changes in the parameters don't drastically increase the loss, meaning the model is more robust on unseen data. In short, the noise in mini-batch SGD is not a bug, it's a feature that leads to better generalization.
+
+**Gradient Descent with Momentum**
+
+$$V_{new}​ = β⋅V_{old} ​+ gradient$$
+
+$$W_{new}=W_{old}−η⋅V_{new}$$
+
+**Why momentum helps:**
+1. Speeds up in consistent directions: If gradients consistently point in the same direction across iterations, momentum accumulates and the optimizer moves faster.
+2. Dampens oscillations: In directions where gradients keep changing sign (oscillating), momentum averages them out and smooths the path.
+3. Helps escape local minima: The accumulated velocity can carry the optimizer through small local minima that would trap vanilla SGD.
+​

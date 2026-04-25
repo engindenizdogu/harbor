@@ -1,9 +1,9 @@
 ---
 title: uv - Package Management
 ---
-# Package Management with `uv
+# Package Management with `uv`
 
-> **Docs:** https://docs.astral.sh/uv/
+> **Docs:** [uv Docs](https://docs.astral.sh/uv/)
 
 ```python
 cd your-project
