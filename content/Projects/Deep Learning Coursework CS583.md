@@ -1,5 +1,5 @@
 ---
-title: Deep Learning Coursework CS583
+title: 05.2026 - Deep Learning Coursework CS583
 tags:
   - projects
   - deep-learning

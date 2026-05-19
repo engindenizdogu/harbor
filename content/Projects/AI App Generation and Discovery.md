@@ -1,5 +1,5 @@
 ---
-title: AI App Generation and Discovery
+title: 01.2026 - AI App Generation and Discovery
 tags: [projects, portfolio, full-stack, ai]
 draft: false
 ---

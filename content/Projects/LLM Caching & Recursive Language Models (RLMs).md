@@ -1,13 +1,11 @@
 ---
-title: Adarsh-RLMS
+title: 05.2026 - LLM Caching & Recursive Language Models (RLMs)
 tags:
   - projects
   - portfolio
   - nlp
   - llm
 draft: false
-  - Adarsh-RLMS
-  - Recursive Language Models (RLMs)
 ---
 > A production-grade Python research system implementing a Two-Stage Semantic Cache ("Dragnet & Sniper") for autonomous LLM workflows, achieving massive cost reductions.
 

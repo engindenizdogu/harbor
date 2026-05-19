@@ -1,5 +1,5 @@
 ---
-title: Automatic Tag Generation and Clustering with LLMs
+title: 05.2026 - Automatic Tag Generation and Clustering with LLMs
 tags:
   - projects
   - nlp

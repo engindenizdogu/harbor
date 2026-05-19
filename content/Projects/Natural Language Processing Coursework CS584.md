@@ -1,5 +1,5 @@
 ---
-title: Natural Language Processing Coursework CS584
+title: 05.2026 - Natural Language Processing Coursework CS584
 tags:
   - projects
   - nlp

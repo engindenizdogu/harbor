@@ -1,5 +1,5 @@
 ---
-title: viralscope
+title: 12.2025 - viralscope
 tags: [projects, portfolio, machine-learning]
 draft: false
 ---
