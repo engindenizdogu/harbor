@@ -39,7 +39,7 @@ bundle exec jekyll serve --livereload --port 4000
 JEKYLL_ENV = production bundle exec jekyll build
 ```
 
-By default `JEKYLL_ENV` is development. The `JEKYLL_ENV` is available to you in liquid using `jekyll.environment`. So to only output the analytics script on production you would do the following:
+By default `JEKYLL_ENV` is development. The `JEKYLL_ENV` is available to you in liquid using `jekyll.environment`. So to only output the analytics script on production you would do the following:
 
 ```liquid{% raw %}
 {% if jekyll.environment == "production" %}

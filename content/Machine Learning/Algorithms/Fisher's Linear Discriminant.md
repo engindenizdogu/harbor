@@ -31,7 +31,11 @@ $$S_W = S_+ + S_-$$
 
 > $S_+$ or $S_-$ takes the form
 > 
-> $$\begin{bmatrix} var(x_1) && cov(x_1,x_2) \\ cov(x_1,x_2) && var(x_2) \end{bmatrix}$$
+> $$
+\begin{aligned}
+\begin{bmatrix} var(x_1) && cov(x_1,x_2) \\ cov(x_1,x_2) && var(x_2) \end{bmatrix}
+\end{aligned}
+$$
 
 $$S_B = (m_+-m_-)(m_+-m_-)^T$$
 
@@ -44,13 +48,13 @@ $J$ is maximized when (take derivate with respect to w)
 $$(w^TS_Bw)S_Ww = (w^TS_Ww)S_Bw$$
 
 Notice:
-- $w^TS_W​w$ and $w^TS_Bw$ are scalars, thus we get 
+- $w^TS_Ww$ and $w^TS_Bw$ are scalars, thus we get 
 
 $$\alpha S_Ww = \beta S_Bw$$
 
-- If we take $\lambda = \alpha / \beta$ we get $S_B​w=λS_W​w$ which the generalized eigenvalue problem:
+- If we take $\lambda = \alpha / \beta$ we get $S_Bw=λS_Ww$ which the generalized eigenvalue problem:
 
-$$S_W^{−1}​S_B​w=λw$$
+$$S_W^{−1}S_Bw=λw$$
 
 From the generalized eigenvalue equation, we derive that the optimal $w$ is:
 
@@ -58,7 +62,7 @@ $$w∝ S_W^{−1}(m_+−m_−)$$
 
 > **Yes but how?!**
 > 
-> Notice $(m_+​−m_−​)^Tw$ in $S_B​w=(m_+​−m_−​)(m_+​−m_−​)^Tw$ is a scalar. That means the equation looks like $S_B​w=c.(m_+​−m_−​)$. This shows that $S_B​w$ is always proportional to $(m_+−m_−)$ regardless of what $w$ is! Plug this into the equation above to get the generalized eigenvalue equation.
+> Notice $(m_+−m_−)^Tw$ in $S_Bw=(m_+−m_−)(m_+−m_−)^Tw$ is a scalar. That means the equation looks like $S_Bw=c.(m_+−m_−)$. This shows that $S_Bw$ is always proportional to $(m_+−m_−)$ regardless of what $w$ is! Plug this into the equation above to get the generalized eigenvalue equation.
 
 To summarize, Fisher's Discriminant,
 - Gives the linear function with the maximum ratio of between-class scatter to within-class scatter

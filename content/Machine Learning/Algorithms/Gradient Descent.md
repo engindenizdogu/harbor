@@ -42,7 +42,7 @@ The gradient tells the direction of steepest _ascent_ of the loss. We go in the 
 
 **Gradient Descent with Momentum**
 
-$$V_{new}​ = β⋅V_{old} ​+ gradient$$
+$$V_{new} = β⋅V_{old} + gradient$$
 
 $$W_{new}=W_{old}−η⋅V_{new}$$
 
@@ -50,4 +50,4 @@ $$W_{new}=W_{old}−η⋅V_{new}$$
 1. Speeds up in consistent directions: If gradients consistently point in the same direction across iterations, momentum accumulates and the optimizer moves faster.
 2. Dampens oscillations: In directions where gradients keep changing sign (oscillating), momentum averages them out and smooths the path.
 3. Helps escape local minima: The accumulated velocity can carry the optimizer through small local minima that would trap vanilla SGD.
-​
+

@@ -3,7 +3,7 @@ title: Jekyll Overview
 tags: [jekyll, static-site-generator]
 draft: false
 ---
-Jekyll is a **static site generator**. It processes your site by converting Markdown files into static HTML. Jekyll uses the [Liquid](https://shopify.github.io/liquid/) templating language to process templates. Any files or folders that **don't** start with an underscore (`_`) are copied verbatim to the `_site` output folder when you build your site.
+Jekyll is a **static site generator**. It processes your site by converting Markdown files into static HTML. Jekyll uses the [Liquid](https://shopify.github.io/liquid/) templating language to process templates. Any files or folders that **don't** start with an underscore (`_`) are copied verbatim to the `_site` output folder when you build your site.
 
 Example folder structure:
 ```

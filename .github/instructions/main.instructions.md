@@ -28,6 +28,7 @@ description: Instructions for managing the Obsidian vault content under content/
 4. **Identify Gaps:** Actively flag missing connections, suggest folder refactoring, and note underdeveloped topics. Suggest specific sources (papers, documentation, or articles) to help develop notes.
 
 ### Vault Conventions
+- **Quartz 4 Compatibility:** Ensure all note content, frontmatter, math formatting (e.g., using `\begin{aligned}` instead of bare `\\` in display math), and links are strictly compatible with Quartz 4 for web deployment.
 - **Note Naming:** Use descriptive capitalized names (e.g., `Obsidian Vault Setup.md`). Avoid generic names.
 - **Front Matter:** Start every note with a YAML front matter block containing only `title`, `tags`, and `draft: false`.
 - **Titles:** Do not add an H1 title if `title` is present in front matter.

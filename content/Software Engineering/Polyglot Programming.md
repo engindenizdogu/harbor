@@ -3,7 +3,7 @@ title: Polyglot Programming
 tags: [software-engineering, systems-architecture, interoperability]
 draft: false
 ---
-**Polyglot programming** is the practice of using multiple programming languages to build a single application, leveraging each language's strengths. This approach involves running different parts of an application written in different languages and coordinating them to work together as one system.
+**Polyglot programming** is the practice of using multiple programming languages to build a single application, leveraging each language's strengths. This approach involves running different parts of an application written in different languages and coordinating them to work together as one system.
 ## 1. HTTP Requests (REST API)
 **Best for:** Synchronous communication (Request/Response) and standard web apps.
 

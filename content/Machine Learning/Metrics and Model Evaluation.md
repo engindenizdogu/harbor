@@ -53,7 +53,7 @@ $$\text{F1} = {(2 * Precision * Recall)  \over (Precision + Recall)}$$
 
 ## Bias and Variance
 
-$$\text{Total Error}=Bias^2+Variance+\text{Irreducible Error}$$
+$$\text{Total Error}=Bias^2+Variance+\text{Irreducible Error}$$
 
 ---
 ## Underfitting and Overfitting
@@ -74,9 +74,9 @@ $$\text{Total Error}=Bias^2+Variance+\text{Irreducible Error}$$
 ---
 
 ## Regularization
-Core idea: $\text{J}=\text{Loss Function}+\text{Regularization Penalty}$
+Core idea: $\text{J}=\text{Loss Function}+\text{Regularization Penalty}$
 For any model with parameters $w$:
 - **L1 Regularization**: Add $\lambda \sum \vert w \vert$
 - **L1 Constraint**
 - **L2 Regularization**: Add $\lambda \sum w^2$
-- **Elastic Net​**
+- **Elastic Net**

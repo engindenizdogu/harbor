@@ -9,10 +9,14 @@ draft: false
 
 Very similar to linear regression. Same principles apply, just assign {-1, 1} to classes. Then compute the least squares optimization. The decision boundary will always be $f(x)=0$, so the prediction will have a $sign$ function.
 
-$$f(x) = \begin{cases}
+$$
+\begin{aligned}
+f(x) = \begin{cases}
 >0 & \text{decide } y_1 \\
 <0 & \text{decide } y_2
-\end{cases}$$
+\end{cases}
+\end{aligned}
+$$
 
 **2 classes:**
 ![[Pasted image 20260425184917.png]]

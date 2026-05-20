@@ -17,10 +17,14 @@ Note that, $P(y_1 \vert x) = {P(x \vert y_1).P(y_1) \over P(x)}$ and $P(y_2 \ver
 
 Probability of error:
 
-$$P(error \vert x) = \begin{cases}
+$$
+\begin{aligned}
+P(error \vert x) = \begin{cases}
 P(y_1 \vert x), & \text{if decide } y_2 \text{ but } y_1 \text{ is true} \\
 P(y_2 \vert x), & \text{if decide } y_1 \text{ but } y_2 \text{ is true}
-\end{cases}$$
+\end{cases}
+\end{aligned}
+$$
 
 Goal is to minimize error (based on single instance):
 

@@ -25,30 +25,30 @@ Key reasons for abstraction:
 from abc import ABC, abstractmethod
 
 class RLM(ABC):
-    @abstractmethod
-    def completion(self, context: list[str] | str | dict[str, str], query: str) -> str:
-        pass
+    @abstractmethod
+    def completion(self, context: list[str] | str | dict[str, str], query: str) -> str:
+        pass
 
-    @abstractmethod
-    def cost_summary(self) -> dict[str, float]:
-        pass  
+    @abstractmethod
+    def cost_summary(self) -> dict[str, float]:
+        pass  
 
-    @abstractmethod
-    def reset(self):
-        pass
+    @abstractmethod
+    def reset(self):
+        pass
 ```
 *Code from https://github.com/alexzhang13/rlm.*
 
 # \_\_init\_\_.py
-In Python, `__init__.py` is a special file that serves two primary purposes within a package:
-- **Marking a Directory as a Package:** 
-	When a directory contains an `__init__.py` file, Python treats that directory as a package. This allows you to import modules and subpackages from within that directory using standard import statements. Even an empty `__init__.py` file suffices to declare a directory as a package.
+In Python, `__init__.py` is a special file that serves two primary purposes within a package:
+- **Marking a Directory as a Package:** 
+	When a directory contains an `__init__.py` file, Python treats that directory as a package. This allows you to import modules and subpackages from within that directory using standard import statements. Even an empty `__init__.py` file suffices to declare a directory as a package.
 
-- **Package Initialization and Namespace Management:** 
-	The code within `__init__.py` is executed automatically the first time the package or any module within it is imported. This allows for:
-	- **Initialization Code:** Running setup or configuration code, such as establishing database connections, loading configuration files, or setting up package-level variables.
-    - **Simplifying Imports:** Importing specific modules, functions, or classes from submodules directly into the package's namespace. This allows users to import these elements directly from the package instead of needing to specify the submodule.
-    - Defining `__all__`: The `__all__` variable (a list of strings) can be defined in `__init__.py` to control which names are imported when a "star import" (`from package import *`) is used. This allows for explicit control over the package's public API.
+- **Package Initialization and Namespace Management:** 
+	The code within `__init__.py` is executed automatically the first time the package or any module within it is imported. This allows for:
+	- **Initialization Code:** Running setup or configuration code, such as establishing database connections, loading configuration files, or setting up package-level variables.
+    - **Simplifying Imports:** Importing specific modules, functions, or classes from submodules directly into the package's namespace. This allows users to import these elements directly from the package instead of needing to specify the submodule.
+    - Defining `__all__`: The `__all__` variable (a list of strings) can be defined in `__init__.py` to control which names are imported when a "star import" (`from package import *`) is used. This allows for explicit control over the package's public API.
 
 
 

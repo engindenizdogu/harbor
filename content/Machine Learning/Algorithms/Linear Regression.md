@@ -26,7 +26,7 @@ $$L(x,y,w) = (fw(x) − y)^2$$
 **Closed Form Solution (Normal Equation)**
 L2 Loss (squared loss): 
 
-$$L2 = {1 \over N} {\sum(w^⊤x − y)^2}$$
+$$L2 = {1 \over N} {\sum(w^\topx − y)^2}$$
 
 we have (solve for ${\vartheta L(w) \over \vartheta(w)}=0$),
 
