@@ -8,6 +8,6 @@ I'm a Master's student studying *Machine Learning at Stevens Institute of Techno
 
 This is the master directory of the knowledge vault. For specific notes, please navigate to the **[[toc|Table of Contents]]** to see all active domains and Maps of Content (MOCs).
 
-🌟 **Feel free to look around. I hope you’ll find something helpful here!** 🌟
+**Feel free to look around!**
 
 ![[Pasted image 20260519144824.png|535]]
