@@ -11,7 +11,7 @@ const config: QuartzConfig = {
     pageTitle: "Harbor 🪼",
     pageTitleSuffix: " | Harbor 🪼",
     enableSPA: true,
-    enablePopovers: true,
+    enablePopovers: false,
     analytics: {
       provider: "plausible",
     },
@@ -23,8 +23,8 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
+        header: "Bitcount Prop Single",
+        body: "Roboto",
         code: "IBM Plex Mono",
       },
       colors: {
