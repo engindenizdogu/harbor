@@ -38,9 +38,8 @@ Welcome to this Map of Content.
 
 ## Media & Technical Resources
 - [[Wikimedia Commons]] - Open-source media repository and structured metadata reference.
-
-## Career & Jobs
-- [[Job Posting - Abridge ML Infrastructure Engineer]] - Analysis of ML Infrastructure Engineer role, responsibilities, and areas for self-improvement.
+## Career & Professional
+- [[Career MOC]] - Main dashboard for job search tracking, interview preparation, and professional development.
 
 ---
 ## To Research / Inbox

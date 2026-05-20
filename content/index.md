@@ -2,13 +2,15 @@
 title: Welcome!
 tags: [index]
 draft: false
+enableToc: false
 ---
-## Hi, I'm Deniz
-I'm a Master's student studying *Machine Learning at Stevens Institute of Technology*. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my work, studies and interests.
+## <a href="https://nostalgic-css.github.io/NES.css/" target="_blank"><i class="nes-ash"></i></a> Hi, I'm Deniz
+I'm based in NYC and currently a Master's student studying *Machine Learning at Stevens Institute of Technology*. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my academic and professional work, as well as my interests.
 
-This is the master directory of the knowledge vault. For specific notes, please navigate to the **[[toc|Table of Contents]]** to see all active domains and Maps of Content (MOCs).
+This is the master directory of the knowledge vault. For specific notes, please navigate to the **[[toc|Table of Contents]]** to see all active domains and Maps of Content (MOCs). **Feel free to look around!**
 
-**Feel free to look around!**
-### Find me on: [LinkedIn](https://www.linkedin.com/in/engindenizdogu/) & [GitHub](https://github.com/engindenizdogu)
-
-![[Pasted image 20260519144824.png|535]]
+### Find me on:
+<a href="https://x.com/denizdou"><i class="nes-icon twitter is-medium"></i></a>
+<a href="https://www.linkedin.com/in/engindenizdogu/"><i class="nes-icon linkedin is-medium"></i></a>
+<a href="https://github.com/engindenizdogu"><i class="nes-icon github is-medium"></i></a>
+<a href="mailto:[edogu@stevens.edu]"><i class="nes-icon gmail is-medium"></i></a>

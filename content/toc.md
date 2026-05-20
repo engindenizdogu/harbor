@@ -12,6 +12,7 @@ draft: false
 | `/Image Generation/`            | Image Generation            | [[Image Generation MOC]]               | Models and history of Image Generation AI.                                           |
 | `/Jekyll/`                      | Jekyll                      | [[Jekyll MOC]]                         | Guides, commands, and core concepts for building static sites with Jekyll and Ruby.  |
 | `/Software Engineering/`        | Software Engineering        | [[Software Engineering MOC]]           | Programming languages, tools, IDEs, and general software development notes.          |
+| `/Career/`                      | Career                      | [[Career MOC]]                         | Job search tracking, target job postings, resume preparation, and interview prep.    |
 | `/Data Science/`                | Data Science                | [[Data Science MOC]]                   | Methodologies like CRISP-DM and data processing standards.                           |
 | `/Projects/`                    | Projects                    | [[Projects MOC]]                       | Personal projects, ideas, and portfolio documentation.                               |
 | `/Publications/`                | Publications                | [[Publications MOC]]                   | Academic research and publications.                                                  |

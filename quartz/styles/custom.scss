@@ -1,3 +1,31 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// Define base retro colors needed by icons (prevents global reset imports)
+$color-black: #212529;
+$base-color: $color-black;
+
+// Import ONLY the icon mixins and icon styles from NES.css (ignores all global overrides/cursors)
+@import "nes.css/scss/utilities/icon-mixin";
+@import "nes.css/scss/icons/icons";
+@import "nes.css/scss/pixel-arts";
+
+// Smooth pixelated scaling for retro icons and images
+img,
+.nes-icon {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+// Hide the external link icon for links wrapping a retro icon
+a:has(.nes-icon) .external-icon {
+  display: none;
+}
+
+a:has(.nes-ash) .external-icon {
+  display: none;
+}
+
+// Make retro components align with your header font
+// .nes-btn, .nes-container, .nes-balloon, .nes-table {
+//  font-family: var(--headerFont);
+//}
