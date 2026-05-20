@@ -1,7 +1,7 @@
 ---
 title: "{{title}}"
 tags: [projects]
-draft: true
+draft: false
 ---
 > One-sentence elevator pitch: what this is, who it's for, and why it matters.
 

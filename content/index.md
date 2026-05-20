@@ -1,5 +1,6 @@
 ---
 title: Index
+tags: [index]
 draft: false
 ---
 ## Hi, I'm Deniz...

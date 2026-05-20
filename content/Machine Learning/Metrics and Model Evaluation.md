@@ -1,0 +1,82 @@
+---
+title: Metrics and Model Evaluation
+tags:
+  - machine-learning
+  - model-evaluation
+  - metrics
+draft: false
+---
+**Simple comparison table:**
+![[Pasted image 20260425155410.png|465]]
+
+> **NOTE:**
+> When evaluating a model, make sure not to forget the following:
+> 
+>  1) Compare training metrics vs. test metrics (measure of under/overfitting)
+>  
+>  2) Compare test metrics vs. baseline metrics (measure of how well the model works, use the test set when calculating the baseline)
+>  
+> Baseline calculation for regression tasks : $\text{y\_test} - \text{y\_mean}$ where $\text{y\_mean}$ is the mean of $\text{y\_train}$ values (the baseline is we are assuming the prediction is always the mean value of the training set). For classification tasks, you can use the default ratios. For example if 60% of the rows are of the positive class (1), then the baseline accuracy is 60% (meaning that even if you pick randomly from the dataset you can't do worse then 60%, your model shouldn't do worse too!).
+>  
+>  **For every model you train, do not forget to compare the results with the baseline!**
+
+> Never train the model and tune hyper-parameters using the testing set. It leads to bad generalization! In other words, split your testing set in the beginning and never touch it until the end (create a validation set instead).
+
+## Classification Metrics
+
+| Pred/Actual | 0                   | 1                   |
+| ----------- | ------------------- | ------------------- |
+| **0**       | True Negative (TN)  | False Negative (FN) |
+| **1**       | False Positive (FP) | True Positive (TP)  |
+
+**Accuracy:** The proportion of correct predictions out of all predictions. It's a good starting point but can be misleading with imbalanced datasets.
+
+$$(TP + TN) \over (TP + TN + FP + FN)$$
+
+**Precision:** The ratio of correctly predicted positive observations to the total predicted positive observations. A high precision means your model has a low number of false positives.
+
+$$TP \over (TP + FP)$$
+
+**Recall (or Sensitivity):** The ratio of correctly predicted positive observations to all observations in the actual class. A high recall means your model has a low number of false negatives.
+
+$$TP \over (TP + FN)$$
+
+**F1-Score:** The harmonic mean of Precision and Recall. It provides a single score that balances both metrics, which is especially useful for imbalanced datasets.
+
+$$\text{F1} = {(2 * Precision * Recall)  \over (Precision + Recall)}$$
+
+---
+## Regression Metrics
+*To be continued...*
+
+---
+
+## Bias and Variance
+
+$$\text{Total Error}=Bias^2+Variance+\text{Irreducible Error}$$
+
+---
+## Underfitting and Overfitting
+**Underfitting:** 
+- Low-dimensional
+- Heavily regularized 
+- Bad modeling assumption
+
+> **Note:** High bias = Model consistently misses relevant patterns (underfitting)
+
+**Overfitting:**
+- High dimensional or non-parametric
+- Weakly regularized
+- Not enough data
+
+> **Note:** High variance = Model is overly sensitive to training data (overfitting)
+
+---
+
+## Regularization
+Core idea: $\text{J}=\text{Loss Function}+\text{Regularization Penalty}$
+For any model with parameters $w$:
+- **L1 Regularization**: Add $\lambda \sum \vert w \vert$
+- **L1 Constraint**
+- **L2 Regularization**: Add $\lambda \sum w^2$
+- **Elastic Net​**

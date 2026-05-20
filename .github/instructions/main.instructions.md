@@ -29,7 +29,7 @@ description: Instructions for managing the Obsidian vault content under content/
 
 ### Vault Conventions
 - **Note Naming:** Use descriptive capitalized names (e.g., `Obsidian Vault Setup.md`). Avoid generic names.
-- **Front Matter:** Start every note with a YAML front matter block containing `title`, `tags`, `reviewed` (boolean, default to `false` if not explicitly provided), and `aliases` (if applicable).
+- **Front Matter:** Start every note with a YAML front matter block containing only `title`, `tags`, and `draft: false`.
 - **Titles:** Do not add an H1 title if `title` is present in front matter.
 - **Project Notes:** When creating or updating notes in the `Projects` folder, you must conform exactly to the structure defined in `Templates/Project Template.md` (no emojis, use strong action verbs, strictly highlight the tech stack and metrics).
 - **Organization:** Group by topic/domain. Keep hierarchy simple (1-2 levels max).
