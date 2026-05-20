@@ -13,7 +13,7 @@ draft: true
 - [ ] ==Build a semantic search engine with [[LangChain]] - [Docs by LangChain](https://python.langchain.com/docs/get_started/introduction)==
 - [ ] ==Loss functions (Cross-entropy etc.) and activation functions!==
 - [ ] How to train an LLM from scratch?
-- [ ] Reinforcement Learning
+- [X] Reinforcement Learning
 - [ ] Target value and loss/activation relationship. e.g. (0,1) vs. (-1,1) (DL A1)
 
 ## Deep Learning
