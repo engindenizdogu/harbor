@@ -23,9 +23,6 @@ Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page)
 - **Public Domain Access:** Easy access to historical and scientific media for projects and publications.
 - **Open Standards:** Demonstrates large-scale implementation of structured metadata and collaborative knowledge management.
 
-## Visual Reference
-![Wikimedia Commons Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Commons-logo.svg/512px-Commons-logo.svg.png)
-
 ---
 ## Connections
 - [[Data Science MOC]]
