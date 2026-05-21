@@ -38,8 +38,6 @@ Welcome to this Map of Content.
 
 ## Media & Technical Resources
 - [[Wikimedia Commons]] - Open-source media repository and structured metadata reference.
-## Career & Professional
-- [[Career MOC]] - Main dashboard for job search tracking, interview preparation, and professional development.
 
 ---
 ## To Research / Inbox

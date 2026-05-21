@@ -39,6 +39,7 @@ description: Instructions for managing the Obsidian vault content under content/
 - **index.md:** Maintain this as a lightweight landing/welcome page.
 - **toc.md:** Maintain this as the table of contents. Update when new folders or major patterns emerge.
 - **Wiki-Links:** Use standard `[[note-name]]` syntax for automatic backlinks.
+- **Private Notes:** Store non-public notes under `content/_Private/` (excluded from the website). The agent can search and use private notes internally, and a single private section in `toc.md` is allowed for navigation, but avoid linking to private notes from other public MOCs or pages.
 - **Web Attribution:** Synthesize external info in your own words. Always cite sources using clickable Markdown links (e.g., *Source: [Article Name](URL)*).
 - **No Emojis:** Do not use emojis in titles, headers or sub-headers.
 - **Rich Media & Links:** Add web connections, images, and videos to notes when applicable to make the vault more comprehensive and visual.
