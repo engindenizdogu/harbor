@@ -33,6 +33,10 @@ Welcome to this Map of Content.
 - [[Database Types]] - Detailed comparison of relational, document, key-value, wide-column, graph, time-series, NewSQL, and vector databases.
 - [[Database Indexing Strategies]] - B-Tree, LSM Tree, and Hash Index internals and performance trade-offs.
 
+## Operations & Infrastructure
+- [[Slurm]] - Cluster management and job scheduling system for Linux clusters.
+ - [[Quartz 4 Commands]] - Publishing with Quartz 4 (dev, build, preview).
+
 ## Algorithms & Data Structures
 - [[Dynamic Programming]] - Solving complex problems via subproblem optimization.
 

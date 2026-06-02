@@ -9,14 +9,14 @@ Choosing the right database is one of the most consequential architectural decis
 
 Before evaluating any specific product, write out your application's most critical, frequent, and expensive queries. Different database engines are physically optimized for different "shapes" of data retrieval:
 
-| Query Shape | Description | Optimal Engine Type |
-| :--- | :--- | :--- |
-| **Point Lookups** | Retrieving a single record by a unique key | Key-Value stores (Redis, DynamoDB) |
-| **Complex Joins** | Linking multiple normalized entities together | Relational (PostgreSQL, MySQL) |
-| **Aggregations** | Scanning large datasets for analytics (SUM, AVG) | Columnar / OLAP (ClickHouse, BigQuery) |
+| Query Shape           | Description                                        | Optimal Engine Type                     |
+| :-------------------- | :------------------------------------------------- | :-------------------------------------- |
+| **Point Lookups**     | Retrieving a single record by a unique key         | Key-Value stores (Redis, DynamoDB)      |
+| **Complex Joins**     | Linking multiple normalized entities together      | Relational (PostgreSQL, MySQL)          |
+| **Aggregations**      | Scanning large datasets for analytics (SUM, AVG)   | Columnar / OLAP (ClickHouse, BigQuery)  |
 | **Vector Similarity** | Searching by semantic meaning / embedding distance | Vector DBs (Pinecone, Milvus, Weaviate) |
-| **Graph Traversals** | Exploring deep, multi-hop relationships | Graph DBs (Neo4j, Amazon Neptune) |
-| **Time-Range Scans** | Querying sequential data by time windows | Time-Series DBs (InfluxDB, TimescaleDB) |
+| **Graph Traversals**  | Exploring deep, multi-hop relationships            | Graph DBs (Neo4j, Amazon Neptune)       |
+| **Time-Range Scans**  | Querying sequential data by time windows           | Time-Series DBs (InfluxDB, TimescaleDB) |
 
 If you design your queries first, the database choice often becomes obvious based on which engine handles those specific operations most efficiently.
 
