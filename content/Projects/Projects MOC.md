@@ -6,6 +6,7 @@ draft: false
 Welcome to this Map of Content.
 
 ## Notes
+- [[BirdCLEF 2026 Starter Case Study]] - Multi-task knowledge distillation case study (EfficientNetB0 + Google Perch v2) for bioacoustic bird call detection in the Pantanal; private score ~0.60 in 3 epochs.
 - [[Automatic Tag Generation and Clustering with LLMs]] - In-memory semantic knowledge graph that converts personal documents into topic-aware discovery (CS584 NLP Project).
 - [[Deep Learning Coursework CS583]] - Deep learning coursework projects and implementation details.
 - [[Natural Language Processing Coursework CS584]] - NLP coursework projects covering classification, embeddings, and LLMs.

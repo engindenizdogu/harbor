@@ -13,6 +13,7 @@ draft: true
 - [ ] Target value and loss/activation relationship. e.g. (0,1) vs. (-1,1) (DL A1)
 - [X] Reinforcement Learning
 - [ ] [Neo4j Deployment Center](https://neo4j.com/deployment-center/) & [All Courses | Free Neo4j Courses from GraphAcademy](https://graphacademy.neo4j.com/categories/)
+- [ ] **End-to-end continuous ML pipeline (can use the knowledgebase)**
 ## Deep Learning
 - [ ] 3D convolutions
 - [ ] Model fine tuning
@@ -50,6 +51,8 @@ draft: true
 - [ ] [[Three.js]]
 - [ ] ASCII Motion MCP - [Link](https://ascii-motion.app/)
 - [ ] Share custom Jekyll plugin
+## Agentic Development
+- [ ] Hermes Agent vs OpenCode
 ## Technical Books
 - [ ] Thinking in Systems
 - [ ] Designing Machine Learning Systems
