@@ -42,6 +42,10 @@ While KV caching significantly reduces computation time and latency, it comes wi
 | **Speed**       | Slow (becomes slower as sequence grows) | Fast (consistent per-token speed) |
 | **Memory**      | Low (no storage of past states)         | High (stores past K, V tensors)   |
 
+## Resources
+
+- [Hugging Face Blog: KV Caching Explained](https://huggingface.co/blog/not-lain/kv-caching) — A detailed blog post walking through how KV Caching works, explaining its key advantages and memory trade-offs in Transformers.
+
 ## Related Concepts
 - [[Transformer Architecture]]
 - [[Attention Mechanism]]

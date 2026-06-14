@@ -34,6 +34,11 @@ The [BirdCLEF 2026](https://www.kaggle.com/competitions/birdclef-2026) competiti
 - **Bioacoustic-specific preprocessing matters** — mel-spectrogram parameterization (hop length, n_mels, frequency range) heavily influences what spectral patterns the model can learn from bird calls.
 - **Perch v2 as a foundation model for audio** — Google's Perch model provides strong general-purpose audio embeddings that transfer well to ecological monitoring tasks.
 
+## Useful Resources
+
+- [History of BirdCLEF Competitions in Kaggle](https://medium.com/data-science-collective/history-of-birdclef-competitions-in-kaggle-32e101cf8bb1) — A detailed overview of how the BirdCLEF competition has evolved over the years on Kaggle.
+- [BirdCLEF Audio Identification Tutorial Video](https://www.youtube.com/watch?v=G2IiEi3Ck2s) — A video guide illustrating key strategies and insights for BirdCLEF bioacoustic classification.
+
 ## LinkedIn Post
 
 > We were a little late to this year's BirdCLEF 2026 competition, but Gabriel Reynoso Romero and I wanted to use this as a case study and learn about previous submissions. We created a notebook with explanations and comments that go from beginning to end.
