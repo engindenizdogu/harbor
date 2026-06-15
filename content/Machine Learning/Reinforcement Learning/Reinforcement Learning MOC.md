@@ -26,6 +26,7 @@ Reinforcement Learning (RL) is a subfield of machine learning concerned with how
 - [[Actor-Critic Methods]] - Hybrid approaches.
 
 ## Advanced Topics
+- [[World Models]] - Causal dynamics simulation, joint embedding predictive architectures, and code-based environment models.
 - [[Multi-Agent Reinforcement Learning]]
 - [[Inverse Reinforcement Learning]]
 - [[Hierarchical RL]]
