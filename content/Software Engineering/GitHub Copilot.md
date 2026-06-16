@@ -14,7 +14,9 @@ There are 3 types of instructions:
 - If you work with multiple AI agents in your workspace, you can define custom instructions for all agents in an `AGENTS.md`. This feature is experimental as of 01/09/2026.
 
 # Agent Skills (Experimental)
-There is also a feature called [agent skills](https://code.visualstudio.com/docs/copilot/customization/overview#_agent-skills-preview) that enables you to teach agents specialized capabilities through folders containing instructions, scripts, and resources. It is similar to instructions, however, there are some important differences:
+There is also a feature called [agent skills](https://code.visualstudio.com/docs/copilot/customization/overview#_agent-skills-preview) that enables you to teach agents specialized capabilities through folders containing instructions, scripts, and resources. (For the Google Antigravity implementation of this paradigm, see [[Google Antigravity Agent Skills]]).
+
+It is similar to instructions, however, there are some important differences:
 
 | Feature         | Agent Skills                                                  | Custom Instructions                       |
 | --------------- | ------------------------------------------------------------- | ----------------------------------------- |

@@ -11,6 +11,7 @@ Welcome to this Map of Content.
 ## AI Protocols & Tools
 - [[GitHub Copilot]] - AI-assisted development and workspace indexing.
 - [[Model Context Protocol Architecture]] - Open standard for AI context integration (Tools, Resources, Prompts).
+- [[Google Antigravity Agent Skills]] - Progressive disclosure mechanism to package agent knowledge, instructions, and tools.
 
 ## Mobile Development
 - [[Android Development]] - Comprehensive guide to Android languages, tools, and frameworks.
