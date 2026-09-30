@@ -3,7 +3,7 @@ title: Data Science MOC
 tags: [data, moc]
 draft: false
 ---
-Welcome to this Map of Content.
+Map of Contents
 
 ## Notes
 - [[CRISP-DM]] - ![[Pasted image 20260425190426.png]] Source: [CRISP-DM: das Standard-Vorgehensmodell für Data Mining](https...

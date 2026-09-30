@@ -64,7 +64,7 @@ def update_moc(moc_path, domain, tag, moc_lines):
     else:
         content = (
             f"---\ntitle: {domain} MOC\ntags: [{tag}, moc]\ndraft: false\n---\n"
-            f"Welcome to the {domain} Map of Content.\n\n## Notes\n"
+            "Map of Contents\n\n## Notes\n"
         )
     block = "\n".join(moc_lines) + "\n"
     if "## To Research" in content:

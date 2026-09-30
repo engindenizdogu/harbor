@@ -3,7 +3,7 @@ title: Natural Language Processing MOC
 tags: [nlp, moc]
 draft: false
 ---
-Welcome to this Map of Content.
+Map of Contents
 
 ## Notes
 - [[Building Embedding Models From Scratch]] - Guide on architectures like Word2Vec, Autoencoder bottleneck, and Siamese Networks, including a PyTorch Skip-Gram snippet.

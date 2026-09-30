@@ -3,7 +3,7 @@ title: Deep Learning MOC
 tags: [deep-learning, moc]
 draft: false
 ---
-Welcome to this Map of Content.
+Map of Contents
 
 ## Notes
 

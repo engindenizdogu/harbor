@@ -16,8 +16,8 @@ draft: false
 | `/Projects/`                    | Projects                    | [[Projects MOC]]                       | Personal projects, ideas, and portfolio documentation.                               |
 | `/Publications/`                | Publications                | [[Publications MOC]]                   | Academic research and publications.                                                  |
 | `/Code Snippets/`               | Code Snippets               | [[Code Snippets MOC]]                  | Reusable code fragments and technical snippets for ML, NLP, and general programming. |
-| `/Books/`                       | Books                       | [[Books MOC.md]]                       | Auto-ingested domain.                                                                |
-| `/Natural Language Processing/` | Natural Language Processing | [[Natural Language Processing MOC.md]] | Auto-ingested domain.                                                                |
+| `/Books/`                       | Books                       | [[Books MOC.md]]                       | Reading notes on ML systems, hands-on ML, and NLP books.                             |
+| `/Natural Language Processing/` | Natural Language Processing | [[Natural Language Processing MOC.md]] | Language modeling, word vectors, tokenization, embeddings, and LLMs.                 |
 | `/Economics/`                   | Economics                   | [[Economics MOC]]                      | Economic theories, game theory, and market dynamics.                                 |
 | `/Resources/`                   | Resources                   | [[Resources MOC]]                      | External tools, media repositories, and technical reference libraries.               |
 

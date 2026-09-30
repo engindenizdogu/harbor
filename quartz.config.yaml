@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: Harbor 🪼
-  pageTitleSuffix: " | Harbor 🪼"
+  pageTitle: "Edd's Knowledgebase"
+  pageTitleSuffix: " | Edd's Knowledgebase"
   enableSPA: true
   enablePopovers: false
   analytics:
@@ -12,35 +12,36 @@ configuration:
     - private
     - _Private
     - templates
+    - Templates
     - .obsidian
   theme:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: Bitcount Prop Single
-      body: Roboto
+      header: Figtree
+      body: Manrope
       code: IBM Plex Mono
     colors:
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#0c66a2ff"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light: "#f2f5fa"
+        lightgray: "#dfe5ee"
+        gray: "#8792a2"
+        darkgray: "#2a3b4f"
+        dark: "#1b2227"
+        secondary: "#026fd4"
+        tertiary: "#0388fc"
+        highlight: rgba(3, 136, 252, 0.08)
+        textHighlight: "#ffc2a877"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#0d141c"
+        lightgray: "#223042"
+        gray: "#6c7a8c"
+        darkgray: "#c9d3de"
+        dark: "#f1f4f8"
+        secondary: "#3aa0ff"
+        tertiary: "#7cc0ff"
+        highlight: rgba(3, 136, 252, 0.12)
+        textHighlight: "#b3502a88"
 plugins:
   - source: "@quartz-community/created-modified-date"
     enabled: true
@@ -101,6 +102,14 @@ plugins:
     order: 92
   - source: "@quartz-community/quartz-fonts"
     enabled: true
+    options:
+      header:
+        name: Figtree
+        weights: [500, 600, 700]
+      body:
+        name: Manrope
+        weights: [400, 500, 600, 700]
+      code: IBM Plex Mono
   - source: "@quartz-themes/core"
     enabled: false
     options:
@@ -133,24 +142,45 @@ plugins:
     enabled: true
   - source: "@quartz-community/explorer"
     enabled: true
+    options:
+      folderClickBehavior: collapse
     layout:
       position: left
       priority: 50
   - source: "@quartz-community/graph"
-    enabled: false
+    enabled: true
+    options:
+      # depth -1 would add every page in the site index, including the ~140
+      # auto-generated tag pages; a large depth walks real links from the home
+      # page instead, which reaches the connected notes only.
+      # opacityScale sets when labels fade in while zooming (lower = later);
+      # hovering a node always shows its label.
+      localGraph:
+        depth: 8
+        scale: 0.9
+        repelForce: 0.6
+        centerForce: 0.35
+        linkDistance: 32
+        fontSize: 0.55
+        opacityScale: 0.75
+        showTags: false
+        focusOnHover: true
+      globalGraph:
+        depth: 8
+        opacityScale: 0.75
+        showTags: false
+        focusOnHover: true
     layout:
-      position: right
+      position: afterBody
       priority: 10
+      condition: is-index
   - source: "@quartz-community/search"
     enabled: true
     layout:
-      position: left
-      priority: 20
-      group: toolbar
-      groupOptions:
-        grow: true
+      position: header
+      priority: 10
   - source: "@quartz-community/backlinks"
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 50
@@ -170,22 +200,20 @@ plugins:
       position: beforeBody
       priority: 30
   - source: "@quartz-community/page-title"
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 10
   - source: "@quartz-community/darkmode"
     enabled: true
     layout:
-      position: left
-      priority: 30
-      group: toolbar
+      position: header
+      priority: 20
   - source: "@quartz-community/reader-mode"
     enabled: true
     layout:
-      position: left
-      priority: 35
-      group: toolbar
+      position: header
+      priority: 30
   - source: "@quartz-community/breadcrumbs"
     enabled: true
     layout:
@@ -201,7 +229,7 @@ plugins:
       position: afterBody
       priority: 10
   - source: "@quartz-community/footer"
-    enabled: true
+    enabled: false
     options:
       links: {}
     layout:
@@ -257,29 +285,29 @@ plugins:
       priority: 50
       display: all
 layout:
-  groups:
-    toolbar:
-      priority: 35
-      direction: row
-      gap: 0.5rem
   byPageType:
     "404":
+      template: harbor
       positions:
         beforeBody: []
         left: []
         right: []
-    content: {}
+    content:
+      template: harbor
     folder:
+      template: harbor
       exclude:
         - reader-mode
         - tag-list
       positions:
         right: []
     tag:
+      template: harbor
       exclude:
         - reader-mode
         - tag-list
       positions:
         right: []
     canvas: {}
-    bases: {}
+    bases:
+      template: harbor

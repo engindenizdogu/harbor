@@ -3,7 +3,7 @@ title: Software Engineering MOC
 tags: [software, moc]
 draft: false
 ---
-Welcome to this Map of Content.
+Map of Contents
 ## Python & Tools
 - [[Python]] - Core concepts, REPL, classes, and context managers.
 - [[Python Decorators]] - Function, method, and class decorators; built-ins (`@staticmethod`, `@classmethod`, `@property`); chaining and real-world patterns.

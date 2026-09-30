@@ -19,7 +19,8 @@
     "test": "tsx --test",
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
     "install-plugins": "npx tsx ./quartz/plugins/loader/install-plugins.ts",
-    "prebuild": "npm run install-plugins"
+    "prebuild": "npm run install-plugins",
+    "postinstall": "patch-package"
   },
   "engines": {
     "npm": ">=10.9.2",
@@ -98,7 +99,6 @@
     "lightningcss": "^1.31.1",
     "micromorph": "^0.4.5",
     "minimatch": "^10.1.1",
-    "nes.css": "^2.2.1",
     "preact": "^10.28.2",
     "preact-render-to-string": "^6.6.5",
     "pretty-bytes": "^7.1.0",
@@ -128,6 +128,7 @@
     "@types/ws": "^8.18.1",
     "@types/yargs": "^17.0.35",
     "esbuild": "^0.28.2",
+    "patch-package": "^8.0.1",
     "prettier": "^3.8.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"

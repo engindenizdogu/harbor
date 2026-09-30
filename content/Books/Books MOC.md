@@ -3,7 +3,7 @@ title: Books MOC
 tags: [books, moc]
 draft: false
 ---
-Welcome to this Map of Content.
+Map of Contents
 
 ## Notes
 - [[Designing Machine Learning Systems]] - *Currently reading...*

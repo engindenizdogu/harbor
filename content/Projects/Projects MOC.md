@@ -3,7 +3,7 @@ title: Projects MOC
 tags: [projects, moc]
 draft: false
 ---
-Welcome to this Map of Content.
+Map of Contents
 
 ## Notes
 - [[BirdCLEF 2026 Starter Case Study]] - Multi-task knowledge distillation case study (EfficientNetB0 + Google Perch v2) for bioacoustic bird call detection in the Pantanal; private score ~0.60 in 3 epochs.
