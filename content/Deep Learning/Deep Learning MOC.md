@@ -12,6 +12,7 @@ Welcome to this Map of Content.
 - [[Batch Normalization]] - Batch Normalization (BN) is a technique applied between the hidden layers of a neural network.
 - [[CNNs]] - Forward pass, backpropagation through convolutional and pooling layers.
 - [[Keras vs. PyTorch vs. TensorFlow]] - Framework comparison: Keras, TensorFlow, and PyTorch.
+- [[Keras Data Generators]] - Custom data generation on-the-fly inheriting from `keras.utils.Sequence` for memory-efficient training.
 
 ### Sequence Modeling & NLP
 - [[RNNs & LSTMs]] - RNN/LSTM architecture, parameter counting, text generation, and Seq2Seq machine translation. Best practices: always use LSTM, prefer Bi-RNN, pretrain embeddings.

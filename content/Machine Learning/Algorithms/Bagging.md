@@ -41,9 +41,9 @@ The most well-known application of Bagging is the **Random Forest**. It enhances
 
 ### Bagging vs. Boosting
 
-|**Feature**|**Bagging**|**Boosting**|
-|---|---|---|
-|**Goal**|Reduce Variance|Reduce Bias|
-|**Model Training**|Parallel (Independent)|Sequential (Dependent)|
-|**Sample Weighting**|Equal weight for all samples|Misclassified samples get higher weight|
-|**Best Used For**|High-variance, overfit models|High-bias, underfit models|
+| **Feature**          | **Bagging**                   | **Boosting**                            |
+| -------------------- | ----------------------------- | --------------------------------------- |
+| **Goal**             | Reduce Variance               | Reduce Bias                             |
+| **Model Training**   | Parallel (Independent)        | Sequential (Dependent)                  |
+| **Sample Weighting** | Equal weight for all samples  | Misclassified samples get higher weight |
+| **Best Used For**    | High-variance, overfit models | High-bias, underfit models              |

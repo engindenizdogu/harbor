@@ -10,6 +10,9 @@ draft: false
 | **Learning Curve** | Lowest (easiest)               | Medium (Pythonic)                   | Highest (more boilerplate)               |
 | **Ecosystem**      | Works with TF, PyTorch, & JAX  | Massive research community          | Strongest production & mobile tools      |
 | **Graph Type**     | Depends on backend             | Dynamic (defined as you go)         | Static/Hybrid (optimized for speed)      |
+
+For memory-efficient training on large datasets in Keras, see [[Keras Data Generators]].
+
 ## [Who should use Keras]([Keras: The high-level API for TensorFlow  |  TensorFlow Core](https://www.tensorflow.org/guide/keras))
 The short answer is that every TensorFlow user should use the Keras APIs by default. Whether you're an engineer, a researcher, or an ML practitioner, you should start with Keras.
 

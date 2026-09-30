@@ -9,7 +9,7 @@ draft: false
 - **Context:** Kaggle Competition (BirdCLEF 2026), Independent Case Study
 - **Tech Stack:** Python, PyTorch, EfficientNetB0, Google Colab, Librosa, Google Perch v2
 - **Collaborators:** Engin Deniz Dogu, Gabriel Reynoso Romero
-- **Links:** [Kaggle Notebook](https://www.kaggle.com/code/engindenizdou/birdclef-2026-starter-case-study) | [LinkedIn Post](https://www.linkedin.com/posts/engindenizdogu_birdclef-2026-starter-case-study-activity-7470553001930207233-_9US)
+- **Links:** [Kaggle Notebook](https://www.kaggle.com/code/engindenizdou/birdclef-2026-competition) | [LinkedIn Post](https://www.linkedin.com/posts/engindenizdogu_birdclef-2026-starter-case-study-activity-7470553001930207233-_9US)
 
 ## Overview and Problem
 

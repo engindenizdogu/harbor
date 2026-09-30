@@ -9,6 +9,10 @@ draft: false
 ---
 > A production-grade Python research system implementing a Two-Stage Semantic Cache ("Dragnet & Sniper") for autonomous LLM workflows, achieving massive cost reductions.
 
+## Links
+- [Semantic Cache for Autonomous Agents](https://semantic-cache-agents.vlab-stevens.chatgpt.site/)
+- [LongBench v2 Full-Run Validation](https://longbench-v2-full-run-20260716.vlab-stevens.chatgpt.site/)
+
 ## Quick Facts
 - **Context:** CS 800 Special Problems in CS (Spring 2026, In Progress)
 - **Tech Stack:** Python, FAISS, Anthropic Claude, Hugging Face (Qwen3 Embeddings/Reranker)
