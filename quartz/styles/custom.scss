@@ -427,6 +427,19 @@ body[data-slug="index"] .page-footer .graph {
       var(--harbor-panel);
   }
 
+  // Pin the drawing area to the panel so it always matches the cards' height
+  // (the patched plugin resizes the canvas to this container)
+  & > .graph-outer > .graph-container {
+    position: absolute;
+    inset: 0;
+    width: auto;
+    height: auto;
+
+    & > canvas {
+      display: block;
+    }
+  }
+
   & > .graph-outer > .global-graph-icon {
     margin: 0.6rem;
     border-radius: 8px;
