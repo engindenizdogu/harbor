@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: "Edd's Knowledgebase"
-  pageTitleSuffix: " | Edd's Knowledgebase"
+  pageTitle: "Edd's Knowledge Base"
+  pageTitleSuffix: " | Edd's Knowledge Base"
   enableSPA: true
   enablePopovers: false
   analytics:
