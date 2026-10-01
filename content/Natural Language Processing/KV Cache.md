@@ -15,7 +15,10 @@ LLMs are **autoregressive**, meaning they generate text one token at a time. To 
 Without caching, a naive implementation would re-process the entire history of the sequence for every single new token generated. As the conversation or document gets longer, this creates a massive computational bottleneck, as the amount of work required scales quadratically ($O(n^2)$) with the sequence length.
 
 ## How KV Caching Solves It
-draft: false
+In the self-attention mechanism, every token is projected into three vectors:
+
+*   **Query (Q):** Represents what the current token is looking for in the earlier context.
+*   **Key (K):** Represents what each token offers, and is matched against the Query to compute attention scores.
 *   **Value (V):** Represents the actual content or meaning the token provides.
 
 When generating a new token, the **Key** and **Value** vectors for all previous tokens remain exactly the same as they were in the previous step. They never change. 

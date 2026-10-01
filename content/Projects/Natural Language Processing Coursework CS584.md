@@ -1,5 +1,5 @@
 ---
-title: 05.2026 - Natural Language Processing Coursework CS584
+title: Natural Language Processing Coursework CS584
 tags:
   - projects
   - nlp
@@ -21,6 +21,16 @@ This repository contains four major projects exploring the evolution of NLP. The
 - **Implemented** nearest-neighbor search, word analogy tasks, and CNN-based sentiment classifiers using pre-trained GloVe and Cohere embeddings.
 - **Engineered** greedy decoding and beam search algorithms from scratch for the Llama-3.2-1B model.
 - **Designed** a multi-turn LLM-powered conversational agent from scratch with persistent memory, branching capabilities, and custom tool-use (regex-based calculator interception).
+
+**Architecture overview**
+
+```mermaid
+flowchart LR
+    A[TF-IDF baseline, about 60%] --> B[Word embeddings: GloVe, Cohere]
+    B --> C[1D CNN classifier, about 91.6%]
+    C --> D[Decoding from scratch: greedy and beam]
+    D --> E[Tool-using LLM agent]
+```
 
 ## Key Results and Impact
 - Replicated WEAT bias statistics to quantify gendered associations in GloVe embeddings.

@@ -1,9 +1,8 @@
 ---
 title: Git Cheat Sheets
+tags: [resources, git]
+draft: false
 ---
-
-# Git Cheat Sheets
-
 Here are some useful Git cheat sheets for quick reference.
 - [GitHub Education Git Cheat Sheet](Assets/pdfs/git-cheat-sheet-education.pdf)
 - [Git-SCM Cheat Sheet](Assets/pdfs/git-cheat-sheet.pdf)

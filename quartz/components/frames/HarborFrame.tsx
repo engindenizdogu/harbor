@@ -14,7 +14,7 @@ const navLinks: { label: string; slug: FullSlug; match: (slug: string) => boolea
   { label: "Knowledge Base", slug: "toc" as FullSlug, match: (s) => s === "toc" },
   {
     label: "Projects",
-    slug: "projects/projects-moc" as FullSlug,
+    slug: "projects/index" as FullSlug,
     match: (s) => s.startsWith("projects/"),
   },
 ]

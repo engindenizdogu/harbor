@@ -10,17 +10,18 @@ enableToc: false
 ## Hi, I'm Deniz!
 
 <div class="harbor-social">
+<span class="harbor-location">New York, NY</span>
 <a href="https://www.linkedin.com/in/engindenizdogu/">LinkedIn</a>
 <a href="https://github.com/engindenizdogu">GitHub</a>
 <a href="https://x.com/denizdou">X</a>
 <a href="mailto:edogu@stevens.edu">Email</a>
 </div>
 
-I'm a ==<b>Master's student studying Machine Learning at Stevens Institute of Technology</b>== based in ==<b>NYC</b>==. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my academic and professional work, as well as my interests.
+I'm a Master's student studying ==<b>Machine Learning at the Stevens Institute of Technology</b>==. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my academic and professional work, as well as my interests.
 
 <div class="harbor-cta">
 <a class="harbor-btn harbor-btn-primary" href="./toc">Explore notes <span class="harbor-btn-arrow" aria-hidden="true">→</span></a>
-<a class="harbor-btn" href="./projects/projects-moc">My projects</a>
+<a class="harbor-btn" href="./projects/">My projects</a>
 </div>
 </div>
 <div class="harbor-hero-photo">
@@ -34,7 +35,7 @@ I'm a ==<b>Master's student studying Machine Learning at Stevens Institute of Te
 <p class="harbor-kicker">Recent projects</p>
 <p class="harbor-section-title">What I have been building</p>
 </div>
-<a class="harbor-band-link" href="./projects/projects-moc">All projects →</a>
+<a class="harbor-band-link" href="./projects/">All projects →</a>
 </div>
 <div class="harbor-band-grid">
 <a class="harbor-project" href="./projects/llm-caching--and--recursive-language-models-(rlms)"><span class="harbor-project-meta">May 2026 · Research</span><span class="harbor-project-title">LLM Caching &amp; Recursive Language Models</span><span class="harbor-project-desc">A two-stage semantic cache that lets autonomous LLM agents reuse verified answers and cut redundant API cost.</span><span class="harbor-project-stack">Python · FAISS · Claude · Qwen3</span></a>

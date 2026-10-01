@@ -1176,7 +1176,19 @@ a.harbor-top-button {
   display: flex;
   flex-wrap: wrap;
   gap: 1.25rem;
+  align-items: center;
   margin: 0 0 1rem;
+
+  & > .harbor-location {
+    font-size: 0.9rem;
+    color: var(--darkgray);
+
+    &::after {
+      content: "\00b7";
+      margin-left: 1.25rem;
+      font-weight: 700;
+    }
+  }
 
   // Same treatment as links in notes: blue with a visible underline
   & > a {

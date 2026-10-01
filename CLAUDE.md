@@ -4,24 +4,39 @@
 **Goal:** Create a discoverable, well-organized system to support active research and continuous learning across any topic.
 **Scope:** All notes live under `content/`. Do not look for or modify notes outside `content/` unless explicitly asked, except for the special `.raw_sources/` folder at the repo root. The Quartz engine (`quartz/`, `quartz.config.yaml`) is only touched when the user asks for site changes.
 
-## Core Ingestion Workflow
-1. **Check for raw sources:** At the start of any interaction, check `.raw_sources/` at the repo root for new documents (nested folders or loose notes).
-2. **Ingest:** If it contains files, use `.scripts/ingest.py` as a scaffold. Customize its mapping logic (tags, destination folders, MOC organization) for the incoming batch before running it. Process files manually only when placing a few loose files into highly specific locations. See "How `ingest.py` behaves" below.
-3. **MOC integration:** Immediately add newly ingested notes to the relevant MOC in that folder so they are discoverable.
-4. **Standard tasks:** If `.raw_sources/` is empty, go straight to the requested task, and still update the knowledge base. Add or refine relevant notes in `content/` based on the request (or identify and fill gaps), using `[[toc]]` (`content/toc.md`) and MOCs to find where to work.
-5. **Connect relentlessly:** Prevent orphaned notes by adding `[[wiki-links]]` for **meaningful** connections. Avoid forced or irrelevant links.
-6. **Cleanup:** After a successful ingestion, clear everything inside `.raw_sources/` (keep the folder itself).
-7. **TOC maintenance:** Update `[[toc]]` only when creating new top-level folders/domains or major structural patterns.
+## Automatic Library Updates
+Deniz should never have to ask for notes. The vault updates itself from conversations and dropped documents, in batches, without interrupting the conversation.
 
-## Core Search (Discovery) Workflow
-1. **Navigate via TOC and MOCs:** Read `content/toc.md` first to find the domain, then that domain's MOC (e.g., `Machine Learning MOC`) for specific notes and structure.
-2. **Tools** (scope searches to `content/`):
-   - `Grep` for exact matches (e.g., a term or tag).
-   - `Glob` for locations and filename patterns (e.g., `content/Projects/**`).
-   - For conceptual queries, grep several related terms and read the relevant MOCs. There is no semantic search tool.
-   - `WebSearch` / `WebFetch` to research current articles, papers, and trends, or to supplement existing notes.
-3. **Be direct:** Start with concise, actionable answers and concrete examples over abstract advice. If uncertain, say so.
-4. **Identify gaps:** Flag missing connections, suggest folder refactoring, and note underdeveloped topics. Suggest specific sources (papers, docs, articles) to develop notes.
+1. **Raw sources:** A SessionStart hook (`.scripts/vault_health.py --session`) reports pending files in `.raw_sources/`. If it does, ingest them right away: use `.scripts/ingest.py` as a scaffold, customize its mapping, run it, add notes to their MOC, clear `.raw_sources/` (keep the folder). Read `.scripts/README.md` only when ingesting.
+2. **Batch capture, not per-turn notes.** Keep a mental list of durable takeaways (concepts explained, decisions, research findings, project progress) while the conversation runs. Do not write notes after each answer. Flush the list in one pass when the topic wraps up or shifts, after roughly 8 substantive exchanges, or on the `capture` / `fin` commands below. Skip chit-chat, one-off questions, and tooling talk.
+3. **Per flush:** One `Grep` per takeaway for an existing note (try 2-3 synonyms, since titles vary), then update the best match or create a new note. Merge several takeaways on one topic into one coherent note rather than many thin ones.
+4. **Review gate (the site publishes automatically, so unreviewed claims must not go live):**
+   - **Public** (`content/<domain>/`): facts Deniz stated, project progress and decisions, and research with a cited source. Add the tag `auto-captured`.
+   - **Staging** (`content/_Private/Inbox/`, git-ignored): anything resting on my own unverified claims or uncertain recall, with tag `needs-review`. Never link to it from public pages. Deniz promotes a note by moving it into a domain folder and removing the tag.
+5. **Placement:** Add each new public note to its domain MOC (grep for the section, edit only that part) with 2-4 meaningful `[[wiki-links]]` to related notes; no forced links. Update `[[toc]]` only for a new top-level folder or major structural pattern.
+6. **Report in one line** after a flush: what was created or updated (linked) and what went to the Inbox. Nothing more.
+7. **Maintenance is scripted, not manual.** The hook runs `.scripts/vault_health.py` (orphans, notes missing from their MOC, near-duplicate titles, front matter problems) at most every 30 days and reports pending Inbox items. Fix what it reports when it appears; do not run your own vault-wide audits.
+
+## Commands
+Exact words from Deniz, each an explicit instruction:
+- **`capture`**: Flush the takeaway list now (steps 3-6 above), then continue the conversation.
+- **`fin`**: Flush the takeaway list, report in one line, and sign off. No further suggestions or questions.
+- **`ship`**: Commit all current changes, then push the current branch. Stage with `git add -A` (check `git status` first and flag anything that looks like a secret or stray artifact instead of staging it). Write a short imperative message, split by area if both vault notes and site code changed (e.g. "Add Context Graphs note; restyle home frame"). Never amend, force-push, skip hooks, or switch branches. Report the commit and push result in one line.
+
+## Efficiency Rules (usage limits)
+- **Automatic means cheap.** Each captured takeaway should cost about 1 grep, 0-1 note reads, and 1-2 edits. Read `toc.md` or a whole MOC only when creating a domain or a note's place is genuinely unclear.
+- **Search narrowly.** Start with one `Grep`/`Glob` for the topic. Read only the relevant section of large files (use `offset`/`limit`).
+- **Do not re-read** files already read this session or just edited.
+- **Delegate broad sweeps** (multi-folder searches, vault-wide audits, large ingestions) to an Explore subagent so file dumps stay out of the main context.
+- **No manual audits.** `vault_health.py` handles vault-wide checks. Do not scan the vault for gaps, link opportunities, or refactors; mention one if noticed in passing, in one line.
+- **Keep sessions focused.** Suggest `/clear` or a new session when switching between unrelated work (vault notes vs. Quartz site code).
+- **Keep replies short.** No restating the request or recapping what the diff shows.
+
+## Discovery
+- Scope searches to `content/`. Use `Grep` for terms/tags and `Glob` for filename patterns. There is no semantic search: for conceptual queries, grep a few related terms, then read only the matching MOC.
+- Use `content/toc.md` and domain MOCs (e.g., `Machine Learning MOC`) to navigate or place notes, not for every question.
+- `WebSearch` / `WebFetch` when asked to research, or when a conversation topic needs current sources to be captured accurately.
+- Be direct: concise, actionable answers with concrete examples. If uncertain, say so. Suggest specific sources (papers, docs, articles) when they would develop a note.
 
 ## Vault Conventions
 - **Quartz 5 compatibility:** Note content, frontmatter, math, and links must work in Quartz 5 (URLs are lowercased and hyphenated, e.g. `/deep-learning/attention-and-transformers`). In display math use `\begin{aligned}` instead of bare `\\`.
@@ -40,15 +55,6 @@
 - **No emojis** in titles, headers, or sub-headers.
 - **Rich media:** Add web links, images, and videos to notes where they make the vault more comprehensive and visual.
 
-## How `ingest.py` behaves
-- Resolves paths relative to the repo, so it runs from anywhere: `python3 .scripts/ingest.py`.
-- Each top-level folder in `.raw_sources/` becomes a domain folder in `content/`. Notes get `title`, `tags`, `draft: false` front matter (any existing front matter and a duplicate H1 are dropped).
-- Creates or updates the domain MOC, and adds a row to the table in `content/toc.md` for new domains. The row's summary is a `TODO` placeholder: replace it with a real one.
-- Never overwrites existing notes and leaves non-markdown files and loose files in place, printing `SKIPPED` for each. Place these manually, then clear `.raw_sources/`.
-- Edit the script's mapping logic (tags, destination, MOC layout) for each batch before running.
-
-## Repo Commands
-- Site config, plugins and layout all live in `quartz.config.yaml` (defaults in `quartz.config.default.yaml`). Custom CSS is `quartz/styles/custom.scss`.
-- `npx quartz build --serve` previews the site locally; CI installs with `npm ci` then builds.
-- `npm run check` runs `tsc --noEmit` and Prettier checks; `npm run format` formats.
-- Commits are normally automated "Quartz sync" snapshots from Obsidian. Do not commit or push unless asked.
+## Reference
+- `.scripts/README.md`: `ingest.py`, `vault_health.py`, and Quartz repo commands (site config, build/preview, checks, commit policy). Read it only when ingesting or changing the site.
+- Do not commit or push unless Deniz says `ship`.

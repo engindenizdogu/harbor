@@ -1,5 +1,5 @@
 ---
-title: 05.2026 - Automatic Tag Generation and Clustering with LLMs
+title: Automatic Tag Generation and Clustering with LLMs
 tags:
   - projects
   - nlp
@@ -23,6 +23,18 @@ The project builds a lightweight knowledge graph from local documents to improve
 - **Implemented** embeddings using sentence-transformers (mpnet models) to map tags into semantic space.
 - **Designed** a cosine matching algorithm with configurable k and threshold parameters to link documents to topic centroids.
 - **Developed** interactive HTML graph exports and structured text dumps for visualization and debugging.
+
+**Architecture overview**
+
+```mermaid
+flowchart LR
+    DOC[Local documents] --> TAG[Tag extraction: LLM, KeyBERT, TextRank]
+    TAG --> EMB[mpnet embeddings]
+    EMB --> COS[Cosine matching: k and threshold]
+    COS --> G[Knowledge graph]
+    G --> VIZ[Interactive HTML export]
+    G --> LOG[Experiment logs]
+```
 
 ## Key Results and Impact
 - Achieved best semantic coherence of 0.97 (LLM, k=3, threshold=0.7).

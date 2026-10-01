@@ -1,5 +1,5 @@
 ---
-title: 01.2026 - AI App Generation and Discovery
+title: AI App Generation and Discovery
 tags: [projects, portfolio, full-stack, ai]
 draft: false
 ---
@@ -19,6 +19,19 @@ The goal of this hackathon project was to drastically lower the barrier to softw
 - **Implemented** Daytona containerized sandboxes for isolated code execution and automated deployment.
 - **Integrated** Supabase authentication for secure user sessions.
 - **Designed** a dual-agent orchestration system using the Claude Agent SDK for real-time collaborative app generation.
+
+**Architecture overview**
+
+```mermaid
+flowchart LR
+    U[User prompt] --> A[Orchestrator agent]
+    A <--> B[Builder agent]
+    B --> S[Daytona sandbox]
+    S --> D[Deployed app]
+    D --> F[Social discovery feed]
+    API[FastAPI + Supabase auth] --- A
+    RN[React Native client] --- F
+```
 
 ## Key Results and Impact
 - Delivered a functional prototype within a 24-hour hackathon time limit.

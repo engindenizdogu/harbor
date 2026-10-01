@@ -3,7 +3,7 @@ title: Image Generation MOC
 tags: [image-generation, gen-ai, moc]
 draft: false
 ---
-# Image Generation - Map of Contents
+Map of Contents
 
 ### Foundational Generative Models
 - [[Variational Autoencoders]] - Encoder-decoder with probabilistic latent space; enables image interpolation and semantic arithmetic via KL-regularized Gaussian prior.

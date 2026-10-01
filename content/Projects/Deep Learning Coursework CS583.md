@@ -1,5 +1,5 @@
 ---
-title: 05.2026 - Deep Learning Coursework CS583
+title: Deep Learning Coursework CS583
 tags:
   - projects
   - deep-learning
@@ -21,6 +21,20 @@ This portfolio encompasses four major assignments designed to build intuition an
 - **Designed** and trained a custom Convolutional Neural Network (CNN) architecture with Batch Normalization for CIFAR-10 image classification.
 - **Built** a character-level Encoder-Decoder seq2seq model using Bidirectional LSTMs for English-to-Spanish translation.
 - **Engineered** a dense autoencoder with a 2D bottleneck layer, eventually extending it to a supervised autoencoder with a joint reconstruction and classification objective.
+
+**Architecture overview**
+
+```mermaid
+flowchart TD
+    C[CS583 coursework] --> A1[Optimization from scratch]
+    C --> A2[CNN with BatchNorm]
+    C --> A3[BiLSTM seq2seq]
+    C --> A4[Autoencoders]
+    A1 --> R1[97.37% breast cancer accuracy]
+    A2 --> R2[82.02% CIFAR-10 accuracy]
+    A3 --> R3[English to Spanish translation]
+    A4 --> R4[Over 90% MNIST accuracy]
+```
 
 ## Key Results and Impact
 - Achieved 97.37% test accuracy on Breast Cancer classification using SGD, and demonstrated the generalization effect of L2 regularization.

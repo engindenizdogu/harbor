@@ -3,7 +3,7 @@ title: Jekyll MOC
 tags: [jekyll, moc, dashboard]
 draft: false
 ---
-Welcome to the Jekyll Map of Content. This dashboard organizes notes logically to provide structured learning paths for building static sites with Jekyll.
+Welcome to the Jekyll Map of Contents. This dashboard organizes notes logically to provide structured learning paths for building static sites with Jekyll.
 
 ## Getting Started
 - [[Jekyll Overview]] - What is Jekyll? Folder structure, themes, and alternatives.

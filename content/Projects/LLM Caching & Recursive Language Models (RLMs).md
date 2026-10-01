@@ -1,5 +1,5 @@
 ---
-title: 05.2026 - LLM Caching & Recursive Language Models (RLMs)
+title: LLM Caching & Recursive Language Models (RLMs)
 tags:
   - projects
   - portfolio
@@ -27,6 +27,19 @@ High-volume, multi-step LLM agents are often economically unviable due to redund
 - **Designed** a robust provenance system that grounds every cached entry against source chunks and verifies it with a secondary LLM.
 - **Automated** knowledge extraction to decompose synthesized answers into queryable `(subject, relation, object)` triples for an emergent knowledge graph.
 - **Built** a dynamic routing system to dispatch tasks efficiently between executor-class (Claude 3.5 Sonnet) and evaluator-class (Claude 3.5 Haiku) models.
+
+**Architecture overview**
+
+```mermaid
+flowchart LR
+    Q[Query] --> D[Dragnet: FAISS retrieval]
+    D --> S[Sniper: cross-encoder gate]
+    S -->|hit| H[Cached answer]
+    S -->|miss| E[Executor model synthesizes]
+    E --> V[Evaluator model verifies provenance]
+    V --> ST[Store answer and triples]
+    ST --> H
+```
 
 ## Key Results and Impact
 - Achieved a massive 96.7% cost reduction on redundant generative workloads without sacrificing accuracy.

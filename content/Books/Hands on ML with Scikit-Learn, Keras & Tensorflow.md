@@ -102,8 +102,6 @@ y_scores = cross_val_predict(sgd_clf, X_train, y_train_5, cv=3, method='decision
 
 It is fairly easy to create a classifier with virtually any precision you want: just set a high enough threshold, and you’re done. Hmm, not so fast. A high-precision classifier is not very useful if its recall is too low!
 
-> Precision/Recall Tradeoff
->
 > If someone says “let’s reach 99% precision” you should ask, “at what recall?”
 
 ## ROC Curve vs. PR Curve

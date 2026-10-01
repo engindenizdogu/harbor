@@ -3,7 +3,7 @@ title: Code Snippets MOC
 tags: [code-snippets, moc, dashboard]
 draft: false
 ---
-Welcome to the Code Snippets Map of Content. This dashboard organizes reusable code fragments and technical snippets across various domains.
+Welcome to the Code Snippets Map of Contents. This dashboard organizes reusable code fragments and technical snippets across various domains.
 
 ## Machine Learning Snippets
 - [[ML Preprocessing Snippets]] - Reusable snippets for data cleaning and train/test splitting.

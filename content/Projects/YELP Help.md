@@ -1,6 +1,9 @@
 ---
-title: 12.2025 - yelp-help
-tags: [projects, portfolio, machine-learning]
+title: YELP Help
+tags:
+  - projects
+  - portfolio
+  - machine-learning
 draft: false
 ---
 > A machine learning pipeline that predicts restaurant success by analyzing Yelp business data, customer reviews, and operational features.
@@ -18,6 +21,17 @@ This project develops a machine learning pipeline to predict restaurant success 
 - **Extracted** features from nested attributes such as parking availability, ambience, operating hours, and customer engagement metrics.
 - **Defined** restaurant success programmatically as achieving both high ratings (4+ stars) and above-median review counts.
 - **Automated** a modular architecture for metadata analysis, preprocessing, cleaning, visualization, and model training.
+
+**Architecture overview**
+
+```mermaid
+flowchart LR
+    J[Yelp JSON data] --> P[Preprocessing and cleaning]
+    P --> F[Feature extraction]
+    F --> L[Success label: 4+ stars and above-median reviews]
+    L --> M[Seven models with grid search CV]
+    M --> C[Model comparison]
+```
 
 ## Key Results and Impact
 - Trained and compared seven different machine learning models using grid search cross-validation to optimize performance.

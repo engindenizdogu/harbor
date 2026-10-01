@@ -3,7 +3,7 @@ title: Machine Learning MOC
 tags: [machine-learning, moc, dashboard]
 draft: false
 ---
-Welcome to the Machine Learning Map of Content. This dashboard organizes notes logically to provide structured learning paths and rapid discovery.
+Welcome to the Machine Learning Map of Contents. This dashboard organizes notes logically to provide structured learning paths and rapid discovery.
 
 ## Core Concepts & Foundations
 - [[Glossary]] - Foundational machine learning definitions (Bias, Variance, etc.).
@@ -83,6 +83,7 @@ Detailed domain dashboard: [[Reinforcement Learning MOC]]
 - [[Learning To Rank]]
 - [[Anti-Bot Machine Learning]] - How ML is used to detect and mitigate automated agents.
 - [[Agentic Information Traversal]] - Benchmarks and tools for measuring how agents navigate web pages and knowledge graphs.
+- [[Context Graphs]] - Memory graphs, workflow state machines, and change graphs for agents, with a healthcare example.
 
 ---
 ## To Research / Inbox

@@ -1,6 +1,9 @@
 ---
-title: 12.2025 - viralscope
-tags: [projects, portfolio, machine-learning]
+title: Viral Scope
+tags:
+  - projects
+  - portfolio
+  - machine-learning
 draft: false
 ---
 > A machine learning project that predicts YouTube video success using metadata and channel characteristics.
@@ -18,6 +21,17 @@ The project processes over 85 million video records from the YouNiverse dataset 
 - **Implemented** random and data preparation sampling with engagement filtering.
 - **Designed** a feature engineering process with a strict train/test split and scaling to prevent data leakage (labels created post-split).
 - **Trained** multiple classification models including Random Forest, Decision Tree, Linear SVC, K-Nearest Neighbors, and Multi-Layer Perceptron.
+
+**Architecture overview**
+
+```mermaid
+flowchart LR
+    RAW[YouNiverse, 85M+ records] --> SAMP[Sampling and engagement filter]
+    SAMP --> SPLIT[Train/test split]
+    SPLIT --> LAB[Labels and scaling post-split]
+    LAB --> M[RF, Tree, Linear SVC, KNN, MLP]
+    M --> GS[GridSearchCV tuning]
+```
 
 ## Key Results and Impact
 - Optimized hyperparameters for 5 distinct models using GridSearchCV to maximize predictive performance.

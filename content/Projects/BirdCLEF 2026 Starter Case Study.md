@@ -21,6 +21,24 @@ The [BirdCLEF 2026](https://www.kaggle.com/competitions/birdclef-2026) competiti
 - **Implemented** knowledge distillation to transfer Perch v2's rich bioacoustic representations into a compact, trainable model — heavily inspired by [Nikita Babych's winning approach](https://www.kaggle.com/nikitababych).
 - **Documented** the full pipeline end-to-end with explanations and comments, from raw audio loading and mel-spectrogram extraction to model training and inference, creating a readable reference notebook for the community.
 
+**Architecture overview**
+
+```mermaid
+flowchart LR
+    AUD[Field audio] --> MEL[Mel-spectrogram]
+    MEL --> STU[EfficientNetB0 student]
+    AUD --> PERCH[Perch v2 teacher]
+    PERCH -->|soft labels| LOSS[Multi-task loss]
+    HUM[Human soundscape annotations] -->|hard labels| LOSS
+    STU --> LOSS
+    LOSS --> STU
+```
+
+**Example model input and target**
+
+![[birdclef-example-spectrogram.png]]
+*Chunk 0 of a field recording: the mel spectrogram fed to the student (left) and the 1536-D Perch v2 embedding it learns to reproduce, reshaped into a grid (right).*
+
 ## Key Results and Impact
 
 - Achieved a private leaderboard score of **~0.60** after only 3 training epochs under severe compute constraints (Google Colab timeouts).
