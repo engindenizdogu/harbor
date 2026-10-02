@@ -3,20 +3,28 @@ title: Natural Language Processing MOC
 tags: [nlp, moc]
 draft: false
 ---
-Map of Contents
+Map of Contents. Learning path from classical text processing to Transformers and LLMs. Neural network basics live in [[Machine Learning MOC]]; agent systems built on LLMs live in [[Agents MOC]].
 
-## Notes
-- [[Building Embedding Models From Scratch]] - Guide on architectures like Word2Vec, Autoencoder bottleneck, and Siamese Networks, including a PyTorch Skip-Gram snippet.
-- [[0. Glossary (NLP)]] - - Natural Language Processing (NLP): NLP is a field of linguistics and machine learning focused ...
-- [[Keyword Extraction & Topic Modelling]] - 1. Keyword Extraction 1. TF 2. TF-IDF 3. RAKE ([rake-keyword](https://github.com/u-prashant/RAKE...
-- [[3. Word Vectors]] - - Knowledge-based representation (e.g. WordNet) - Might miss nuance (e.g. “proficient” is listed...
-- [[5. Tokenization]] - - Character Tokenization: The simplest tokenization scheme is to feed each character individuall...
-- [[2. Language Modeling & N-grams]] - In general, *language modeling* is the task of predicting what word comes next. - Statistical LM (N-...
-- [[4. RNNs & CNNs for Text Classification]] - Improvements over n-gram - No sparsity problem - Model size is $O(n)$ not $O(exp(n))$ Remainin...
-- [[LM Benchmarks]] - For Coding: - HumanEval: Python coding tasks (higher % = better) - MBPP: Python programm...
-- [[Large Language Models]] - Characteristics of LLMs: - Scale: They contain millions, billions, or even hundreds of billi...
-- [[1. What is NLP?]] - NLP is a field of linguistics and machine learning focused on understanding everything related to hu...
-- [[KV Cache]] - A performance optimization technique used in Large Language Models (LLMs) to speed up text generation by storing the Key and Value vectors of previous tokens.
+## Foundations
+- [[0. Glossary (NLP)]] - Key NLP terms and definitions.
+- [[1. What is NLP?]] - NLP is a field of linguistics and machine learning focused on understanding human language.
+- [[2. Language Modeling & N-grams]] - Predicting the next word; statistical language models.
+- [[5. Tokenization]] - Character, word, and subword tokenization schemes.
+
+## Representations
+- [[3. Word Vectors]] - Knowledge-based vs. distributional word representations.
+- [[Building Embedding Models From Scratch]] - Word2Vec, autoencoder bottleneck, and Siamese networks, with a PyTorch Skip-Gram snippet.
+- [[Keyword Extraction & Topic Modelling]] - TF, TF-IDF, RAKE, and topic models.
+
+## Neural Sequence Models
+- [[4. RNNs & CNNs for Text Classification]] - Improvements over n-grams and remaining limitations.
+- [[RNNs & LSTMs]] - RNN/LSTM architecture, parameter counting, text generation, and Seq2Seq machine translation.
+- [[Attention & Transformers]] - Self-attention, multi-head attention, the Transformer encoder/decoder, and BERT pre-training.
+
+## Large Language Models
+- [[Large Language Models]] - Characteristics, scale, and training of LLMs.
+- [[KV Cache]] - Storing Key and Value vectors of previous tokens to speed up generation.
+- [[LM Benchmarks]] - Coding, reasoning, and general benchmarks for language models.
 
 ---
 ## To Research / Inbox

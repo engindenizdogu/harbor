@@ -1,6 +1,6 @@
 ---
-title: CNNs
-tags: [deep-learning]
+title: Convolutional Neural Networks
+tags: [machine-learning, deep-learning]
 draft: false
 ---
 Convolutional Neural Networks are designed to process grid-like data, such as images. They use convolution operations in place of general matrix multiplication in at least one of their layers.

@@ -5,15 +5,17 @@ draft: false
 ---
 Welcome to the Machine Learning Map of Contents. This dashboard organizes notes logically to provide structured learning paths and rapid discovery.
 
-## Core Concepts & Foundations
+## Foundations
+Core vocabulary, problem types, and evaluation, located in the `Foundations/` directory.
 - [[Glossary]] - Foundational machine learning definitions (Bias, Variance, etc.).
 - [[Machine Learning Domains]] - Breakdown of ML problem types (Classification, Regression, Unsupervised).
 - [[Metrics and Model Evaluation]] - Guide on evaluating models, bias/variance tradeoff, and regularization.
 - [[Loss Functions]] - How models measure error (MSE, Cross-Entropy).
-- [[Linear Classifiers]] - Notes on linear models, hyperplanes, and decision boundaries.
+- [[Exploratory Data Analysis]] - The crucial first step of inspecting and understanding your data.
+- [[Scaling Techniques]] - Methods for normalization and when to use them.
 
 ## Math for Machine Learning
-Deep dive into the mathematical foundations required for ML, located in the `Math/` directory.
+Mathematical foundations, located in the `Math/` directory.
 - [[0. Glossary (ML Math)]]
 - [[1. Probability]]
 - [[2. Linear Algebra]]
@@ -26,14 +28,11 @@ Deep dive into the mathematical foundations required for ML, located in the `Mat
 - [[9. Vector Calculus]]
 - [[10. Vector Norms]]
 
-## Data Preparation
-- [[Exploratory Data Analysis]] - The crucial first step of inspecting and understanding your data.
-- [[Scaling Techniques]] - Methods for normalization and when to use them.
-
-## Algorithms & Models
-Deep dives into specific algorithms, located in the `Algorithms/` directory.
+## Classical ML
+Deep dives into specific algorithms, located in the `Classical ML/` directory.
 
 ### Linear & Parametric Models
+- [[Linear Classifiers]] - Hyperplanes and decision boundaries.
 - [[Linear Regression]]
 - [[Logistic Regression]]
 - [[Polynomial Regression]]
@@ -56,11 +55,6 @@ Deep dives into specific algorithms, located in the `Algorithms/` directory.
 - [[Bayesian Decision Methods]]
 - [[Bayesian Networks]]
 
-### Neural Networks & Deep Learning
-- [[Neural Networks]]
-- [[Convolutional Neural Networks]]
-- [[Activation Functions]]
-
 ### Unsupervised Learning (Clustering & PCA)
 - [[k-Means]]
 - [[Hierarchical Clustering]]
@@ -70,7 +64,17 @@ Deep dives into specific algorithms, located in the `Algorithms/` directory.
 - [[Singular Value Decomposition]]
 - [[Self-organizing Map]]
 
-### Reinforcement Learning
+## Deep Learning
+Neural network fundamentals and architectures, located in the `Deep Learning/` directory. Sequence models and Transformers live under [[Natural Language Processing MOC]]; VAEs and GANs under [[Generative AI MOC]].
+- [[Neural Networks]] - MLP architecture, backpropagation, and training challenges.
+- [[Activation Functions]] - Non-linearities and when to use them.
+- [[Batch Normalization]] - Stable gradients and faster convergence.
+- [[Convolutional Neural Networks]] - Forward pass, backpropagation through convolutional and pooling layers.
+- [[Autoencoders]] - Bottleneck architectures, reconstruction loss, and latent spaces.
+- [[Keras vs. PyTorch vs. TensorFlow]] - Framework comparison.
+- [[Keras Data Generators]] - Memory-efficient on-the-fly data generation with `keras.utils.Sequence`.
+
+## Reinforcement Learning
 Detailed domain dashboard: [[Reinforcement Learning MOC]]
 - [[Reinforcement Learning]] - The agent-environment interaction loop.
 - [[Markov Decision Processes]] - Mathematical framework (States, Actions, Transitions).
@@ -78,13 +82,16 @@ Detailed domain dashboard: [[Reinforcement Learning MOC]]
 - [[Deep Reinforcement Learning]] - Scaling RL with Neural Networks.
 - [[Dynamic Programming]] - The foundational framework for solving MDPs.
 
-### Applications
+## Applications
+Located in the `Applications/` directory.
 - [[Recommendation Systems]]
 - [[Learning To Rank]]
 - [[Anti-Bot Machine Learning]] - How ML is used to detect and mitigate automated agents.
-- [[Agentic Information Traversal]] - Benchmarks and tools for measuring how agents navigate web pages and knowledge graphs.
-- [[Context Graphs]] - Memory graphs, workflow state machines, and change graphs for agents, with a healthcare example.
-- [[Full-Duplex Conversational Agents]] - Voice and video agents that listen and speak at once (Moshi, GPT-Live, Tavus Griffin), benchmarks, and open problems. Related: [[Large Language Models]], [[Agentic Information Traversal]], [[Brief History & Model Types]].
+
+## Related Domains
+- [[Natural Language Processing MOC]] - Language modeling, embeddings, Transformers, and LLMs.
+- [[Generative AI MOC]] - Image generation, VAEs, and GANs.
+- [[Agents MOC]] - Agent memory, benchmarks, and conversational agents.
 
 ---
 ## To Research / Inbox

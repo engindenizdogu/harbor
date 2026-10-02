@@ -1,6 +1,6 @@
 ---
 title: Neural Networks
-tags: [machine-learning, algorithms]
+tags: [machine-learning, deep-learning]
 draft: false
 ---
 | Type           |

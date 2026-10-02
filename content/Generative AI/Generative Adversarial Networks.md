@@ -1,6 +1,6 @@
 ---
 title: Generative Adversarial Networks
-tags: [deep-learning, generative-models, gans, image-generation, adversarial-training]
+tags: [deep-learning, gen-ai, generative-models, gans, image-generation, adversarial-training]
 draft: false
 ---
 A GAN is a **generative model** composed of two neural networks trained in **adversarial competition**:
@@ -121,4 +121,4 @@ GANs are notoriously difficult to train. Two opposing failure modes:
 ## Related Notes
 - [[Autoencoders]] - The encoder-decoder architecture; VAE extends this with a probabilistic latent space.
 - [[Variational Autoencoders]] - The VAE alternative to GANs for image generation.
-- [[Image Generation MOC]] - Overview of generative image models.
+- [[Generative AI MOC]] - Overview of generative AI models.

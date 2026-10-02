@@ -1,6 +1,6 @@
 ---
 title: Recommendation Systems
-tags: [machine-learning, algorithms]
+tags: [machine-learning, applications]
 draft: false
 ---
 | Type           |

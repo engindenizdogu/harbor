@@ -27,4 +27,4 @@ Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page)
 ## Connections
 - [[Data Science MOC]]
 - [[Software Engineering MOC]]
-- [[Image Generation MOC]]
+- [[Generative AI MOC]]

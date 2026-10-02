@@ -1,6 +1,6 @@
 ---
 title: Variational Autoencoders
-tags: [deep-learning, generative-models, vae, autoencoders, dimensionality-reduction, kl-divergence]
+tags: [deep-learning, gen-ai, generative-models, vae, autoencoders, dimensionality-reduction, kl-divergence]
 draft: false
 ---
 A Variational Autoencoder (VAE) extends the standard autoencoder into a **probabilistic generative model**. Instead of encoding to a fixed code vector, the encoder outputs a **distribution** (mean $\mu$ and log-variance $\log \sigma^2$). A code vector $z$ is then **randomly sampled** from this distribution and passed to the decoder.
@@ -129,4 +129,4 @@ vae.compile(optimizer='adam', loss='binary_crossentropy')
 ## Related Notes
 - [[Autoencoders]] - Standard and convolutional autoencoders; the foundation VAE builds on.
 - [[Generative Adversarial Networks]] - Alternative generative approach; produces sharper images but lacks structured latent space.
-- [[Image Generation MOC]] - Overview of image generation models.
+- [[Generative AI MOC]] - Overview of generative AI models.
