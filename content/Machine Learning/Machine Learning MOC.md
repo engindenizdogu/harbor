@@ -84,6 +84,7 @@ Detailed domain dashboard: [[Reinforcement Learning MOC]]
 - [[Anti-Bot Machine Learning]] - How ML is used to detect and mitigate automated agents.
 - [[Agentic Information Traversal]] - Benchmarks and tools for measuring how agents navigate web pages and knowledge graphs.
 - [[Context Graphs]] - Memory graphs, workflow state machines, and change graphs for agents, with a healthcare example.
+- [[Full-Duplex Conversational Agents]] - Voice and video agents that listen and speak at once (Moshi, GPT-Live, Tavus Griffin), benchmarks, and open problems. Related: [[Large Language Models]], [[Agentic Information Traversal]], [[Brief History & Model Types]].
 
 ---
 ## To Research / Inbox
