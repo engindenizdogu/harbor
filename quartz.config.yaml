@@ -79,6 +79,8 @@ plugins:
     enabled: true
     options:
       markdownLinkResolution: shortest
+      # External links open in a new tab; internal links stay in this tab
+      openLinksInNewTab: true
     order: 60
   - source: "@quartz-community/description"
     enabled: true
