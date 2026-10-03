@@ -9,8 +9,20 @@ import { FullSlug, pathToRoot, resolveRelative } from "../../util/path"
  * The frame also renders its own footer (social links + back-to-top button)
  * instead of the components in the `footer` layout position.
  */
-const navLinks: { label: string; slug: FullSlug; match: (slug: string) => boolean }[] = [
+const navLinks: {
+  label: string
+  slug: FullSlug
+  match: (slug: string) => boolean
+  // Standalone page under quartz/static: not a Quartz page, so the SPA router skips it
+  staticPath?: string
+}[] = [
   { label: "Home", slug: "index" as FullSlug, match: (s) => s === "index" },
+  {
+    label: "Experiences",
+    slug: "index" as FullSlug,
+    match: () => false,
+    staticPath: "static/experiences.html",
+  },
   { label: "Knowledge Base", slug: "toc" as FullSlug, match: (s) => s === "toc" },
   {
     label: "Projects",
@@ -48,7 +60,12 @@ export const HarborFrame: PageFrame = {
             <nav class="harbor-nav" aria-label="Primary">
               {navLinks.map((link) => (
                 <a
-                  href={resolveRelative(slug, link.slug)}
+                  href={
+                    link.staticPath
+                      ? `${pathToRoot(slug)}/${link.staticPath}`
+                      : resolveRelative(slug, link.slug)
+                  }
+                  data-router-ignore={link.staticPath ? "" : undefined}
                   class={link.match(slug) ? "active" : undefined}
                   aria-current={link.match(slug) ? "page" : undefined}
                 >
@@ -92,7 +109,13 @@ export const HarborFrame: PageFrame = {
         <footer class="harbor-footer">
           <nav class="harbor-footer-links" aria-label="Social">
             {socialLinks.map((link) => (
-              <a href={link.href}>{link.label}</a>
+              <a
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              >
+                {link.label}
+              </a>
             ))}
           </nav>
           <a class="harbor-top-button" href="#quartz-root" data-no-popover="true">
