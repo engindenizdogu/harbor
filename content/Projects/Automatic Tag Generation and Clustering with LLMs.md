@@ -12,17 +12,17 @@ draft: false
 
 ## Quick Facts
 - **Context:** CS584 NLP Knowledge Graph Project
-- **Tech Stack:** Python 3.13+, sentence-transformers (mpnet), KeyBERT, TextRank, NumPy, uv
+- **Tech Stack:** Python 3.13+, OpenAI API, sentence-transformers (mpnet), KeyBERT, TextRank, NLTK, NetworkX, PyVis, NumPy, uv
 - **Links:** [GitHub Repo](https://github.com/engindenizdogu/octo-knowledge-graph/tree/main) | [Project Report (PDF)](https://github.com/engindenizdogu/octo-knowledge-graph/blob/main/docs/report/CS584_Project_Report.pdf)
 
 ## Overview and Problem
 The project builds a lightweight knowledge graph from local documents to improve semantic search and topic discovery. It aims to evaluate different tag extraction strategies and similarity thresholds for optimal graph connectivity.
 
 ## What I Built
-- **Engineered** an automated pipeline to extract semantic tags using LLM-backed generation with statistical fallbacks (KeyBERT, TextRank).
+- **Engineered** an automated pipeline to extract semantic tags using LLM-backed generation (OpenAI API) with statistical fallbacks (KeyBERT, TextRank) and NLTK text preprocessing.
 - **Implemented** embeddings using sentence-transformers (mpnet models) to map tags into semantic space.
 - **Designed** a cosine matching algorithm with configurable k and threshold parameters to link documents to topic centroids.
-- **Developed** interactive HTML graph exports and structured text dumps for visualization and debugging.
+- **Developed** NetworkX graphs with interactive PyVis HTML exports and structured text dumps for visualization and debugging.
 
 **Architecture overview**
 

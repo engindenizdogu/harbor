@@ -85,9 +85,9 @@
 </ul>
 <div class="entry"><strong>Automatic Tag Generation and Clustering with LLMs, CS584 NLP Project, <a href="https://github.com/engindenizdogu/octo-knowledge-graph/tree/main" target="_blank" rel="noopener noreferrer">GitHub</a> | <a href="https://github.com/engindenizdogu/octo-knowledge-graph/blob/main/docs/report/CS584_Project_Report.pdf" target="_blank" rel="noopener noreferrer">Report</a></strong><span class="date">01/2026 – 05/2026</span></div>
 <ul>
-  <li>Built a GenAI pipeline combining LLM tag generation, Sentence-Transformers, KeyBERT, TextRank, and NetworkX to extract, cluster, and link topics from unstructured documents. Achieved 0.97 weighted topic coherence on a 0-1 scale.</li>
+  <li>Built a GenAI pipeline combining LLM tag generation (OpenAI API), Sentence-Transformers, KeyBERT, TextRank, NLTK, and NetworkX to extract, cluster, and link topics from unstructured documents. Achieved 0.97 weighted topic coherence on a 0-1 scale.</li>
   <li>Engineered an in-memory semantic knowledge graph (Python 3.13, sentence-transformers mpnet, NumPy) that turns local documents into topic-aware search, with LLM-backed tag extraction and statistical fallbacks (KeyBERT, TextRank).</li>
-  <li>Designed a cosine-matching algorithm with configurable k and similarity threshold that links documents to topic centroids, then exported interactive HTML graphs and structured experiment logs for visualization and debugging.</li>
+  <li>Designed a cosine-matching algorithm with configurable k and similarity threshold that links documents to topic centroids, then exported interactive PyVis HTML graphs and structured experiment logs for visualization and debugging.</li>
   <li>Evaluated extractors and thresholds: LLM tags at k=3, threshold 0.7 reached the best coherence (0.97), TextRank at k=5 or 7, threshold 0.3 reached full connectivity (largest-component ratio 1.00), and topic counts ranged from 32 to 475, exposing a clear granularity trade-off.</li>
 </ul>
 <div class="entry"><strong>BirdCLEF 2026 Competition, with Gabriel Reynoso Romero, <a href="https://www.kaggle.com/code/engindenizdou/birdclef-2026-competition" target="_blank" rel="noopener noreferrer">Kaggle Notebook</a></strong><span class="date">06/2026</span></div>
