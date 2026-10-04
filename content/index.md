@@ -16,7 +16,7 @@ enableToc: false
 <a href="mailto:edogu@stevens.edu">Email</a>
 </div>
 
-I'm a Master's student based in New York City, studying ==<b>Machine Learning</b>== at ==<b>the Stevens Institute of Technology</b>==. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my academic and professional work, as well as my interests.
+I'm a Master's student based in ==New York City==, studying ==Machine Learning== at ==the Stevens Institute of Technology==. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my academic and professional work, as well as my interests.
 
 <div class="harbor-cta">
 <a class="harbor-btn harbor-btn-primary" href="./toc">Explore notes <span class="harbor-btn-arrow" aria-hidden="true">→</span></a>
@@ -37,9 +37,9 @@ I'm a Master's student based in New York City, studying ==<b>Machine Learning</b
 <a class="harbor-band-link" href="./projects/">All projects →</a>
 </div>
 <div class="harbor-band-grid">
-<a class="harbor-project" href="./projects/budget-aware-long-context-execution"><span class="harbor-project-meta">May 2026 · Research</span><span class="harbor-project-title">Budget-Aware Long-Context Execution in LLMs</span><span class="harbor-project-desc">Sends full context when it fits, retrieves under a token budget when it does not, and reuses verified answers from a semantic cache.</span><span class="harbor-project-stack">Python · vLLM · FAISS · Qwen3</span></a>
-<a class="harbor-project" href="./projects/birdclef-2026-starter-case-study"><span class="harbor-project-meta">2026 · Kaggle</span><span class="harbor-project-title">BirdCLEF 2026 Case Study</span><span class="harbor-project-desc">Multi-task knowledge distillation from Google Perch v2 into EfficientNetB0 to detect overlapping bird calls in noisy field recordings.</span><span class="harbor-project-stack">TensorFlow · EfficientNetB0 · Librosa</span></a>
-<a class="harbor-project" href="./projects/automatic-tag-generation-and-clustering-with-llms"><span class="harbor-project-meta">May 2026 · Course project</span><span class="harbor-project-title">Automatic Tag Generation and Clustering</span><span class="harbor-project-desc">An in-memory semantic knowledge graph that turns personal documents into topic-aware search and discovery.</span><span class="harbor-project-stack">OpenAI API · sentence-transformers · KeyBERT · TextRank · NLTK · NetworkX · PyVis</span></a>
+<a class="harbor-project" href="./projects/budget-aware-long-context-execution"><span class="harbor-project-meta">Research · In progress</span><span class="harbor-project-title">Budget-Aware Long-Context Execution in LLMs</span><span class="harbor-project-desc">Sends full context when it fits, retrieves under a token budget when it does not, and reuses verified answers from a semantic cache.</span><span class="harbor-project-stack">Python · vLLM · FAISS · Qwen3</span></a>
+<a class="harbor-project" href="./projects/birdclef-2026-starter-case-study"><span class="harbor-project-meta">Kaggle Competition · June 2026</span><span class="harbor-project-title">BirdCLEF 2026 Case Study</span><span class="harbor-project-desc">Multi-task knowledge distillation from Google Perch v2 into EfficientNetB0 to detect overlapping bird calls in noisy field recordings.</span><span class="harbor-project-stack">TensorFlow · EfficientNetB0 · Librosa</span></a>
+<a class="harbor-project" href="./projects/automatic-tag-generation-and-clustering-with-llms"><span class="harbor-project-meta">Course project · May 2026</span><span class="harbor-project-title">Automatic Tag Generation and Clustering</span><span class="harbor-project-desc">An in-memory semantic knowledge graph that turns personal documents into topic-aware search and discovery.</span><span class="harbor-project-stack">OpenAI API · sentence-transformers · KeyBERT · TextRank · NLTK · NetworkX</span></a>
 </div>
 </div>
 
