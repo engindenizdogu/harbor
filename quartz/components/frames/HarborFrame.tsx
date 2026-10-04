@@ -18,10 +18,10 @@ const navLinks: {
 }[] = [
   { label: "Home", slug: "index" as FullSlug, match: (s) => s === "index" },
   {
-    label: "Experiences",
+    label: "Experience",
     slug: "index" as FullSlug,
     match: () => false,
-    staticPath: "static/experiences.html",
+    staticPath: "static/experience.html",
   },
   { label: "Knowledge Base", slug: "toc" as FullSlug, match: (s) => s === "toc" },
   {
