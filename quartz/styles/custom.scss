@@ -450,6 +450,35 @@ body[data-slug="index"] .page-footer .graph {
     border-radius: 8px;
   }
 
+  // Legend: two pseudo-elements stacked in the bottom-left corner. The dot
+  // colors mirror the node colors chosen in the patched graph plugin.
+  & > .graph-outer::before,
+  & > .graph-outer::after {
+    position: absolute;
+    left: 0.9rem;
+    z-index: 2;
+    padding-left: 1rem;
+    font-family: var(--bodyFont);
+    font-size: 0.72rem;
+    line-height: 1;
+    color: var(--gray);
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+  }
+
+  & > .graph-outer::before {
+    content: "Map of contents";
+    bottom: 1.9rem;
+    background-image: radial-gradient(circle at 4px 50%, var(--secondary) 4px, transparent 4.5px);
+  }
+
+  & > .graph-outer::after {
+    content: "Visited";
+    bottom: 0.8rem;
+    background-image: radial-gradient(circle at 4px 50%, var(--harbor-pink) 4px, transparent 4.5px);
+  }
+
   & > .global-graph-outer > .global-graph-container {
     border-radius: var(--harbor-radius);
     background-color: var(--harbor-panel);
