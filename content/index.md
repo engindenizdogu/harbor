@@ -10,14 +10,13 @@ enableToc: false
 ## Hi, I'm Deniz!
 
 <div class="harbor-social">
-<span class="harbor-location">New York, NY</span>
 <a href="https://www.linkedin.com/in/engindenizdogu/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 <a href="https://github.com/engindenizdogu" target="_blank" rel="noopener noreferrer">GitHub</a>
 <a href="https://x.com/denizdou" target="_blank" rel="noopener noreferrer">X</a>
 <a href="mailto:edogu@stevens.edu">Email</a>
 </div>
 
-I'm a Master's student studying ==<b>Machine Learning</b>== at ==<b>the Stevens Institute of Technology</b>==. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my academic and professional work, as well as my interests.
+I'm a Master's student based in New York City, studying ==<b>Machine Learning</b>== at ==<b>the Stevens Institute of Technology</b>==. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my academic and professional work, as well as my interests.
 
 <div class="harbor-cta">
 <a class="harbor-btn harbor-btn-primary" href="./toc">Explore notes <span class="harbor-btn-arrow" aria-hidden="true">→</span></a>
