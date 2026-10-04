@@ -16,7 +16,7 @@ enableToc: false
 <a href="mailto:edogu@stevens.edu">Email</a>
 </div>
 
-I'm a Master's student based in ==New York City==, studying ==Machine Learning== at ==the Stevens Institute of Technology==. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my academic and professional work, as well as my interests.
+I'm a Master's student based in ==New York City==, studying ==Machine Learning== at ==Stevens Institute of Technology==. I created this site to keep my notes organized and build my own knowledge base. The topics you see here are drawn from my academic and professional work, as well as my interests.
 
 <div class="harbor-cta">
 <a class="harbor-btn harbor-btn-primary" href="./toc">Explore notes <span class="harbor-btn-arrow" aria-hidden="true">→</span></a>
