@@ -18,6 +18,7 @@ draft: false
 | `/Code Snippets/`               | Code Snippets               | [[Code Snippets MOC]]                  | Reusable code fragments and technical snippets for ML, NLP, and general programming. |
 | `/Books/`                       | Books                       | [[Books MOC.md]]                       | Reading notes on ML systems, hands-on ML, and NLP books.                             |
 | `/Natural Language Processing/` | Natural Language Processing | [[Natural Language Processing MOC]]    | Language modeling, word vectors, tokenization, RNNs, Transformers, and LLMs.         |
+| `/Computer Vision/`             | Computer Vision             | [[Computer Vision MOC]]                | Image basics, filtering, edges and corners, template matching, pyramids, and RANSAC. |
 | `/Economics/`                   | Economics                   | [[Economics MOC]]                      | Economic theories, game theory, and market dynamics.                                 |
 | `/Resources/`                   | Resources                   | [[Resources MOC]]                      | External tools, media repositories, and technical reference libraries.               |
 
