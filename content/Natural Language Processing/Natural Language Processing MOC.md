@@ -13,6 +13,7 @@ Map of Contents. Learning path from classical text processing to Transformers an
 
 ## Representations
 - [[3. Word Vectors]] - Knowledge-based vs. distributional word representations.
+- [[Word2Vec]] - CBOW and Skip-gram, negative sampling, subsampling, analogies, and limitations.
 - [[Building Embedding Models From Scratch]] - Word2Vec, autoencoder bottleneck, and Siamese networks, with a PyTorch Skip-Gram snippet.
 - [[Keyword Extraction & Topic Modelling]] - TF, TF-IDF, RAKE, and topic models.
 

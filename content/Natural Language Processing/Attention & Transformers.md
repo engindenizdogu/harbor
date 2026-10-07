@@ -218,7 +218,45 @@ logits = tf.keras.layers.Dense(2)(cls_embedding)
 
 ---
 
+## The Original Paper: Attention Is All You Need
+
+Vaswani et al. (2017) introduced the Transformer for machine translation. Details beyond the architecture sketch above:
+
+**Sublayer wrapper.** Every sublayer (attention or feed-forward) is wrapped as $\text{LayerNorm}(x + \text{Sublayer}(x))$, which is why input and output shapes must match.
+
+**Base model hyperparameters.**
+
+| Parameter                          | Value |
+| ---------------------------------- | ----- |
+| Layers (encoder and decoder each)  | 6     |
+| Model width $d_{model}$            | 512   |
+| Attention heads $h$                | 8     |
+| Per-head dimension $d_k = d_v$     | 64    |
+| Feed-forward inner width $d_{ff}$  | 2048  |
+
+Splitting 512 dimensions across 8 heads keeps the cost of multi-head attention close to a single head of full width.
+
+**Positional encoding.** Fixed sinusoids are added to the token embeddings, so each position gets a unique pattern and relative offsets can be expressed as linear functions of it:
+
+$$\begin{aligned} PE_{(pos,\,2i)} &= \sin\!\left(\frac{pos}{10000^{2i/d_{model}}}\right) \\ PE_{(pos,\,2i+1)} &= \cos\!\left(\frac{pos}{10000^{2i/d_{model}}}\right) \end{aligned}$$
+
+**Why self-attention beat recurrence** (n = sequence length, d = representation width):
+
+| Layer type     | Complexity per layer | Sequential operations | Max path length between tokens |
+| -------------- | -------------------- | --------------------- | ------------------------------ |
+| Self-attention | $O(n^2 \cdot d)$     | $O(1)$                | $O(1)$                         |
+| Recurrent      | $O(n \cdot d^2)$     | $O(n)$                | $O(n)$                         |
+
+Self-attention is cheaper than recurrence when $n < d$, which holds for typical sentence lengths. Its quadratic cost in $n$ is what later motivated efficiency work such as [[KV Cache]] and long-context variants.
+
+**Results.** On WMT 2014 the big model reached 28.4 BLEU (English-German) and 41.8 BLEU (English-French), at a fraction of the training cost of prior best models.
+
+*Source: [Attention Is All You Need](https://arxiv.org/abs/1706.03762) (Vaswani et al., 2017). For a visual walkthrough see [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/).*
+
+---
+
 ## Related Notes
+- [[Word2Vec]] - Static word embeddings that fed the input layer of earlier NLP models.
 - [[RNNs & LSTMs]] - The sequential architectures that Transformers replace.
 - [[Autoencoders]] - Another encoder-decoder architecture (for reconstruction, not generation).
 - [[Large Language Models]] - GPT-style models built on the Transformer decoder.

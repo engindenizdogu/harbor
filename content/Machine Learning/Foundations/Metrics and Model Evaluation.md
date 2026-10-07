@@ -46,6 +46,10 @@ $$TP \over (TP + FN)$$
 $$\text{F1} = {(2 * Precision * Recall)  \over (Precision + Recall)}$$
 
 ---
+## Clustering Metrics
+Unsupervised models need different metrics (purity, Rand Index, ARI, NMI, silhouette); see [[Clustering Evaluation Metrics]].
+
+---
 ## Regression Metrics
 *To be continued...*
 

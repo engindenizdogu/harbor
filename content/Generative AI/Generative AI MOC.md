@@ -13,6 +13,9 @@ Map of Contents. Generative models that learn a data distribution and sample fro
 - [[Brief History & Model Types]] - Image generation has evolved rapidly over the past decade. GANs, VAEs, Diffusion models.
 - [[List of Models]] - Current state-of-the-art image generation models and checkpoints.
 
+### Compute & Energy
+- [[Energy Use of AI Models]] - Per-query and training energy, data centre demand compared with the flat 2010-2018 baseline, and projections to 2030.
+
 ### Datasets & Sources
 - [[Wikimedia Commons]] - Central repository for public domain and freely licensed media; a primary source for open-source visual datasets.
 

@@ -10,6 +10,7 @@ Core vocabulary, problem types, and evaluation, located in the `Foundations/` di
 - [[Glossary]] - Foundational machine learning definitions (Bias, Variance, etc.).
 - [[Machine Learning Domains]] - Breakdown of ML problem types (Classification, Regression, Unsupervised).
 - [[Metrics and Model Evaluation]] - Guide on evaluating models, bias/variance tradeoff, and regularization.
+- [[Clustering Evaluation Metrics]] - Purity, Rand Index, Adjusted Rand Index, NMI, and silhouette for judging clusters.
 - [[Loss Functions]] - How models measure error (MSE, Cross-Entropy).
 - [[Exploratory Data Analysis]] - The crucial first step of inspecting and understanding your data.
 - [[Scaling Techniques]] - Methods for normalization and when to use them.
@@ -42,7 +43,7 @@ Deep dives into specific algorithms, located in the `Classical ML/` directory.
 - [[Gradient Descent]]
 
 ### Tree-Based & Ensemble Methods
-- [[Decision Trees]]
+- [[Decision Trees]] - Gini splits, pruning, and a worked Iris example with tree visualization.
 - [[Random Forest]]
 - [[Bagging]]
 - [[Boosting]]
@@ -56,7 +57,7 @@ Deep dives into specific algorithms, located in the `Classical ML/` directory.
 - [[Bayesian Networks]]
 
 ### Unsupervised Learning (Clustering & PCA)
-- [[k-Means]]
+- [[k-Means]] - Centroid-based clustering, with a worked Iris example and evaluation.
 - [[Hierarchical Clustering]]
 - [[Locally Adaptive Clustering (LAC)]]
 - [[Mixtures of Gaussians]]
@@ -90,6 +91,7 @@ Located in the `Applications/` directory.
 
 ## Related Domains
 - [[Natural Language Processing MOC]] - Language modeling, embeddings, Transformers, and LLMs.
+- [[Computer Vision MOC]] - Template matching, filtering, and resolution changes.
 - [[Generative AI MOC]] - Image generation, VAEs, and GANs.
 - [[Agents MOC]] - Agent memory, benchmarks, and conversational agents.
 
