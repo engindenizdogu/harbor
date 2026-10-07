@@ -43,6 +43,7 @@ Exact words from Deniz, each an explicit instruction:
 - **Quartz 5 compatibility:** Note content, frontmatter, math, and links must work in Quartz 5 (URLs are lowercased and hyphenated, e.g. `/deep-learning/attention-and-transformers`). In display math use `\begin{aligned}` instead of bare `\\`.
 - **Note naming:** Descriptive, capitalized names (e.g., `Obsidian Vault Setup.md`). No generic names.
 - **Front matter:** Every note starts with a YAML block containing only `title`, `tags`, and `draft: false`.
+- **Audience:** Notes are for a general reader of the published site. Never name the source assignment, homework, course exercise, or notebook in a concept note (no "How HW2 Relates" sections, no "HW2" or course codes in the body). Use the source's results as generic worked examples ("Example: ..."). Source names belong only in `content/Projects/` notes. Also expand each mentioned topic with a general definition, not just the source's own examples.
 - **Titles:** Do not add an H1 when `title` is in front matter.
 - **Project notes:** Notes in `content/Projects/` must conform exactly to `content/Templates/Project Template.md`: no emojis, strong action verbs, tech stack and metrics highlighted.
 - **Organization:** Group by topic/domain. Keep hierarchy to 1-2 levels.
