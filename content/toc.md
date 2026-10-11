@@ -12,7 +12,7 @@ draft: false
 | `/Agents/`                      | Agents                      | [[Agents MOC]]                         | Agent memory, benchmarks, and full-duplex conversational agents.                     |
 | `/Jekyll/`                      | Jekyll                      | [[Jekyll MOC]]                         | Guides, commands, and core concepts for building static sites with Jekyll and Ruby.  |
 | `/Software Engineering/`        | Software Engineering        | [[Software Engineering MOC]]           | Programming languages, tools, IDEs, and general software development notes.          |
-| `/Data Science/`                | Data Science                | [[Data Science MOC]]                   | Methodologies like CRISP-DM and data processing standards.                           |
+| `/Data Science/`                | Data Science                | [[Data Science MOC]]                   | Methodologies like CRISP-DM, plus big data tools: Hadoop, Spark, Kafka, and Airflow.    |
 | `/Projects/`                    | Projects                    | [[Projects MOC]]                       | Personal projects, ideas, and portfolio documentation.                               |
 | `/Publications/`                | Publications                | [[Publications MOC]]                   | Academic research and publications.                                                  |
 | `/Code Snippets/`               | Code Snippets               | [[Code Snippets MOC]]                  | Reusable code fragments and technical snippets for ML, NLP, and general programming. |

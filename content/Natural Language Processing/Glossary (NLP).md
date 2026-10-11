@@ -1,5 +1,5 @@
 ---
-title: 0. Glossary
+title: Glossary (NLP)
 tags: [nlp, machine-learning, text]
 draft: false
 ---

@@ -224,6 +224,6 @@ model.compile(optimizer='adam', loss='sparse_categorical_crossentropy')
 
 ## Related Notes
 - [[Attention & Transformers]] - Mechanism that allows decoders to focus on relevant encoder states.
-- [[4. RNNs & CNNs for Text Classification]] - NLP perspective on RNN architectures.
-- [[5. Tokenization]] - Text preprocessing details.
-- [[3. Word Vectors]] - Embedding representations used as RNN input.
+- [[RNNs & CNNs for Text Classification]] - NLP perspective on RNN architectures.
+- [[Tokenization]] - Text preprocessing details.
+- [[Word Vectors]] - Embedding representations used as RNN input.

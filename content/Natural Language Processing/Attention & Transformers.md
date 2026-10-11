@@ -260,4 +260,4 @@ Self-attention is cheaper than recurrence when $n < d$, which holds for typical 
 - [[RNNs & LSTMs]] - The sequential architectures that Transformers replace.
 - [[Autoencoders]] - Another encoder-decoder architecture (for reconstruction, not generation).
 - [[Large Language Models]] - GPT-style models built on the Transformer decoder.
-- [[4. RNNs & CNNs for Text Classification]] - NLP grounding for sequence models.
+- [[RNNs & CNNs for Text Classification]] - NLP grounding for sequence models.

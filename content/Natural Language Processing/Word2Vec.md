@@ -5,7 +5,7 @@ draft: false
 ---
 Word2Vec (Mikolov et al., 2013) learns **dense word vectors** from raw text with a very shallow neural network. It rests on the distributional hypothesis: *a word is characterized by the company it keeps*. Words that appear in similar contexts end up with nearby vectors, so "king" and "queen" land close together without anyone labeling them as related.
 
-It replaced sparse count-based representations (one-hot, co-occurrence matrices, see [[3. Word Vectors]]) with vectors of typically 100-300 dimensions that are cheap to train on billions of words.
+It replaced sparse count-based representations (one-hot, co-occurrence matrices, see [[Word Vectors]]) with vectors of typically 100-300 dimensions that are cheap to train on billions of words.
 
 ## Core Idea
 
@@ -92,12 +92,12 @@ $$\vec{\text{king}} - \vec{\text{man}} + \vec{\text{woman}} \approx \vec{\text{q
 
 $$\vec{\text{Paris}} - \vec{\text{France}} + \vec{\text{Italy}} \approx \vec{\text{Rome}}$$
 
-Similarity is measured with cosine similarity (see [[3. Word Vectors]]). Nearest neighbors of "Python" will include other programming languages; neighbors of "bank" mix its financial and river senses into one vector.
+Similarity is measured with cosine similarity (see [[Word Vectors]]). Nearest neighbors of "Python" will include other programming languages; neighbors of "bank" mix its financial and river senses into one vector.
 
 ## Limitations
 
 - **One vector per word**: no polysemy. "Bank" has a single embedding regardless of context. Contextual models such as BERT (see [[Attention & Transformers]]) fix this by producing a different vector for each occurrence.
-- **Out-of-vocabulary words** have no vector. FastText addresses this with character n-grams; subword tokenization ([[5. Tokenization]]) is the modern answer.
+- **Out-of-vocabulary words** have no vector. FastText addresses this with character n-grams; subword tokenization ([[Tokenization]]) is the modern answer.
 - **Local windows only**: global co-occurrence statistics are ignored. GloVe combines both views.
 - **Static**: vectors are fixed after training and inherit biases in the corpus.
 
@@ -130,7 +130,7 @@ For a from-scratch PyTorch implementation, see [[Building Embedding Models From 
 - Stanford CS224n lecture: [Word Vectors](https://www.youtube.com/watch?v=viZrOnJclY0).
 
 ## Related Notes
-- [[3. Word Vectors]] - Count-based vs. predictive representations and similarity metrics.
+- [[Word Vectors]] - Count-based vs. predictive representations and similarity metrics.
 - [[Building Embedding Models From Scratch]] - Skip-gram in PyTorch, autoencoder and Siamese embeddings.
 - [[Attention & Transformers]] - Contextual embeddings that supersede static word vectors.
 - [[Neural Networks]] - The shallow network machinery behind the model.

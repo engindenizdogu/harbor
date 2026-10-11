@@ -1,5 +1,5 @@
 ---
-title: 5. Tokenization
+title: Tokenization
 tags: [nlp, machine-learning, text]
 draft: false
 ---

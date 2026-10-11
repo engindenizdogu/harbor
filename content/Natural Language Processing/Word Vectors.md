@@ -1,5 +1,5 @@
 ---
-title: 3. Word Vectors
+title: Word Vectors
 tags: [nlp, machine-learning, text]
 draft: false
 ---

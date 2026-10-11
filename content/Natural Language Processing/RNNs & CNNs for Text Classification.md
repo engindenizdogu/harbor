@@ -1,5 +1,5 @@
 ---
-title: 4. RNNs & CNNs for Text Classification
+title: RNNs & CNNs for Text Classification
 tags: [nlp, machine-learning, text]
 draft: false
 ---

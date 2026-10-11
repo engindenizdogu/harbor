@@ -1,5 +1,5 @@
 ---
-title: 2. Language Modeling & N-grams
+title: Language Modeling & N-grams
 tags: [nlp, machine-learning, text]
 draft: false
 ---

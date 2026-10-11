@@ -1,5 +1,5 @@
 ---
-title: 1. What is NLP?
+title: What is NLP?
 tags: [nlp, machine-learning, text]
 draft: false
 ---
