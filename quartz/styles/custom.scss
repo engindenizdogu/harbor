@@ -384,6 +384,11 @@ body[data-slug="index"] .page[data-frame="harbor"] > #quartz-body {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       align-content: start;
 
+      // An odd last card spans both columns so the grid stays even
+      & > .harbor-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+      }
+
       @media all and ($mobile) {
         grid-template-columns: minmax(0, 1fr);
       }
