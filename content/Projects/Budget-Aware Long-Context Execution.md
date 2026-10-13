@@ -11,7 +11,7 @@ draft: false
 > An execution layer that sends a long document to an LLM whole when it fits, retrieves and packs the most relevant parts when it does not, and optionally reuses verified answers from a semantic cache.
 
 ## Quick Facts
-- **Context:** CS 800 Special Problems in CS (Spring 2026, In Progress). Formerly "LLM Caching & Recursive Language Models (RLMs)"; renamed in October 2026 because the work is no longer about RLMs and the focus moved from the cache to retrieval under a context budget.
+- **Context:** CS 800 Special Problems in CS (Spring 2026). Formerly "LLM Caching & Recursive Language Models (RLMs)"; renamed in October 2026 because the work is no longer about RLMs and the focus moved from the cache to retrieval under a context budget.
 - **Tech Stack:** Python, vLLM, Qwen3.6-35B-A3B (executor), Qwen3-Embedding-0.6B, FAISS, Slurm
 - **Links:** [Semantic Cache for Autonomous Agents](https://semantic-cache-agents.vlab-stevens.chatgpt.site/) | [LongBench v2 Full-Run Validation](https://longbench-v2-full-run-20260716.vlab-stevens.chatgpt.site/)
 

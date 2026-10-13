@@ -20,6 +20,7 @@ Read in this order: foundations, storage and batch compute, then streaming, plum
 - [[Stream Processing and Event Streaming]] - Batch vs. stream, Kafka, Storm, Flink, Spark Streaming, and cloud services.
 - [[Big Data Integration and Orchestration]] - NiFi, Kafka, Flume, Airflow, and Oozie for ingestion and scheduling.
 - [[Distributed Machine Learning and Graph Processing]] - Mahout, MLlib, Giraph, GraphX, and Neo4j.
+- [[Correlation Drift Monitoring with Spark]] - Worked predictive-maintenance example: batch correlation matrix, sliding-window streaming correlation, and alerting pitfalls.
 - [[Ray]] - Python-first task and actor runtime for distributed ML, tuning, RL, and serving; compared with Spark.
 
 ## External Resources & Data
