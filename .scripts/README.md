@@ -17,4 +17,4 @@ Read this file only when running an ingestion or touching the Quartz site. It is
 - Site config, plugins and layout all live in `quartz.config.yaml` (defaults in `quartz.config.default.yaml`). Custom CSS is `quartz/styles/custom.scss`.
 - `npx quartz build --serve` previews the site locally; CI installs with `npm ci` then builds.
 - `npm run check` runs `tsc --noEmit` and Prettier checks; `npm run format` formats.
-- Commits are normally automated "Quartz sync" snapshots from Obsidian. Manual commits and pushes happen only on the `ship` command (see CLAUDE.md).
+- Commits are normally automated "Quartz sync" snapshots from Obsidian. Manual commits and pushes happen only on the `/ship` command (see CLAUDE.md).

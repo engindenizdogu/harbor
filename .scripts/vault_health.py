@@ -2,10 +2,13 @@
 """Zero-token vault health checks for Harbor.
 
 python3 .scripts/vault_health.py            full report
+python3 .scripts/vault_health.py --toggle-record  flip recording in state.json
 python3 .scripts/vault_health.py --session  SessionStart hook: pending sources/inbox,
-                                            plus a lint summary at most every 30 days
+                                            recording state, plus a lint summary at
+                                            most every 30 days
 """
 import difflib
+import json
 import re
 import sys
 import time
@@ -16,6 +19,7 @@ CONTENT = ROOT / "content"
 RAW = ROOT / ".raw_sources"
 INBOX = CONTENT / "_Private" / "Inbox"
 STAMP = ROOT / ".quartz-cache" / "vault_health_stamp"
+STATE = ROOT / ".scripts" / "state.json"
 LINT_EVERY_DAYS = 30
 SKIP_DIRS = {"_Private", "Templates", "Assets"}
 EXEMPT_ORPHAN = {"index", "toc", "Vault To Dos"}
@@ -97,8 +101,38 @@ def report(limit=8):
             print(f"    ... {len(items) - limit} more")
 
 
+def recording_off():
+    """True if recording is off. It survives resume/compact and resets on a new session."""
+    try:
+        if json.loads(STATE.read_text()).get("recording", True):
+            return False
+    except (OSError, ValueError):
+        return False
+    try:
+        source = "" if sys.stdin.isatty() else json.load(sys.stdin).get("source", "")
+    except ValueError:
+        source = ""
+    if source in ("resume", "compact"):
+        return True
+    STATE.write_text(json.dumps({"recording": True}) + "\n")
+    print("[harbor] Recording was off in the last session; reset to on.")
+    return False
+
+
+def toggle_record():
+    try:
+        on = json.loads(STATE.read_text()).get("recording", True)
+    except (OSError, ValueError):
+        on = True
+    STATE.write_text(json.dumps({"recording": not on}) + "\n")
+    print("Recording off" if on else "Recording on")
+
+
 def session():
     raw, inbox = pending()
+    if recording_off():
+        print("[harbor] Recording is OFF (.scripts/state.json): capture nothing until `/toggle-record` turns it back on.")
+        raw = 0
     if raw:
         print(f"[harbor] {raw} file(s) waiting in .raw_sources/: ingest them (see CLAUDE.md).")
     if inbox:
@@ -111,4 +145,9 @@ def session():
 
 
 if __name__ == "__main__":
-    session() if "--session" in sys.argv else report(limit=50)
+    if "--toggle-record" in sys.argv:
+        toggle_record()
+    elif "--session" in sys.argv:
+        session()
+    else:
+        report(limit=50)

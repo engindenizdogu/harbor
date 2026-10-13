@@ -8,7 +8,7 @@
 Deniz should never have to ask for notes. The vault updates itself from conversations and dropped documents, in batches, without interrupting the conversation.
 
 1. **Raw sources:** A SessionStart hook (`.scripts/vault_health.py --session`) reports pending files in `.raw_sources/`. If it does, ingest them right away: use `.scripts/ingest.py` as a scaffold, customize its mapping, run it, add notes to their MOC, clear `.raw_sources/` (keep the folder). Read `.scripts/README.md` only when ingesting.
-2. **Batch capture, not per-turn notes.** Keep a mental list of durable takeaways (concepts explained, decisions, research findings, project progress) while the conversation runs. Do not write notes after each answer. Flush the list in one pass when the topic wraps up or shifts, after roughly 8 substantive exchanges, or on the `capture` / `fin` commands below. Skip chit-chat, one-off questions, and tooling talk.
+2. **Batch capture, not per-turn notes.** Keep a mental list of durable takeaways (concepts explained, decisions, research findings, project progress) while the conversation runs. Do not write notes after each answer. Flush the list in one pass when the topic wraps up or shifts, after roughly 8 substantive exchanges, or on the `/capture` / `/fin` commands below. Skip chit-chat, one-off questions, and tooling talk.
 3. **Per flush:** One `Grep` per takeaway for an existing note (try 2-3 synonyms, since titles vary), then update the best match or create a new note. Merge several takeaways on one topic into one coherent note rather than many thin ones.
 4. **Review gate (the site publishes automatically, so unreviewed claims must not go live):**
    - **Public** (`content/<domain>/`): facts Deniz stated, project progress and decisions, and research with a cited source. Add the tag `auto-captured`.
@@ -19,10 +19,13 @@ Deniz should never have to ask for notes. The vault updates itself from conversa
 7. **Maintenance is scripted, not manual.** The hook runs `.scripts/vault_health.py` (orphans, notes missing from their MOC, near-duplicate titles, front matter problems) at most every 30 days and reports pending Inbox items. Fix what it reports when it appears; do not run your own vault-wide audits.
 
 ## Commands
-Exact words from Deniz, each an explicit instruction:
-- **`capture`**: Flush the takeaway list now (steps 3-6 above), then continue the conversation.
-- **`fin`**: Flush the takeaway list, report in one line, and sign off. No further suggestions or questions.
-- **`ship`**: Commit all current changes, then push the current branch. Stage with `git add -A` (check `git status` first and flag anything that looks like a secret or stray artifact instead of staging it). Write a short imperative message, split by area if both vault notes and site code changed (e.g. "Add Context Graphs note; restyle home frame"). Never amend, force-push, skip hooks, or switch branches. Report the commit and push result in one line.
+Slash commands, defined in `.claude/commands/`. The plain words ("capture", "record", "ship") are ordinary conversation and trigger nothing.
+- **`/capture`**: Flush the takeaway list now, then continue the conversation.
+- **`/fin`**: Flush the takeaway list, report in one line, and sign off.
+- **`/toggle-record`**: Turn recording off or on.
+- **`/ship`**: Commit all current changes and push the current branch.
+
+**Recording:** The state lives in `.scripts/state.json` (git-ignored; a missing file means on). The file is the source of truth, not memory of the conversation: if recording was turned off at any point in the session, read it before every flush or ingestion. The SessionStart hook reports an off state after a resume or a context summary, and resets it to on for a new session. While recording is off, the session is a plain conversation or brainstorm. Write nothing new to the vault: no takeaway list, no flushes, no notes in public folders or the Inbox, no raw-source ingestion, no restructuring. Reading the vault to answer questions is still fine, and direct requests to edit a specific note or the site, and `/ship`, still work.
 
 ## Efficiency Rules (usage limits)
 - **Automatic means cheap.** Each captured takeaway should cost about 1 grep, 0-1 note reads, and 1-2 edits. Read `toc.md` or a whole MOC only when creating a domain or a note's place is genuinely unclear.
@@ -59,4 +62,4 @@ Exact words from Deniz, each an explicit instruction:
 
 ## Reference
 - `.scripts/README.md`: `ingest.py`, `vault_health.py`, and Quartz repo commands (site config, build/preview, checks, commit policy). Read it only when ingesting or changing the site.
-- Do not commit or push unless Deniz says `ship`.
+- Do not commit or push unless Deniz runs `/ship`.
