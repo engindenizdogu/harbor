@@ -255,9 +255,46 @@ Self-attention is cheaper than recurrence when $n < d$, which holds for typical 
 
 ---
 
+## From Paper to Code: The Annotated Transformer
+
+[The Annotated Transformer](https://nlp.seas.harvard.edu/annotated-transformer/) (Harvard NLP; original by Sasha Rush, 2022 update by Austin Huang and colleagues) is a line-by-line PyTorch implementation of the paper, with the text reordered and commented. It is the quickest way to see how each idea above becomes a few lines of code; working snippets are collected in [[Transformer Snippets]].
+
+**Concept to code map**
+
+| Paper concept | Code component | What to notice |
+| --- | --- | --- |
+| Scaled dot-product attention | `attention(query, key, value, mask)` | Masked positions are set to a large negative score before the softmax |
+| Multi-head attention | `MultiHeadedAttention(h, d_model)` | Four `d_model x d_model` linear layers (Q, K, V, output); heads are a reshape, not separate modules |
+| Sublayer wrapper | `SublayerConnection` | Residual add plus layer norm; the code normalizes *before* the sublayer (pre-norm) for simplicity |
+| Position-wise feed-forward | `PositionwiseFeedForward(d_model, d_ff)` | Two linear layers with a ReLU, applied to each position independently |
+| Embeddings and softmax | `Embeddings`, `Generator` | Embedding output is scaled by $\sqrt{d_{model}}$; the generator is a linear layer plus log-softmax |
+| Position information | `PositionalEncoding` | Sinusoids precomputed once and stored as a non-trainable buffer |
+| Causal masking | `subsequent_mask(size)` | Lower-triangular matrix so position $i$ cannot see positions after $i$ |
+| Whole model | `make_model(src_vocab, tgt_vocab, N=6, d_model=512, d_ff=2048, h=8, dropout=0.1)` | An `EncoderDecoder` that wires encoder, decoder, embeddings, and generator |
+
+**The training recipe (often skipped, but required for the model to converge)**
+
+| Ingredient | Value | Why |
+| --- | --- | --- |
+| Optimizer | Adam, $\beta_1 = 0.9$, $\beta_2 = 0.98$, $\epsilon = 10^{-9}$ | Lower $\beta_2$ than the usual 0.999 reacts faster to gradient changes |
+| Learning rate | $d_{model}^{-0.5} \cdot \min(step^{-0.5},\ step \cdot warmup^{-1.5})$, warmup 4000 steps | Linear warmup, then inverse-square-root decay; a large rate too early destabilizes attention |
+| Label smoothing | $\epsilon_{ls} = 0.1$ | Hurts perplexity but improves accuracy and BLEU |
+| Dropout | 0.1 on sublayer outputs and on embeddings plus positional encodings | Regularization of the base model |
+| Batching | About 25,000 source and 25,000 target tokens per batch, grouped by length | Batch by tokens rather than sentences so padding stays low |
+| Data | WMT 2014 English-German, about 4.5M pairs, shared BPE vocabulary of about 37,000 tokens | Shared vocabulary allows tying source, target, and output embeddings |
+
+**Extras the walkthrough points to but does not implement:** subword (BPE) preprocessing, shared embeddings, beam search, and averaging the last few checkpoints for an ensembling effect.
+
+**Suggested way to use it:** run the synthetic copy task first (a tiny model learning to repeat its input) to confirm the pipeline trains, then move to the Multi30k German-English example, then read the attention visualizations (encoder self-attention, decoder self-attention, decoder source attention) to see what the heads learn.
+
+*Source: [The Annotated Transformer](https://nlp.seas.harvard.edu/annotated-transformer/), Harvard NLP.*
+
+---
+
 ## Related Notes
 - [[Word2Vec]] - Static word embeddings that fed the input layer of earlier NLP models.
 - [[RNNs & LSTMs]] - The sequential architectures that Transformers replace.
 - [[Autoencoders]] - Another encoder-decoder architecture (for reconstruction, not generation).
 - [[Large Language Models]] - GPT-style models built on the Transformer decoder.
+- [[Transformer Snippets]] - PyTorch code for the components described here.
 - [[RNNs & CNNs for Text Classification]] - NLP grounding for sequence models.

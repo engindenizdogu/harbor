@@ -15,6 +15,7 @@ Welcome to the Code Snippets Map of Contents. This dashboard organizes reusable 
 
 ## NLP Snippets
 - [[NLP Vectorization]] - Scikit-learn snippets for CountVectorizer and TF-IDF transformations.
+- [[Transformer Snippets]] - PyTorch attention, multi-head attention, masks, positional encoding, warmup schedule, label smoothing, and greedy decoding, following The Annotated Transformer.
 
 ## Computer Vision Snippets
 - [[Image Basics Snippets]] - Indexing, thresholding, colour masks, blending, and box filtering with NumPy.

@@ -7,6 +7,7 @@ Map of Contents
 
 ## Notes
 - [[NY Harbor Vessel Traffic Analytics]] - Big data course project (AAI 627, in progress): Spark and Kafka pipeline that forecasts vessel arrivals and flags signal-gap and off-route anomalies in New York Harbor from AIS data.
+- [[Palapa Voice-First Cash Register]] - Latinos x AI Hackathon NYC project: a voice-first cash register for bodegas that records sales, stock, credit (fiado), and tax from a spoken sentence, built in one day with Base44 and ElevenLabs.
 - [[BirdCLEF 2026 Starter Case Study]] - Multi-task knowledge distillation case study (EfficientNetB0 + Google Perch v2) for bioacoustic bird call detection in the Pantanal; private score ~0.60 in 3 epochs.
 - [[Automatic Tag Generation and Clustering with LLMs]] - In-memory semantic knowledge graph that converts personal documents into topic-aware discovery (CS584 NLP Project).
 - [[Deep Learning Coursework CS583]] - Deep learning coursework projects and implementation details.

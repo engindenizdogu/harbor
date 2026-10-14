@@ -20,7 +20,8 @@ Map of Contents. Learning path from classical text processing to Transformers an
 ## Neural Sequence Models
 - [[RNNs & CNNs for Text Classification]] - Improvements over n-grams and remaining limitations.
 - [[RNNs & LSTMs]] - RNN/LSTM architecture, parameter counting, text generation, and Seq2Seq machine translation.
-- [[Attention & Transformers]] - Self-attention, multi-head attention, the Transformer encoder/decoder, and BERT pre-training.
+- [[Attention & Transformers]] - Self-attention, multi-head attention, the Transformer encoder/decoder, the paper-to-code walkthrough, and BERT pre-training.
+- [[Transformer Snippets]] - PyTorch building blocks of the original Transformer (attention, masks, positional encoding, training recipe).
 
 ## Large Language Models
 - [[Large Language Models]] - Characteristics, scale, and training of LLMs.
