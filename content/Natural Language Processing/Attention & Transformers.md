@@ -180,11 +180,12 @@ BERT is a method for **pre-training** the Transformer encoder on unlabeled text,
 - Trained on **English Wikipedia** (~2.5 billion words) + BookCorpus.
 - Does **not** require manually labeled data.
 - Fully **bidirectional** — attends to left and right context simultaneously.
+- See [[BERT]] for the architecture, input representation, fine-tuning, and results.
 
 ### Pre-Training Tasks
 
 **Task 1 — Masked Language Modeling (MLM)**
-- 15% of tokens are randomly replaced with `[MASK]`.
+- 15% of tokens are selected for prediction; most (80%) are replaced with `[MASK]`, some (10%) with a random token, and some (10%) are left unchanged.
 - The model predicts the original masked words using a **Softmax classifier**.
 - Loss: **Cross-Entropy**.
 
@@ -251,6 +252,14 @@ Self-attention is cheaper than recurrence when $n < d$, which holds for typical 
 
 **Results.** On WMT 2014 the big model reached 28.4 BLEU (English-German) and 41.8 BLEU (English-French), at a fraction of the training cost of prior best models.
 
+**Decoder details.** The decoder's self-attention is masked (scores for future positions are set to $-\infty$ before the softmax) and its output embeddings are offset by one position, so the prediction for position $i$ can depend only on known outputs at positions before $i$. A third sublayer, **encoder-decoder (cross) attention**, takes its queries from the previous decoder layer and its keys and values from the final encoder output, so every decoder layer reads the same encoder output.
+
+**Embeddings and vocabulary.** The two embedding layers and the pre-softmax linear transformation share the same weight matrix, and in the embedding layers the weights are multiplied by $\sqrt{d_{model}}$. English-German used a shared byte-pair vocabulary of about 37,000 tokens; English-French used a 32,000 word-piece vocabulary.
+
+**Regularization.** Dropout with rate 0.1 is applied to each sublayer's output before it is added and normalized, and to the sums of the embeddings and positional encodings in both stacks. Label smoothing of 0.1 is also used.
+
+**Positional encoding experiments.** The authors also tried learned positional embeddings and found nearly identical results. They chose the sinusoidal version because it may let the model extrapolate to sequence lengths longer than those seen in training.
+
 *Source: [Attention Is All You Need](https://arxiv.org/abs/1706.03762) (Vaswani et al., 2017). For a visual walkthrough see [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/).*
 
 ---
@@ -296,5 +305,7 @@ Self-attention is cheaper than recurrence when $n < d$, which holds for typical 
 - [[RNNs & LSTMs]] - The sequential architectures that Transformers replace.
 - [[Autoencoders]] - Another encoder-decoder architecture (for reconstruction, not generation).
 - [[Large Language Models]] - GPT-style models built on the Transformer decoder.
+- [[BERT]] - Pre-training the Transformer encoder bidirectionally.
+- [[GPT-1]] - Pre-training the Transformer decoder left-to-right, then fine-tuning.
 - [[Transformer Snippets]] - PyTorch code for the components described here.
 - [[RNNs & CNNs for Text Classification]] - NLP grounding for sequence models.

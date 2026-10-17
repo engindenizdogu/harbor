@@ -24,7 +24,7 @@ Instead of learning a value function, these methods directly learn a policy netw
 A hybrid approach:
 - **Actor**: Learns the policy (how to act).
 - **Critic**: Learns the value function (how good the current state/action is).
-- The critic provides feedback to the actor to improve the policy update.
+- The critic provides feedback to the actor to improve the policy update. See [[Actor-Critic Methods]].
 
 ## Challenges in DRL
 - **Sample Inefficiency**: DRL often requires millions of interactions to learn.

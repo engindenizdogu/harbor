@@ -22,9 +22,14 @@ Map of Contents. Learning path from classical text processing to Transformers an
 - [[RNNs & LSTMs]] - RNN/LSTM architecture, parameter counting, text generation, and Seq2Seq machine translation.
 - [[Attention & Transformers]] - Self-attention, multi-head attention, the Transformer encoder/decoder, the paper-to-code walkthrough, and BERT pre-training.
 - [[Transformer Snippets]] - PyTorch building blocks of the original Transformer (attention, masks, positional encoding, training recipe).
+- [[GPT-1]] - Generative pre-training of a Transformer decoder, then fine-tuning with task-specific input transformations.
+- [[BERT]] - Bidirectional encoder pre-training with masked language modeling and next sentence prediction.
+- [[Transformer, GPT and BERT Q&A]] - Question-and-answer study guide with worked examples for the three papers.
 
 ## Large Language Models
 - [[Large Language Models]] - Characteristics, scale, and training of LLMs.
+- [[GPT-2 and GPT-3]] - Zero-shot and few-shot in-context learning, and how scale changed the GPT recipe.
+- [[Evolution of Text Generation Models]] - Timeline from rule-based systems to large pre-trained Transformers.
 - [[KV Cache]] - Storing Key and Value vectors of previous tokens to speed up generation.
 - [[LM Benchmarks]] - Coding, reasoning, and general benchmarks for language models.
 

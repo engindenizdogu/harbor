@@ -32,7 +32,7 @@ The interaction between the agent and the environment is typically modeled as a 
 - *Balance*: Common strategies include $\epsilon$-greedy, where the agent explores with probability $\epsilon$ and exploits otherwise.
 
 ### Credit Assignment Problem
-The difficulty of determining which specific action in a long sequence was responsible for an eventual reward (e.g., in a game of Chess, which move led to the win?).
+The difficulty of determining which specific action in a long sequence was responsible for an eventual reward (e.g., in a game of Chess, which move led to the win?). Temporal-difference learning addresses it by learning from changes in value estimates; see [[Temporal Difference Learning]].
 
 ### Delayed Reward
 Rewards may not be immediate. An agent might have to take several "bad" actions in the short term to reach a high-reward state in the future.

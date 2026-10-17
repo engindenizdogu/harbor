@@ -16,3 +16,9 @@ draft: false
 - **Bias**: They may reproduce biases present in their training data or inputs.
 - **Context windows**: They have limited context windows (though this is improving)
 - **Computational resources**: They require significant computational resources
+
+## Related Notes
+- [[Attention & Transformers]] - The architecture LLMs are built on.
+- [[GPT-1]] - The first pre-train and fine-tune decoder-only model.
+- [[BERT]] - The bidirectional encoder counterpart.
+- [[Reinforcement Learning from Human Feedback]] - Aligning LLMs with human preferences.

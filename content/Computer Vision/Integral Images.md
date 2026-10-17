@@ -15,13 +15,13 @@ It can be built in a single pass with the recurrence $I(x,y) = i(x,y) + I(x-1,y)
 
 Worked example, a 4 x 4 image of the numbers 1 to 16 (padded with a zero row and column):
 
-| | | | | |
+|     |     |     |     |     |
 | --- | --- | --- | --- | --- |
-| 0 | 0 | 0 | 0 | 0 |
-| 0 | 1 | 3 | 6 | 10 |
-| 0 | 6 | 14 | 24 | 36 |
-| 0 | 15 | 33 | 54 | 78 |
-| 0 | 28 | 60 | 96 | 136 |
+| 0   | 0   | 0   | 0   | 0   |
+| 0   | 1   | 3   | 6   | 10  |
+| 0   | 6   | 14  | 24  | 36  |
+| 0   | 15  | 33  | 54  | 78  |
+| 0   | 28  | 60  | 96  | 136 |
 
 The bottom-right value 136 is the sum of all 16 pixels.
 

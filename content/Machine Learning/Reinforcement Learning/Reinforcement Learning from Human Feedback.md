@@ -67,7 +67,7 @@ This pair becomes one training example: the reward model is pushed to give B a h
 
 ## Key Results from the Literature
 
-- **Deep RL from human preferences (Christiano et al., 2017):** trained agents on Atari and simulated robot locomotion from pairwise comparisons of trajectory segments, with human feedback on under 1% of agent interactions (about an hour of human time for some novel behaviors).
+- **Deep RL from human preferences (Christiano et al., 2017), see [[Deep Reinforcement Learning from Human Preferences]]:** trained agents on Atari and simulated robot locomotion from pairwise comparisons of trajectory segments, with human feedback on under 1% of agent interactions (about an hour of human time for some novel behaviors).
 - **InstructGPT (Ouyang et al., 2022):** SFT followed by RLHF on rankings; outputs from the 1.3B-parameter InstructGPT were preferred over those of the 175B-parameter GPT-3, with improved truthfulness, less toxicity, and little loss on standard NLP benchmarks.
 
 ## Sources
@@ -79,6 +79,8 @@ This pair becomes one training example: the reward model is pushed to give B a h
 
 ## Related Notes
 - [[Reinforcement Learning]] - Agent, environment, and reward basics.
+- [[Deep Reinforcement Learning from Human Preferences]] - The 2017 paper that introduced the method.
+- [[Actor-Critic Methods]] - PPO and related optimizers used in the RL step.
 - [[Policy Gradient Methods]] - PPO, the optimizer typically used in the RL step.
 - [[Large Language Models]] - The models RLHF is most often applied to.
 - [[Loss Functions]] - Background on pairwise and classification losses.

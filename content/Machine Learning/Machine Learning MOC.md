@@ -14,6 +14,7 @@ Core vocabulary, problem types, and evaluation, located in the `Foundations/` di
 - [[Loss Functions]] - How models measure error (MSE, Cross-Entropy).
 - [[Exploratory Data Analysis]] - The crucial first step of inspecting and understanding your data.
 - [[Scaling Techniques]] - Methods for normalization and when to use them.
+- [[AI Open-Ended Questions]] - Open-ended concept and application questions on Transformers, pre-training, reinforcement learning, and learning from human feedback.
 
 ## Math for Machine Learning
 Mathematical foundations, located in the `Math/` directory.
