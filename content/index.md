@@ -33,7 +33,7 @@ I'm a Master's student based in ==New York City==, studying ==Machine Learning==
 <div class="harbor-band-head">
 <div>
 <p class="harbor-kicker">Recent projects</p>
-<p class="harbor-section-title">What I have been building</p>
+<p class="harbor-section-title">What I've been building</p>
 </div>
 <a class="harbor-band-link" href="./projects/">All projects →</a>
 </div>

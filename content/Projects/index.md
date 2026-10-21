@@ -1,10 +1,10 @@
 ---
-title: Projects
-tags: [projects, moc]
+title: What I've been building
+tags:
+  - projects
+  - moc
 draft: false
 ---
-Map of Contents
-
 ## Projects
 - [[Budget-Aware Long-Context Execution]]
 - [[Automatic Tag Generation and Clustering with LLMs]]
