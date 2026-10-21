@@ -45,4 +45,4 @@ flowchart LR
 - Balanced midpoints yielded coherence around 0.77–0.81 with LCC 0.50–0.57 at k=3, threshold=0.5 across different extractors, showing the trade-offs between precision and connectivity.
 
 ---
-*Related:* [[Projects MOC]]
+*Related:* [[Projects/index|Projects MOC]]

@@ -38,4 +38,4 @@ flowchart LR
 - Accelerated the app creation lifecycle, allowing full natural language to deployment in under 2 minutes.
 
 ---
-*Related:* [[Projects MOC]]
+*Related:* [[Projects/index|Projects MOC]]

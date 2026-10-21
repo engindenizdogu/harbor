@@ -1,5 +1,5 @@
 ---
-title: Computer Vision Coursework CS558
+title: "CS558 - Computer Vision Coursework"
 tags:
   - projects
   - computer-vision
@@ -52,4 +52,4 @@ flowchart LR
 - Least squares is dragged by outliers, while RANSAC's consensus voting ignores them: see [[RANSAC]].
 
 ---
-*Related:* [[Projects MOC]], [[Computer Vision MOC]], [[Harris Corner Detector]], [[Multi-Scale Template Matching]], [[RANSAC]], [[Template Matching Snippets]]
+*Related:* [[Projects/index|Projects MOC]], [[Computer Vision MOC]], [[Harris Corner Detector]], [[Multi-Scale Template Matching]], [[RANSAC]], [[Template Matching Snippets]]

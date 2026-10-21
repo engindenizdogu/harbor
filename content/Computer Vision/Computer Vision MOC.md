@@ -52,7 +52,7 @@ Map of Contents. Classical image analysis built from first principles: pixels an
 - [[SIFT and Matching Snippets]] - OpenCV SIFT, ratio-test matching, RANSAC verification, and from-scratch DoG and matching code.
 - [[Template Matching Snippets]] - SAD and NCC matchers, Gaussian filtering, the multi-scale search, NMS, integral images, and noise generation.
 - [[RANSAC Snippets]] - Synthetic lines, SVD line fit, and a RANSAC loop.
-- [[Computer Vision Coursework CS558]] - Coursework results using these techniques.
+- [[CS558 - Computer Vision Coursework]] - Coursework results using these techniques.
 
 ## Related Domains
 - [[Machine Learning MOC]] - Neural networks and learning methods.

@@ -38,4 +38,4 @@ flowchart LR
 - Created a practical, configurable pipeline script that allows each stage to be executed independently.
 
 ---
-*Related:* [[Projects MOC]]
+*Related:* [[Projects/index|Projects MOC]]

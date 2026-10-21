@@ -72,4 +72,4 @@ If time runs short, cut in this order: off-route alerts (keep the signal-gap rul
 - With no ground-truth labels, injected anomalies and a naive baseline are what make the evaluation defensible.
 
 ---
-*Related:* [[Projects MOC]]
+*Related:* [[Projects/index|Projects MOC]]

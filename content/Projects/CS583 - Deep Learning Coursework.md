@@ -1,5 +1,5 @@
 ---
-title: Deep Learning Coursework CS583
+title: "CS583 - Deep Learning Coursework"
 tags:
   - projects
   - deep-learning
@@ -42,4 +42,4 @@ flowchart TD
 - Yielded >90% classification accuracy on MNIST using supervised 2D latent features, confirming the value of label supervision for discriminative representations.
 
 ---
-*Related:* [[Projects MOC]]
+*Related:* [[Projects/index|Projects MOC]]

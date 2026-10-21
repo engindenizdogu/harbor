@@ -79,4 +79,4 @@ All runs use Qwen3.6-35B-A3B, temperature 0, thinking disabled, as a single run 
 - Open work: LongBench-v2 on the shared pipeline, independent AA-LCR grading, separating the MRCR chunk-size effect (3,500 vs 7,500 tokens), and testing the answer cache beyond mocks.
 
 ---
-*Related:* [[Projects MOC]], [[LM Benchmarks]], [[KV Cache]], [[Agentic Information Traversal]]
+*Related:* [[Projects/index|Projects MOC]], [[LM Benchmarks]], [[KV Cache]], [[Agentic Information Traversal]]

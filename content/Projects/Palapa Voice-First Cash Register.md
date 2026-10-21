@@ -50,4 +50,4 @@ flowchart LR
 - Next steps: a pilot with one bodega owner, validating the statement with a credit union or CDFI, text alerts through Twilio, WhatsApp voice notes, and supplier reorders.
 
 ---
-*Related:* [[Projects MOC]]
+*Related:* [[Projects/index|Projects MOC]]

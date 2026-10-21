@@ -38,4 +38,4 @@ flowchart LR
 - Processed a massive dataset of 85+ million records successfully.
 
 ---
-*Related:* [[Projects MOC]]
+*Related:* [[Projects/index|Projects MOC]]

@@ -1,5 +1,5 @@
 ---
-title: "BirdCLEF 2026 Starter Case Study"
+title: "Kaggle BirdCLEF 2026 Case Study"
 tags: [projects, machine-learning, deep-learning, audio, bioacoustics, kaggle, knowledge-distillation]
 draft: false
 ---
@@ -66,4 +66,4 @@ flowchart LR
 *Source: [LinkedIn — Engin Deniz Dogu](https://www.linkedin.com/posts/engindenizdogu_birdclef-2026-starter-case-study-activity-7470553001930207233-_9US)*
 
 ---
-*Related:* [[Projects MOC]] | [[Deep Learning Coursework CS583]] | [[Machine Learning MOC]]
+*Related:* [[Projects/index|Projects MOC]] | [[CS583 - Deep Learning Coursework]] | [[Machine Learning MOC]]

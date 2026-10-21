@@ -1472,3 +1472,8 @@ a.harbor-top-button {
   font-size: 0.75rem;
   color: var(--gray);
 }
+
+// The Projects index groups notes itself, so hide the automatic flat listing.
+body[data-slug="projects/index"] .page-listing {
+  display: none;
+}

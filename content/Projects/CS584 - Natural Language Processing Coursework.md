@@ -1,5 +1,5 @@
 ---
-title: Natural Language Processing Coursework CS584
+title: "CS584 - Natural Language Processing Coursework"
 tags:
   - projects
   - nlp
@@ -39,4 +39,4 @@ flowchart LR
 - Demonstrated reliable tool invocation by prompting the custom agent to intercept and compute arithmetic expressions before generating final responses.
 
 ---
-*Related:* [[Projects MOC]]
+*Related:* [[Projects/index|Projects MOC]]

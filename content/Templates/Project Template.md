@@ -27,4 +27,4 @@ A brief 2-3 sentence paragraph explaining the problem you set out to solve or th
 - Trade-offs between...
 
 ---
-*Related:* [[Projects MOC]]
+*Related:* [[Projects/index|Projects MOC]]
