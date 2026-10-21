@@ -73,6 +73,7 @@ Neural network fundamentals and architectures, located in the `Deep Learning/` d
 - [[Batch Normalization]] - Stable gradients and faster convergence.
 - [[Convolutional Neural Networks]] - Forward pass, backpropagation through convolutional and pooling layers.
 - [[Autoencoders]] - Bottleneck architectures, reconstruction loss, and latent spaces.
+- [[Graph Neural Networks]] - Message passing over graphs: GCN, GraphSAGE, GAT, and tasks such as node classification and link prediction. Related: [[Centrality Measures]].
 - [[Keras vs. PyTorch vs. TensorFlow]] - Framework comparison.
 - [[Keras Data Generators]] - Memory-efficient on-the-fly data generation with `keras.utils.Sequence`.
 

@@ -9,6 +9,7 @@ Welcome to the Code Snippets Map of Contents. This dashboard organizes reusable 
 - [[ML Preprocessing Snippets]] - Reusable snippets for data cleaning and train/test splitting.
 - [[ML Evaluation Snippets]] - Code for calculating metrics like MSE and accuracy.
 - [[Stochastic Gradient Descent Snippet]] - A clean implementation of SGD for linear regression.
+- [[SVD Snippets]] - NumPy decomposition, reconstruction, low-rank approximation, and full vs. reduced shapes.
 
 ## Deep Learning Snippets
 - [[Autoencoder Snippets]] - Keras code for standard and supervised autoencoders: data prep, model building, multi-output training, and 2D latent space visualization.

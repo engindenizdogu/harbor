@@ -77,6 +77,13 @@ Example with window size 1:
 - High dimensional, size increases with vocabulary (requires more storage)
 
 **Possible solution:** [[Singular Value Decomposition]]
+
+**Reweighting with PPMI.** Raw counts are dominated by frequent words such as "the". Pointwise mutual information compares how often two words co-occur with what independence would predict:
+
+$$\text{PMI}(i,j) = \log\frac{P(i,j)}{P(i)\,P(j)}$$
+
+Positive PMI (PPMI) clips negative values to zero. A truncated SVD of the PPMI matrix then gives dense low-dimensional word vectors. The same co-occurrence idea, applied to any items that appear together, is a one-mode projection of a bipartite graph; see [[Bipartite Networks]].
+
 ##### Word-document co-occurrence matrix
 You create a matrix where rows are words and columns are documents. You mark a "1" or a count every time a word appears in a specific file. It identifies **general topics**. For example, "touchdown," "quarterback," and "stadium" will all have high counts in the same sports articles, even if they aren't right next to each other in a sentence. This leads to **Latent Semantic Analysis (LSA)**, which helps a computer realize that two documents are about "Sports" even if they use slightly different vocabulary.
 

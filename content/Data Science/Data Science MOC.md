@@ -12,6 +12,13 @@ Map of Contents
 - [[Correlation Coefficients]] - Pearson, Spearman, and Kendall, when each fits, and why zero correlation is not independence. Related: [[Exploratory Data Analysis]].
 - [[Statistical Inference Basics]] - p-values, confidence intervals, t-tests with worked examples, business decisions, and Bayesian credible intervals. Related: [[1. Probability]].
 
+## Network Analysis
+Read in this order: node importance first, then two-mode networks.
+- [[Centrality Measures]] - Degree, closeness, betweenness, eigenvector, Katz, and PageRank, with a worked example and when to use each. Related: [[Distributed Machine Learning and Graph Processing]].
+- [[Bipartite Networks]] - Two-mode graphs, biadjacency matrices, one-mode projections and weighting, co-occurrence matrices, and centrality across two node sets. Related: [[Recommendation Systems]].
+- [[Network Analysis Tools]] - NetworkX for analysis, Gephi for visual exploration, Graphviz for static diagrams.
+- [[Graph Neural Networks]] - Message passing, GCN, GraphSAGE, and GAT; learned alternatives to hand-made centrality.
+
 ## Big Data Technologies
 Read in this order: foundations, storage and batch compute, then streaming, plumbing, and analytics.
 - [[Big Data Fundamentals and Architecture]] - The four Vs, layered architecture, storage options, CAP trade-offs, and responsible use. Related: [[Database Types]], [[Database Selection]].
