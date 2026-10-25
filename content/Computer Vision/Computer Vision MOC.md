@@ -7,6 +7,7 @@ Map of Contents. Classical image analysis built from first principles: pixels an
 
 ## Fundamentals
 - [[Image Representation and Indexing]] - Arrays, channels, data types, (x, y) vs. (row, column), slicing, and views vs. copies.
+- [[Data Types in Image Processing]] - uint8 wrap-around, promotions, float-to-int conversion, precision limits, and a type-tracking checklist.
 - [[Pixel-Level Operations]] - Grayscale, thresholding, colour masks, blending, and the uint8 overflow trap.
 - [[Image Noise]] - Gaussian, salt-and-pepper, Poisson, and speckle noise, and which filter fits each.
 

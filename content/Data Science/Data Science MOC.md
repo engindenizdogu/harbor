@@ -11,6 +11,10 @@ Map of Contents
 ## Statistics
 - [[Correlation Coefficients]] - Pearson, Spearman, and Kendall, when each fits, and why zero correlation is not independence. Related: [[Exploratory Data Analysis]].
 - [[Statistical Inference Basics]] - p-values, confidence intervals, t-tests with worked examples, business decisions, and Bayesian credible intervals. Related: [[1. Probability]].
+- [[Autoregressive Models]] - AR, MA, ARMA, ARIMA, order identification with ACF/PACF, AIC/BIC/HQC and LRT, parameter fitting, and forecasting. Related: [[Correlation Coefficients]].
+- [[Stationarity and Unit Roots]] - Weak stationarity, types of non-stationarity, ADF and KPSS, spurious regression, and fixes.
+- [[ARMA and ARIMA Models]] - Lag operator, invertibility, differencing, special cases, and a worked order-identification example.
+- [[Vector Autoregression]] - Multivariate AR, Granger causality, impulse responses, cointegration and VECM.
 
 ## Network Analysis
 Read in this order: node importance first, then two-mode networks.
