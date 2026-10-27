@@ -74,6 +74,7 @@ Neural network fundamentals and architectures, located in the `Deep Learning/` d
 - [[Convolutional Neural Networks]] - Forward pass, backpropagation through convolutional and pooling layers.
 - [[Autoencoders]] - Bottleneck architectures, reconstruction loss, and latent spaces.
 - [[Graph Neural Networks]] - Message passing over graphs: GCN, GraphSAGE, GAT, and tasks such as node classification and link prediction. Related: [[Centrality Measures]].
+- [[GPU Performance and Kernels]] - What a GPU kernel is, compute vs. memory-bandwidth vs. overhead bottlenecks, arithmetic intensity, and operator fusion. Related: [[KV Cache]].
 - [[Keras vs. PyTorch vs. TensorFlow]] - Framework comparison.
 - [[Keras Data Generators]] - Memory-efficient on-the-fly data generation with `keras.utils.Sequence`.
 
@@ -88,7 +89,7 @@ Detailed domain dashboard: [[Reinforcement Learning MOC]]
 ## Applications
 Located in the `Applications/` directory.
 - [[Recommendation Systems]]
-- [[Learning To Rank]]
+- [[Learning To Rank]] - Pointwise/pairwise/listwise ranking, LambdaMART, libraries (LightGBM, XGBoost), benchmark datasets, and input format.
 - [[Anti-Bot Machine Learning]] - How ML is used to detect and mitigate automated agents.
 
 ## Related Domains

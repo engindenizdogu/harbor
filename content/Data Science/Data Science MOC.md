@@ -23,6 +23,9 @@ Read in this order: node importance first, then two-mode networks.
 - [[Network Analysis Tools]] - NetworkX for analysis, Gephi for visual exploration, Graphviz for static diagrams.
 - [[Graph Neural Networks]] - Message passing, GCN, GraphSAGE, and GAT; learned alternatives to hand-made centrality.
 
+## Simulation
+- [[Agent-Based Modeling]] - Emergence from simple agent rules, Schelling's segregation model, how it differs from LLM agent systems, and the Mesa framework. Related: [[Network Analysis Tools]], [[Agents MOC]].
+
 ## Big Data Technologies
 Read in this order: foundations, storage and batch compute, then streaming, plumbing, and analytics.
 - [[Big Data Fundamentals and Architecture]] - The four Vs, layered architecture, storage options, CAP trade-offs, and responsible use. Related: [[Database Types]], [[Database Selection]].
