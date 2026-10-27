@@ -11,7 +11,9 @@ Read this file only when running an ingestion or touching the Quartz site. It is
 
 ## How `vault_health.py` behaves
 - `python3 .scripts/vault_health.py` prints a full lint report: front matter keys, H1 duplicating the title, orphan notes, notes missing from their folder MOC, near-duplicate titles. Skips `_Private`, `Templates`, `Assets`.
-- `--session` is what the SessionStart hook in `.claude/settings.json` runs: it reports files in `.raw_sources/`, notes in `content/_Private/Inbox/`, and a short lint summary at most once every 30 days (stamp: `.quartz-cache/vault_health_stamp`; delete it to force a run).
+- Queue flags (see CLAUDE.md step 2): `--queue --session-id ID` appends entries from stdin to `.scripts/queue/ID.md` (git-ignored; entries separated by a `---` line). `--drain --session-id ID`, `--drain --all`, or `--drain --stale` (files untouched for 12h+, used by the SessionStart auto-flush) moves queue files into `queue/draining/` and prints them; `--drain-done` deletes them once the notes are written. Files stranded in `draining/` by an interrupted flush are picked up by the next drain after 10 minutes.
+- `--status --session-id ID` lists queued entries per session (read-only; the `/queue` command).
+- `--session` (reads the hook's JSON on stdin) is what the SessionStart hook in `.claude/settings.json` runs: it prints the session id and queue status (this session's entries, recent entries from other sessions, and stale ones the session should flush), reports files in `.raw_sources/`, notes in `content/_Private/Inbox/`, and a short lint summary at most once every 30 days (stamp: `.quartz-cache/vault_health_stamp`; delete it to force a run).
 
 ## Repo Commands
 - Site config, plugins and layout all live in `quartz.config.yaml` (defaults in `quartz.config.default.yaml`). Custom CSS is `quartz/styles/custom.scss`.

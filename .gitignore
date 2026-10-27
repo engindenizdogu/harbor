@@ -13,4 +13,4 @@ replit.nix
 quartz/cli/tui/dist/
 .turbo/
 _Private/
-.scripts/state.json
+.scripts/queue/

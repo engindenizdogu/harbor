@@ -1,7 +1,10 @@
 ---
-description: Flush captured takeaways into the vault now
+description: Flush this session's queued takeaways into the vault now
 ---
 
-Flush the takeaway list now, following steps 3-6 of "Automatic Library Updates" in CLAUDE.md, then continue the conversation.
+Flush this session's queue now, then continue the conversation.
 
-If recording is off (`.scripts/state.json` has `"recording": false`), write nothing and reply with one line saying recording is off.
+1. Queue any settled takeaways not yet queued (see "Automatic Library Updates" in CLAUDE.md).
+2. Run `python3 .scripts/vault_health.py --drain --session-id <this session's id>` (the id is in the SessionStart hook output).
+3. Write the notes from the printed entries, following steps 3-6 of "Automatic Library Updates" in CLAUDE.md.
+4. Run `python3 .scripts/vault_health.py --drain-done`.

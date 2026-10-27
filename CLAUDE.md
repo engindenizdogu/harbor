@@ -8,8 +8,19 @@
 Deniz should never have to ask for notes. The vault updates itself from conversations and dropped documents, in batches, without interrupting the conversation.
 
 1. **Raw sources:** A SessionStart hook (`.scripts/vault_health.py --session`) reports pending files in `.raw_sources/`. If it does, ingest them right away: use `.scripts/ingest.py` as a scaffold, customize its mapping, run it, add notes to their MOC, clear `.raw_sources/` (keep the folder). Read `.scripts/README.md` only when ingesting.
-2. **Batch capture, not per-turn notes.** Keep a mental list of durable takeaways (concepts explained, decisions, research findings, project progress) while the conversation runs. Do not write notes after each answer. Flush the list in one pass when the topic wraps up or shifts, after roughly 8 substantive exchanges, or on the `/capture` / `/fin` commands below. Skip chit-chat, one-off questions, and tooling talk.
-3. **Per flush:** One `Grep` per takeaway for an existing note (try 2-3 synonyms, since titles vary), then update the best match or create a new note. Merge several takeaways on one topic into one coherent note rather than many thin ones.
+2. **Queue, then flush.** Several conversations may be open at once, and each is its own process, so takeaways live on disk, not in memory. The SessionStart hook prints this session's id. While the conversation runs, keep a mental list of durable takeaways (concepts explained, decisions, research findings, project progress, facts Deniz states; skip chit-chat, one-off questions, tooling talk). Ideas, options, and suggestions are takeaways only once Deniz adopts them (chooses one, commits to it, or builds on it); concept explanations are takeaways either way. Append them to this session's queue in one batched call at a topic wrap-up or shift, or after roughly 4 substantive exchanges, and always before `/capture` or `/fin`:
+   ```
+   python3 .scripts/vault_health.py --queue --session-id <id> <<'EOF'
+   public | <Domain> | <Topic>
+   - self-contained takeaway (names, figures, decisions)
+   Source: [Name](URL)
+   ---
+   inbox | <Domain> | <Topic>
+   - takeaway resting on unverified claims
+   EOF
+   ```
+   The first line of an entry is `public` or `inbox` (the review gate in step 4, decided now), the domain, and the topic. Entries must stand alone, since another session may write the note. Never edit or delete queued entries; if a queued point later turns out wrong or incomplete, queue a new entry whose first line is `correction | <Domain> | <Topic>` and whose body states the old claim and the right one. At flush, apply corrections after the original entries; if the note was already written, edit that note. Do not write notes after each answer: notes are written only on a flush (a command or the stale auto-flush). `/capture` flushes this session's queue (`--drain --session-id <id>`); `/fin` flushes every session's queue (`--drain --all`). Both print the entries, you write the notes, then run `--drain-done`. Queued entries survive a closed or crashed conversation. **Auto-flush:** when the SessionStart hook reports entries over 12h old, flush them before the first reply (`--drain --stale`), so notes appear without any command; report it in one line. Open sessions are never flushed mid-conversation, and recent entries wait for `/fin` or the 12h mark.
+3. **Per flush:** Merge entries on the same topic across sessions. One `Grep` per topic for an existing note (try 2-3 synonyms, since titles vary), then update the best match or create a new note. Merge several takeaways on one topic into one coherent note rather than many thin ones.
 4. **Review gate (the site publishes automatically, so unreviewed claims must not go live):**
    - **Public** (`content/<domain>/`): facts Deniz stated, project progress and decisions, and research with a cited source. Add the tag `auto-captured`.
    - **Staging** (`content/_Private/Inbox/`, git-ignored): anything resting on my own unverified claims or uncertain recall, with tag `needs-review`. Never link to it from public pages. Deniz promotes a note by moving it into a domain folder and removing the tag.
@@ -20,12 +31,10 @@ Deniz should never have to ask for notes. The vault updates itself from conversa
 
 ## Commands
 Slash commands, defined in `.claude/commands/`. The plain words ("capture", "record", "ship") are ordinary conversation and trigger nothing.
-- **`/capture`**: Flush the takeaway list now, then continue the conversation.
-- **`/fin`**: Flush the takeaway list, report in one line, and sign off.
-- **`/toggle-record`**: Turn recording off or on.
+- **`/capture`**: Queue pending takeaways, flush this session's queue into notes, then continue the conversation.
+- **`/fin`**: Flush the queues of all sessions, report in one line, and sign off.
+- **`/queue`**: Show what is queued for the vault, per session (read-only).
 - **`/ship`**: Commit all current changes and push the current branch.
-
-**Recording:** The state lives in `.scripts/state.json` (git-ignored; a missing file means on). The file is the source of truth, not memory of the conversation: if recording was turned off at any point in the session, read it before every flush or ingestion. The SessionStart hook reports an off state after a resume or a context summary, and resets it to on for a new session. While recording is off, the session is a plain conversation or brainstorm. Write nothing new to the vault: no takeaway list, no flushes, no notes in public folders or the Inbox, no raw-source ingestion, no restructuring. Reading the vault to answer questions is still fine, and direct requests to edit a specific note or the site, and `/ship`, still work.
 
 ## Efficiency Rules (usage limits)
 - **Automatic means cheap.** Each captured takeaway should cost about 1 grep, 0-1 note reads, and 1-2 edits. Read `toc.md` or a whole MOC only when creating a domain or a note's place is genuinely unclear.
