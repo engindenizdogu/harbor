@@ -7,15 +7,15 @@ tags:
   - auto-captured
 draft: false
 ---
-> A growing portfolio of CS558 Computer Vision work, from from-scratch Harris corner detection and RANSAC line fitting to template matching under heavy noise and across three scales.
+> A growing portfolio of CS558 Computer Vision work, from from-scratch Harris corner detection and RANSAC line fitting to template matching under heavy noise and a complete image-stitching pipeline.
 
 ## Quick Facts
-- **Context:** CS558 Computer Vision Coursework, Stevens Institute of Technology (Fall 2026): Homework 1 and 2 plus in-class exercises
-- **Tech Stack:** Python, NumPy, OpenCV (file I/O and display only), Matplotlib, mediapy, Jupyter
+- **Context:** CS558 Computer Vision Coursework, Stevens Institute of Technology (Fall 2026): Homework 1, 2 and 3 plus in-class exercises
+- **Tech Stack:** Python, NumPy, OpenCV (file I/O, display and AKAZE features only), Matplotlib, mediapy, Jupyter
 - **Links:** None available
 
 ## Overview and Problem
-The assignments share one rule: no library function may operate on the images, so padding, filtering, convolution and resizing are all hand-written. Homework 1 builds a corner detector (Sobel, Gaussian smoothing, Harris response, non-maximum suppression) on 800 x 531 photographs. Homework 2 detects a 38 x 32 logo in a noisy 150 x 300 image with SAD and NCC, then finds four logo instances at three scales in a 486 x 612 map where each instance has its own unknown brightness and contrast change. Exercises cover NumPy image basics and robust line fitting.
+The assignments share one rule: no library function may operate on the images, so padding, filtering, convolution and resizing are all hand-written. Homework 1 builds a corner detector (Sobel, Gaussian smoothing, Harris response, non-maximum suppression) on 800 x 531 photographs. Homework 2 detects a 38 x 32 logo in a noisy 150 x 300 image with SAD and NCC, then finds four logo instances at three scales in a 486 x 612 map where each instance has its own unknown brightness and contrast change. Homework 3 fits homographies to nine synthetic point sets, then stitches photographs: AKAZE keypoints, distance-ratio matching, RANSAC homography estimation and bilinear warping onto an enlarged canvas. Exercises cover NumPy image basics and robust line fitting.
 
 ## What I Built
 - **Implemented** a complete Harris corner detector from scratch: zero-padded convolution, Sobel gradients, a Gaussian kernel generator, the structure-tensor response, and 3 x 3 non-maximum suppression with a relative threshold.
@@ -23,6 +23,8 @@ The assignments share one rule: no library function may operate on the images, s
 - **Evaluated** both matchers on 8 noise levels (10% to 80%) with an exact-location detection check and a results table.
 - **Designed** a multi-scale search that blurs and shrinks the image by **2x and 4x** instead of resizing the template, zeroes out found instances, and maps coordinates back to the original.
 - **Built** a RANSAC line fitter on synthetic data with SVD-based total least squares, and explored the effect of noise level and threshold.
+- **Implemented** a homography estimator (DLT with SVD) and a RANSAC wrapper that samples 4 points without replacement and refits on the inliers.
+- **Built** an image stitcher: ratio-test matching on expanded binary AKAZE descriptors, canvas sizing from the warped corners, and RGB bilinear inverse warping with rounded `uint8` output.
 - **Practised** NumPy image manipulation: slicing, masking, thresholding, colour masks, blending, and box filtering.
 
 ```mermaid
@@ -33,9 +35,15 @@ flowchart LR
     B --> E[SAD and NCC matching]
     E --> F[Multi-scale search]
     G[SVD line fit] --> H[RANSAC]
+    H --> I[Homography fit]
+    E --> J[AKAZE ratio-test matches]
+    J --> I
+    I --> K[Warp and stitch]
 ```
 
 ![[multiscale-matching-pipeline.png]]
+
+![[stitching-result.jpg]]
 
 ## Key Results and Impact
 - Produced **241 corners** on a test photograph with Harris at a threshold of 10% of the peak response, inside the 100 to 300 target (a 1% threshold gave about 2000).
@@ -43,13 +51,18 @@ flowchart LR
 - Found all **4 of 4** instances with NCC at (100, 320), (430, 250), (200, 250) and (300, 60), while SAD found only the first.
 - Recovered a noise-free line exactly with the SVD fit, and showed RANSAC with a 100-point sample at threshold 0.5 counting 25 inliers, matching the roughly **26%** expected when the threshold is a third of the noise standard deviation.
 
+- Fitted homographies to nine synthetic point sets with mean errors of **0.00 to 0.47 px**, matching the roughly 0.38 px expected from integer rounding alone.
+- Stitched a 1000 x 750 photo pair into a **1580 x 1483** canvas: 3454 and 2414 keypoints, 1023 putative matches, **335 RANSAC inliers** (about 33%). A harder pair with repeated foliage and sun flare failed, which showed the limits of a single homography.
+
 ## Core Learnings
 - Corners need gradients in both directions, and a relative threshold on the response controls how many survive: see [[Harris Corner Detector]].
 - Zero padding invents edges and corners at the image border: see [[Image Borders and Padding]].
 - Trade-offs between SAD (cheap, exact copies) and NCC (affine-invariant, more expensive): see [[Template Matching]].
 - NCC's noise robustness comes from comparing patterns, not from its brightness and contrast invariance, because salt-and-pepper noise is neither.
 - Low-pass filtering before subsampling prevents aliasing, and sigma should scale with the downsampling factor: see [[Aliasing and Downsampling]].
+- The ratio test on binary descriptors works on Hamming distance, so thresholds differ from SIFT's: see [[AKAZE and Binary Descriptors]].
+- Stitching hinges on keeping the homography direction and the (x, y) vs. [y, x] conventions consistent: see [[Image Stitching]].
 - Least squares is dragged by outliers, while RANSAC's consensus voting ignores them: see [[RANSAC]].
 
 ---
-*Related:* [[Projects/index|Projects MOC]], [[Computer Vision MOC]], [[Harris Corner Detector]], [[Multi-Scale Template Matching]], [[RANSAC]], [[Template Matching Snippets]]
+*Related:* [[Projects/index|Projects MOC]], [[Computer Vision MOC]], [[Harris Corner Detector]], [[Multi-Scale Template Matching]], [[RANSAC]], [[Image Stitching]], [[Template Matching Snippets]]

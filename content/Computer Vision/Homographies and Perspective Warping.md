@@ -7,7 +7,7 @@ A **homography** (projective transformation) is the most general 2D mapping that
 
 ## Definition
 
-A homography is a $3 \times 3$ matrix $H$ acting on homogeneous coordinates:
+A homography is a $3 \times 3$ matrix $H$ acting on homogeneous coordinates ([[Homogeneous Coordinates]]):
 
 $$\begin{pmatrix} x' \\ y' \\ w' \end{pmatrix} = \begin{pmatrix} h_{11} & h_{12} & h_{13} \\ h_{21} & h_{22} & h_{23} \\ h_{31} & h_{32} & h_{33} \end{pmatrix} \begin{pmatrix} x \\ y \\ 1 \end{pmatrix}$$
 
@@ -33,6 +33,35 @@ where $\mathbf h$ is the 9 entries of $H$ stacked. Stack all pairs into one matr
 - **More than 4 pairs** are solved in the least-squares sense.
 - **Normalize the coordinates** (centre them, scale to about unit size) before building $A$ for numerical stability.
 - **Outliers:** real correspondences from feature matching contain wrong pairs, so the 4-point solve is wrapped in [[RANSAC]]. This is how panoramas are stitched.
+
+## Fitting in Practice
+
+- **Know the direction.** $H$ maps the first point set to the second. If you need the reverse, use $H^{-1}$ (`np.linalg.inv`; the transpose is the inverse only for rotation matrices).
+- **Build $A$ carefully.** Each correspondence gives two rows. With $\mathbf p = (x, y, 1)^\top$ they can be written $\big(\mathbf 0^\top,\ -\mathbf p^\top,\ y'\,\mathbf p^\top\big)$ and $\big(\mathbf p^\top,\ \mathbf 0^\top,\ -x'\,\mathbf p^\top\big)$, which is the same system as above with the rows arranged differently.
+- **Normalize by $h_{33}$ only after checking it is not zero.** A zero there means something went wrong, or the mapping sends the origin to infinity.
+- **Do not fit from a minimal set of neighbouring points.** Points that are very close together, combined with rounded coordinates, make the solution unstable. Spread the 4 points far apart, or use many points.
+- **Check one point by hand.** Map a single source point and compare it with its target before trusting the matrix.
+- **Measure the error as the mean distance** between each mapped point and its target:
+
+$$\text{error} = \frac{1}{N} \sum_i \big\lVert H\mathbf p_i - \mathbf p'_i \big\rVert_2$$
+
+### Example: nine synthetic point sets
+
+Correspondences between a letter shape and transformed copies of it, with integer pixel coordinates (except the last set, which has real-valued coordinates):
+
+| Case | What the fitted $H$ shows | Mean error (px) |
+| ---- | ------------------------- | --------------- |
+| 1, 2, 3 | Scaling (non-uniform in 1 and 2, uniform in 3) | 0.25, 0.24, 0.47 |
+| 4 | Swap of $x$ and $y$: $H = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}$ | 0.00 |
+| 5 | Rotation by 180 degrees with a shift: $H = \begin{pmatrix} -1 & 0 & 76 \\ 0 & -1 & 101 \\ 0 & 0 & 1 \end{pmatrix}$ | 0.00 |
+| 6, 7, 8 | General affine maps mixing scale, rotation or reflection, and shift | 0.46, 0.39, 0.39 |
+| 9 | Strong perspective ($h_{32} \approx -0.8$), real-valued coordinates | 0.006 |
+
+![[homography-fit-example.png]]
+
+*Fits for cases 3 and 9. When the fit is right, the mapped points (green) lie on the target points (orange).*
+
+Why the errors are not zero: coordinates rounded to integers carry up to half a pixel of error in each coordinate, and the expected distance from such rounding alone is about **0.38 px**. The fits with errors of 0.24 to 0.47 px are therefore as good as the data allow. Exact integer mappings (a swap, a 180-degree rotation) fit with zero error, and real-valued data fit to 0.006 px.
 
 ## Using a Homography: Rectification
 
@@ -65,4 +94,4 @@ Code: [[Image Warping Snippets]].
 *Sources: [Foundations of Computer Vision, ch. 41: Homographies](https://visionbook.mit.edu/homography.html), which covers 8 degrees of freedom, the DLT, planar scenes, pure rotation, panoramas and RANSAC; [Homography (computer vision), Wikipedia](https://en.wikipedia.org/wiki/Homography_(computer_vision)); Hartley and Zisserman, Multiple View Geometry in Computer Vision, DLT algorithm. The recovered matrix in the figure matched the true one to about $10^{-10}$ in my test.*
 
 ---
-*Related:* [[Computer Vision MOC]], [[Image Warping]], [[Cylindrical Warping]], [[RANSAC]], [[Image Warping Snippets]]
+*Related:* [[Computer Vision MOC]], [[Image Warping]], [[Cylindrical Warping]], [[RANSAC]], [[Image Stitching]], [[Image Warping Snippets]]

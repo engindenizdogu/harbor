@@ -22,6 +22,7 @@ Welcome to the Code Snippets Map of Contents. This dashboard organizes reusable 
 - [[Image Basics Snippets]] - Indexing, thresholding, colour masks, blending, and box filtering with NumPy.
 - [[Corner Detection Snippets]] - Sobel, Harris, 3 x 3 non-maximum suppression, and corner overlays.
 - [[RANSAC Snippets]] - Synthetic noisy lines, SVD line fitting, and a RANSAC loop.
+- [[Image Stitching Snippets]] - AKAZE features, ratio-test matching, homography RANSAC, canvas size, and vectorized warp-and-combine.
 - [[Image Warping Snippets]] - Transform matrices, inverse warping with bilinear sampling, affine and homography estimation, and a cylindrical warp.
 - [[SIFT and Matching Snippets]] - OpenCV SIFT, ratio-test matching with RANSAC verification, and from-scratch DoG and matching code.
 - [[Template Matching Snippets]] - NumPy SAD and NCC matchers, Gaussian filtering, the multi-scale search, NMS, integral images, and salt-and-pepper noise generation.

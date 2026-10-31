@@ -34,6 +34,8 @@ diff = np.abs(a.astype(np.int16) - b.astype(np.int16))   # or float64
 out = np.clip(np.round(x), 0, 255).astype(np.uint8)
 ```
 
+A related case is **interpolation**: bilinear sampling returns a float, so round it before storing into a `uint8` canvas (`V[y, x] = np.round(value)`). Direct assignment truncates, which darkens the image slightly everywhere ([[Image Stitching]]).
+
 ## Range, Sign and Precision
 
 | Situation | Problem | Use |

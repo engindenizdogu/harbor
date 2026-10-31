@@ -10,6 +10,8 @@ Core vocabulary, problem types, and evaluation, located in the `Foundations/` di
 - [[Glossary]] - Foundational machine learning definitions (Bias, Variance, etc.).
 - [[Machine Learning Domains]] - Breakdown of ML problem types (Classification, Regression, Unsupervised).
 - [[Metrics and Model Evaluation]] - Guide on evaluating models, bias/variance tradeoff, and regularization.
+- [[ROC and AUC Curves]] - Threshold sweeps, AUC meaning, ROC vs. precision-recall under class imbalance, and choosing thresholds.
+- [[Probability Calibration]] - Reliability diagrams, Brier score, Platt and isotonic calibration, and why AUC does not imply good probabilities.
 - [[Clustering Evaluation Metrics]] - Purity, Rand Index, Adjusted Rand Index, NMI, and silhouette for judging clusters.
 - [[Loss Functions]] - How models measure error (MSE, Cross-Entropy).
 - [[Exploratory Data Analysis]] - The crucial first step of inspecting and understanding your data.

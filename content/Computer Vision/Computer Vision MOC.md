@@ -25,6 +25,7 @@ Map of Contents. Classical image analysis built from first principles: pixels an
 ## Local Features
 - [[Scale Space and Difference of Gaussians]] - Scale space, blob detection, DoG as an approximate normalized Laplacian, and octaves.
 - [[SIFT]] - Scale- and rotation-invariant keypoints: DoG extrema, localization, orientation, and the 128-D descriptor.
+- [[AKAZE and Binary Descriptors]] - Nonlinear scale space, binary descriptors, Hamming distance, and why the ratio-test thresholds differ.
 - [[Feature Matching]] - Nearest-neighbour descriptor matching, the ratio test, and RANSAC verification.
 
 ## Matching
@@ -33,8 +34,10 @@ Map of Contents. Classical image analysis built from first principles: pixels an
 - [[Integral Images]] - Constant-time rectangle sums for fast window statistics.
 
 ## Geometric Transformations
+- [[Homogeneous Coordinates]] - Why a point gets an extra coordinate: translation as a matrix, deferred perspective division, points at infinity, and lines as cross products.
 - [[Image Warping]] - Homogeneous coordinates, translation, rotation, scaling, shear, affine maps, and forward vs. inverse warping.
 - [[Homographies and Perspective Warping]] - Perspective transforms, the DLT estimate from 4 point pairs, rectification, and when a homography is exact.
+- [[Image Stitching]] - Matching, RANSAC homography, canvas sizing, warping and compositing, and why stitching fails.
 - [[Cylindrical Warping]] - Projecting onto a cylinder for panoramas, the mapping formulas, and choosing the focal length.
 
 ## Resolution and Scale
@@ -49,6 +52,7 @@ Map of Contents. Classical image analysis built from first principles: pixels an
 ## Code and Projects
 - [[Image Basics Snippets]] - Indexing, thresholding, colour masks, blending, and box filtering.
 - [[Corner Detection Snippets]] - Sobel, Harris, 3 x 3 NMS, and corner overlays.
+- [[Image Stitching Snippets]] - AKAZE, ratio-test matching, homography RANSAC, canvas size, and vectorized warp-and-combine.
 - [[Image Warping Snippets]] - Transform matrices, inverse warping, affine and homography estimation, and a cylindrical warp.
 - [[SIFT and Matching Snippets]] - OpenCV SIFT, ratio-test matching, RANSAC verification, and from-scratch DoG and matching code.
 - [[Template Matching Snippets]] - SAD and NCC matchers, Gaussian filtering, the multi-scale search, NMS, integral images, and noise generation.
@@ -64,4 +68,4 @@ Map of Contents. Classical image analysis built from first principles: pixels an
 ## To Research / Inbox
 *(Drop new concepts or terms you want to research here as unlinked wiki-links)*
 
-Next topics: the Canny edge detector, Hough transform, homography estimation, Fourier transform basics.
+Next topics: the Canny edge detector, Hough transform, image blending, Fourier transform basics.

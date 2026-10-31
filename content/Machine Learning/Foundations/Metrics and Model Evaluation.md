@@ -45,6 +45,24 @@ $$TP \over (TP + FN)$$
 
 $$\text{F1} = {(2 * Precision * Recall)  \over (Precision + Recall)}$$
 
+### When to Choose F1
+Choose F1 when both false positives and false negatives matter and the classes are imbalanced.
+
+- **Versus accuracy:** accuracy counts true negatives, so a rare positive class barely moves it. With 2% positives, a model that always predicts negative scores 98% accuracy but an F1 of 0, since F1 ignores true negatives.
+- **Versus precision or recall alone:** each can be gamed. Predicting positive only for the single surest case gives high precision and near-zero recall; predicting everything positive gives 100% recall and precision equal to the prevalence. The harmonic mean sits close to the smaller of the two, so F1 is high only when both are: precision 0.9 and recall 0.1 average to 0.5 arithmetically but give an F1 of about 0.18.
+
+| Situation | Better choice |
+| :-- | :-- |
+| Rare positive class that matters (fraud, screening, defects, alerts), or abundant uninformative true negatives (information retrieval) | F1 |
+| Balanced classes with equal error costs | Accuracy |
+| False positives much worse (spam filter blocking real mail) | Precision, or $F_{0.5}$ |
+| False negatives much worse (disease screening) | Recall, or $F_2$ |
+| Performance across all thresholds | ROC AUC or average precision ([[ROC and AUC Curves]]) |
+| Trustworthy probabilities | Brier score and calibration ([[Probability Calibration]]) |
+| Several classes | Macro-F1 (classes equal) or micro-F1 (large classes dominate) |
+
+The general form is $F_\beta$, where $\beta$ sets how much more recall matters than precision. **Limits of F1:** it depends on one threshold, ignores true negatives, weights precision and recall equally unless $F_\beta$ is used, and says nothing about probability quality.
+
 ---
 ## Clustering Metrics
 Unsupervised models need different metrics (purity, Rand Index, ARI, NMI, silhouette); see [[Clustering Evaluation Metrics]].

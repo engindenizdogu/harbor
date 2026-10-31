@@ -44,7 +44,7 @@ Point-to-line error is the perpendicular distance $|ax + by + c|$ when $(a, b)$ 
 
 - **Too small:** many true inliers are rejected, and the model looks less supported.
 - **Too large:** outliers close to the line are accepted, and different models tie.
-- A common choice is $t \approx 2\sigma$. With $t = 0.33\sigma$ the expected fraction is about 26%, so on 100 inliers a count near 25 is exactly what the table predicts.
+- A common choice is $t \approx 2\sigma$. For keypoint matches the noise is in pixel locations, which are only accurate to about a pixel: a threshold well below 1 px rejects true matches, and one of tens of pixels accepts wrong ones, so values around 1 to 5 px are typical. With $t = 0.33\sigma$ the expected fraction is about 26%, so on 100 inliers a count near 25 is exactly what the table predicts.
 
 With $\sigma = 0$ (noise-free data) any small threshold works, and any two true inliers give the exact line.
 
@@ -60,7 +60,7 @@ $$N = \frac{\ln(1 - p)}{\ln(1 - w^s)}$$
 | 0.3 | 49 | 567 |
 | 0.1 | 459 | many thousands |
 
-More outliers and bigger samples both **raise** the number of trials sharply. A worked case: 10 true inliers among 25 points. The chance a random pair is two inliers is $\binom{10}{2} / \binom{25}{2} = 45/300 = 0.15$, so 150 trials miss with probability $0.85^{150} \approx 3 \times 10^{-11}$.
+More outliers and bigger samples both **raise** the number of trials sharply. In a stitching example with about 33% inliers (335 of 1023 matches), the formula gives about 400 trials for 99% confidence, so 5000 trials are very generous. With 10% inliers it would need about 40,000 ([[Image Stitching]]). A worked case: 10 true inliers among 25 points. The chance a random pair is two inliers is $\binom{10}{2} / \binom{25}{2} = 45/300 = 0.15$, so 150 trials miss with probability $0.85^{150} \approx 3 \times 10^{-11}$.
 
 ## Properties
 

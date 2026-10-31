@@ -11,6 +11,8 @@ draft: false
 
 ## Homogeneous Coordinates
 
+A short version follows; the full treatment is in [[Homogeneous Coordinates]].
+
 A 2D point $(x, y)$ is written as the 3-vector $(x, y, 1)^\top$. This lets **every** transformation below, including translation, be a single $3 \times 3$ matrix multiplication:
 
 $$\begin{pmatrix} x' \\ y' \\ w' \end{pmatrix} = M \begin{pmatrix} x \\ y \\ 1 \end{pmatrix}, \qquad (x_{out}, y_{out}) = \left(\frac{x'}{w'},\ \frac{y'}{w'}\right)$$

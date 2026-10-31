@@ -88,7 +88,7 @@ Descriptors from two images are compared by **Euclidean distance**, and a match 
 
 ## Where It Is Used
 
-Image stitching and panoramas ([[Homographies and Perspective Warping]]), structure from motion and SLAM, object recognition and image retrieval, and 3D reconstruction pipelines. In all of them the matches are noisy, so a geometric check with [[RANSAC]] follows.
+Image stitching and panoramas ([[Image Stitching]], [[Homographies and Perspective Warping]]), structure from motion and SLAM, object recognition and image retrieval, and 3D reconstruction pipelines. In all of them the matches are noisy, so a geometric check with [[RANSAC]] follows.
 
 *Sources: Lowe, [Distinctive Image Features from Scale-Invariant Keypoints, IJCV 2004](https://www.cs.ubc.ca/~lowe/papers/ijcv04.pdf), for every parameter and number quoted from the paper (26 neighbours, 3 scales per octave, sigma 1.6, contrast threshold 0.03, r = 10, 36 bins, 80% peaks, 128 dimensions, 0.2 clip). The keypoint, match and RANSAC counts come from my own run of OpenCV's SIFT on the example photograph. The patent and OpenCV remarks are from my own knowledge.*
 
