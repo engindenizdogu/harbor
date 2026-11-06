@@ -80,7 +80,7 @@ You can define custom agents for specific purposes such as planning, implementat
 
 > Repositories are automatically indexed the first time `@workspace` or `#codebase` is used in chat. You can also force indexing by running the **Build Remote Workspace Index** command in the Command Palette (Ctrl+Shift+P).
 
-> VSCode recommends to use `#codebase` in your chat prompts as it provides more flexibility. [What is the difference between @workspace and #codebase?](https://code.visualstudio.com/docs/copilot/reference/workspace-context#_what-is-the-difference-between-atworkspace-and-hashcodebase)
+> VSCode recommends to use `#codebase` in your chat prompts as it provides more flexibility. [What is the difference between @workspace and `#codebase`?](https://code.visualstudio.com/docs/copilot/reference/workspace-context#_what-is-the-difference-between-atworkspace-and-hashcodebase)
 
 To summarize, **while you don't have to configure anything about indexing initially**, it is a nice feature to keep in mind especially if your project grows larger in size. Keep in mind, if you find that chat is struggling to provide relevant answers to questions about your codebase, you might want to upgrade to a [remote index](https://code.visualstudio.com/docs/copilot/reference/workspace-context#_remote-index).
 

@@ -75,6 +75,8 @@ $$ L(w) = {2\over N} * \sum_i^n (x_i*w_i - y_i)x_i$$
 > **Note:** Closed form solution can be very slow with datasets that have many rows
 
 ## L1/L2 Regularization (LASSO/Ridge Regression)
+See [[Regularization]] for the geometry, coefficient paths, Elastic Net, and tuning.
+
 - L2:
 	- sum-of-squares error + $\alpha w^Tw$
 	- Can calculate the closed form solution 

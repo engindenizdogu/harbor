@@ -44,6 +44,12 @@ $$M = \begin{pmatrix} a & b & t_x \\ c & d & t_y \\ 0 & 0 & 1 \end{pmatrix}, \qq
 
 It has **6 degrees of freedom**, so **3 non-collinear point correspondences** (3 pairs give 6 equations) determine it exactly, and more pairs are solved by least squares.
 
+**Estimating it from matches.** Both output coordinates use the same source point $(x, y)$ but different coefficients, so the problem splits into two independent 3-unknown problems. Each match $(x_i, y_i) \to (x_i', y_i')$ contributes two rows:
+
+$$\begin{pmatrix} x_i & y_i & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & x_i & y_i & 1 \end{pmatrix} \begin{pmatrix} a \\ b \\ t_x \\ c \\ d \\ t_y \end{pmatrix} = \begin{pmatrix} x_i' \\ y_i' \end{pmatrix}$$
+
+With $k$ matches the stacked system is $A\mathbf p = \mathbf b$, with $A$ of size $2k \times 6$. For $k > 3$ it is overdetermined, and the least-squares solution is $\mathbf p = (A^\top A)^{-1} A^\top \mathbf b$ ([[Least-Squares Line Fitting]]).
+
 - **Preserves:** straight lines, **parallelism**, and ratios of lengths along a line (the midpoint stays the midpoint).
 - **Does not preserve:** lengths or angles, in general. A square becomes a parallelogram.
 

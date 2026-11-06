@@ -10,6 +10,7 @@ Welcome to the Resources Map of Contents. This domain serves as a collection of 
 
 ## Reference Materials
 - [[Git Cheat Sheets]] - Quick reference for common Git commands.
+- [[macOS Terminal Commands]] - Useful macOS commands, such as keeping a Mac awake with `pmset`.
 - [[Recommended Links]] - Curated directory of external links, blogs, and useful websites.
 
 ---

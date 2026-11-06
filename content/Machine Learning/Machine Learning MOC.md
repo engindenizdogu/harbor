@@ -14,7 +14,9 @@ Core vocabulary, problem types, and evaluation, located in the `Foundations/` di
 - [[Probability Calibration]] - Reliability diagrams, Brier score, Platt and isotonic calibration, and why AUC does not imply good probabilities.
 - [[Clustering Evaluation Metrics]] - Purity, Rand Index, Adjusted Rand Index, NMI, and silhouette for judging clusters.
 - [[Loss Functions]] - How models measure error (MSE, Cross-Entropy).
+- [[Regularization]] - L1/L2/Elastic Net, why lasso gives sparsity, coefficient paths, tuning, and regularization in logistic regression and beyond.
 - [[Exploratory Data Analysis]] - The crucial first step of inspecting and understanding your data.
+- [[Feature Selection Methods]] - Filter, wrapper, and embedded methods; variance, correlation, chi-square, and mutual information with a worked example.
 - [[Scaling Techniques]] - Methods for normalization and when to use them.
 - [[AI Open-Ended Questions]] - Open-ended concept and application questions on Transformers, pre-training, reinforcement learning, and learning from human feedback.
 

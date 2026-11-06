@@ -13,10 +13,13 @@ Map of Contents. Classical image analysis built from first principles: pixels an
 
 ## Filtering and Gradients
 - [[Cross-Correlation and Convolution]] - Flipped vs. unflipped kernels, border modes, and the FFT.
+- [[Linear Shift-Invariant Filters]] - Linearity and shift invariance, why LSI means convolution, which filters qualify, and the consequences (separability, cascades).
 - [[Image Borders and Padding]] - Zero, replicate, and reflect padding, and the false edges zero padding creates.
 - [[Gaussian Filtering and Convolution]] - Gaussian kernels, box filters, normalization, and zero-mean kernels.
+- [[Image Sharpening]] - Unsharp masking: adding back the detail, the one-kernel form, and why it amplifies noise.
 - [[Median Filter]] - A non-linear filter for salt-and-pepper noise, its limits, and how independent masks make the real corruption exceed the label.
-- [[Image Gradients and the Sobel Operator]] - Gradient magnitude and direction, which kernel finds which edge, and smoothing first.
+- [[Image Gradients and the Sobel Operator]] - Gradient magnitude and direction, which kernel finds which edge, why differences amplify noise, and smoothing first.
+- [[Canny Edge Detector]] - Smoothing, gradient, non-maximum suppression across the edge, and hysteresis thresholding.
 
 ## Feature Detection
 - [[Harris Corner Detector]] - Structure tensor, the response function, thresholds, and border artifacts.
@@ -40,13 +43,20 @@ Map of Contents. Classical image analysis built from first principles: pixels an
 - [[Image Stitching]] - Matching, RANSAC homography, canvas sizing, warping and compositing, and why stitching fails.
 - [[Cylindrical Warping]] - Projecting onto a cylinder for panoramas, the mapping formulas, and choosing the focal length.
 
+## Camera Geometry
+- [[Pinhole Camera and Perspective Projection]] - Why a pinhole, the projection formula, vanishing points and lines, the horizon, and fronto-parallel planes.
+- [[Camera Projection Matrix]] - Intrinsics, extrinsics, $P = K[R \mid t]$, a worked pixel example, the camera center as a null space, and calibration.
+
+## Motion
+- [[Optical Flow and Lucas-Kanade]] - Brightness constancy, the aperture problem, the windowed least-squares solution, and when it fails.
+
 ## Resolution and Scale
 - [[Aliasing and Downsampling]] - Why a low-pass filter must come before subsampling.
-- [[Image Interpolation]] - Linear, bilinear, and bicubic interpolation, and inverse mapping for resizing.
+- [[Image Interpolation]] - Linear, bilinear, and bicubic interpolation, inverse mapping for resizing, and demosaicing a Bayer sensor.
 - [[Image Pyramids]] - Gaussian and Laplacian pyramids, REDUCE and EXPAND, and uses from search to blending.
 
 ## Model Fitting
-- [[Least-Squares Line Fitting]] - OLS vs. total least squares, the SVD solution, and sensitivity to outliers.
+- [[Least-Squares Line Fitting]] - OLS vs. total least squares, the normal equations, the eigenvector/SVD solution, and sensitivity to outliers.
 - [[RANSAC]] - Robust fitting by random sampling: threshold, number of trials, and multiple models.
 
 ## Code and Projects
@@ -68,4 +78,4 @@ Map of Contents. Classical image analysis built from first principles: pixels an
 ## To Research / Inbox
 *(Drop new concepts or terms you want to research here as unlinked wiki-links)*
 
-Next topics: the Canny edge detector, Hough transform, image blending, Fourier transform basics.
+Next topics: Hough transform, image blending, Fourier transform basics, stereo and epipolar geometry.

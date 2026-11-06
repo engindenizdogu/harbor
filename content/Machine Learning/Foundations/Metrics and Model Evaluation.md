@@ -96,6 +96,8 @@ $$\text{Total Error}=Bias^2+Variance+\text{Irreducible Error}$$
 ---
 
 ## Regularization
+See [[Regularization]] for a full treatment.
+
 Core idea: $\text{J}=\text{Loss Function}+\text{Regularization Penalty}$
 For any model with parameters $w$:
 - **L1 Regularization**: Add $\lambda \sum \vert w \vert$

@@ -19,6 +19,7 @@ Map of Contents
 ## Architecture & Development
 - [[Polyglot Programming]] - Strategies for multi-language application development (HTTP, Redis, Subprocesses).
 - [[CLI Development]] - Frameworks and best practices for building CLI applications in Python and JS.
+- [[Model-Based Systems Engineering]] - The system model as primary artifact, SysML/UML diagram types, XMI interchange, and traceability. Related: [[Specification Models as Graphs]].
 
 ## Testing & Automation
 - [[Playwright]] - End-to-end testing, browser automation, and AI agent web workflows.

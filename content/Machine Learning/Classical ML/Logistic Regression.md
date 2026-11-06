@@ -40,6 +40,7 @@ Usually performs better than these linear classifiers:
 ### Regularization
 - **Purpose:** A technique used to prevent **overfitting** by penalizing large model coefficients.
 - **L2 Regularization:** Adds an L2 norm penalty term ($\lambda \sum \vert \vert w \vert \vert^2$) to the loss function.
+- **In scikit-learn:** L2 is applied by default, with strength set by `C = 1/\lambda`. See [[Regularization]] for L1, tuning, and why separable data needs it.
 - **Hyperparameter $\lambda$:** Controls the strength of regularization; the optimal value is typically chosen using a validation set.
 
 > **The Intuition of Cross-Entropy**

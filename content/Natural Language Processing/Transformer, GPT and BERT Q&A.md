@@ -904,7 +904,7 @@ Each token's input is the **sum** of three embeddings (Figure 2):
 
 #### What tokenization does BERT use, and how are sentences packed?
 
-- **WordPiece** with a 30,000-token vocabulary; rare words split into pieces, as in "play ##ing".
+- **WordPiece** with a 30,000-token vocabulary; rare words split into pieces, as in `play ##ing`.
 - **Single sentence:** `[CLS] sentence A [SEP]`. **Pair:** `[CLS] sentence A [SEP] sentence B [SEP]`, with segment embeddings marking A and B.
 - A "sentence" is an arbitrary span of contiguous text and a "sequence" is the whole input (up to 512 tokens). One architecture handles both single-text and text-pair tasks.
 

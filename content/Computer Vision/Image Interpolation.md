@@ -49,7 +49,19 @@ Nearest neighbour is preferred when values must not be mixed, for example label 
 - **Shrinking** (downsampling) is different: interpolation alone does not prevent **aliasing**, so low-pass filter first ([[Aliasing and Downsampling]]).
 - Interpolation is itself a form of **convolution** with a small kernel: a triangle for linear, a cubic spline for bicubic ([[Cross-Correlation and Convolution]]). Doubling an image is the clearest case: insert zeros between the samples, then convolve with $[0.5, 1, 0.5]$ in each direction, which is bilinear interpolation.
 
-*Source: [Foundations of Computer Vision, ch. 21: Downsampling and Upsampling Images](https://visionbook.mit.edu/upsamplig_downsampling_2.html).*
+## Demosaicing: Interpolation Inside the Camera
+
+Interpolation also happens before you ever see a photograph. A sensor pixel measures only one brightness, so a colour camera puts a **colour filter array** over it, most commonly the **Bayer pattern**, a repeating $2 \times 2$ tile of one red, two green and one blue filter (RGGB). Green gets half the pixels because the eye is most sensitive to it. At every pixel two of the three colour values are therefore missing.
+
+**Demosaicing** fills them in by interpolating each colour channel separately from the neighbours that did measure it. In the simple (bilinear) version:
+
+- green at a red or blue pixel is the average of its 4 green neighbours;
+- red at a green pixel is the average of its 2 red neighbours (left and right, or above and below, depending on the row);
+- red at a blue pixel is the average of its 4 diagonal red neighbours.
+
+Interpolating each channel from its own samples keeps colours correct. Naive averaging across an edge produces colour fringes and a zipper pattern, so better methods interpolate **along** edges rather than across them.
+
+*Sources: [Foundations of Computer Vision, ch. 21: Downsampling and Upsampling Images](https://visionbook.mit.edu/upsamplig_downsampling_2.html); [Demosaicing (Wikipedia)](https://en.wikipedia.org/wiki/Demosaicing).*
 
 ---
 *Related:* [[Computer Vision MOC]], [[Image Warping]], [[Image Pyramids]], [[Aliasing and Downsampling]], [[Image Representation and Indexing]]

@@ -12,7 +12,19 @@ draft: false
 | **Ordinary least squares (OLS)** | $y = mx + b$ | **Vertical** distances $\sum (y_i - m x_i - b)^2$ | Closed form. Cannot represent vertical lines. Assumes x is exact. |
 | **Total least squares (TLS)** | $ax + by + c = 0$ with $a^2 + b^2 = 1$ | **Perpendicular** distances | Treats x and y symmetrically. Handles any orientation. |
 
-For image points both coordinates are measured with noise and lines can be at any angle, so TLS is the natural choice.
+For image points both coordinates are measured with noise and lines can be at any angle, so TLS is the natural choice. OLS has two structural problems: a **vertical line** would need $m = \infty$, and it is **not rotation invariant**, because vertical error depends on how the points are oriented, so rotating the same cloud can change which line is fitted.
+
+## Ordinary Least Squares in Closed Form
+
+Stack the points into a matrix $X$ with one row $[\,x_i \;\; 1\,]$ per point (the 1 carries the offset), the vector $\mathbf y$ of $y_i$ values, and $\mathbf w = (m, b)^\top$. The error is
+
+$$E(\mathbf w) = \sum_i (y_i - \mathbf w^\top \mathbf x_i)^2 = \lVert \mathbf y - X\mathbf w \rVert^2$$
+
+At the minimum the gradient is zero, $-2X^\top \mathbf y + 2X^\top X\,\mathbf w = 0$, which gives the **normal equations** and the solution
+
+$$X^\top X\,\mathbf w = X^\top \mathbf y \quad\Longrightarrow\quad \mathbf w = (X^\top X)^{-1} X^\top \mathbf y$$
+
+The matrix $(X^\top X)^{-1}X^\top$ is the **pseudo-inverse** of $X$. The same recipe estimates any model that is linear in its parameters, for example an affine transform from point matches ([[Image Warping]]) or the motion in [[Optical Flow and Lucas-Kanade]].
 
 ## Total Least Squares via SVD
 
@@ -25,6 +37,8 @@ so the squared error is $\sum d_i^2$. The solution has two parts:
 1. The best line **passes through the centroid** $\bar{\mathbf p}$ of the points.
 2. Center the data, $X = [\,\mathbf p_i - \bar{\mathbf p}\,]$ (an $n \times 2$ matrix), and take its **SVD**, $X = U \Sigma V^\top$. The first right singular vector (first row of $V^\top$) is the **direction** of greatest spread, the line's tangent. The **second** is the **normal** $\mathbf n$, direction of least spread.
 3. Set $c = -\mathbf n \cdot \bar{\mathbf p}$.
+
+**Why this is an eigenvector problem.** After centering, the squared error is $\lVert X\mathbf n \rVert^2$, and it is minimized subject to $\lVert \mathbf n \rVert = 1$. This is **homogeneous least squares**: the answer is the **eigenvector of $X^\top X$ with the smallest eigenvalue**, which is exactly the last right singular vector of the SVD, since $X^\top X = V \Sigma^2 V^\top$. The constraint $\lVert \mathbf n \rVert = 1$ is essential: without it, $\mathbf n = 0$ gives zero error, and shrinking $\mathbf n$ always shrinks the error. The same trick estimates a homography ([[Homographies and Perspective Warping]]).
 
 ```python
 def fit_line(points):                      # points: n x 2

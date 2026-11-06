@@ -36,7 +36,7 @@ One token sequence can hold a single sentence or a sentence pair:
 [CLS] my dog is cute [SEP] he likes play ##ing [SEP]
 ```
 
-- **WordPiece** tokenization with a 30,000-token vocabulary (rare words split into pieces, as in "play ##ing"). See [[Tokenization]].
+- **WordPiece** tokenization with a 30,000-token vocabulary (rare words split into pieces, as in `play ##ing`). See [[Tokenization]].
 - **`[CLS]`** is the first token of every sequence. Its final hidden state is the aggregate representation used for classification and for next sentence prediction.
 - **`[SEP]`** separates the two sentences and ends each one.
 - **`[MASK]`** replaces tokens selected for masked language modeling (pre-training only).

@@ -45,11 +45,22 @@ Derivatives amplify noise: a single noisy pixel creates a large local difference
 | Moderate $\sigma$ | Clean edges of the main structures |
 | Large $\sigma$ | Only the broad outlines, with blurred locations |
 
+**Why does a difference amplify noise?** Take two neighbouring pixels with independent noise of variance $\sigma_n^2$ each. Their difference has variance $\sigma_n^2 + \sigma_n^2 = 2\sigma_n^2$, because variances of independent quantities **add** even when you subtract. The noise standard deviation grows by $\sqrt{2}$, and since neighbouring noise is independent it cannot cancel. Smoothing does the opposite: averaging $n$ independent values divides the noise variance by $n$.
+
+Smoothing and derivative filters are two different kinds of filter:
+
+| | Smoothing filter | Derivative filter |
+| - | ---------------- | ----------------- |
+| Weights sum to | **1** | **0** |
+| Frequency response | Low-pass | Band-pass or high-pass |
+| Flat region | Unchanged | Zero response |
+| Effect on noise | Reduces it | Amplifies it |
+
 Because convolution is associative, Gaussian smoothing followed by a derivative equals one filter, the **derivative of a Gaussian**. Border handling matters too: zero padding produces a false bright frame ([[Image Borders and Padding]]).
 
 ## From Gradients to Edge Maps
 
-Thresholding the magnitude gives thick edge bands. Thin, connected edges need extra steps, as in the Canny detector: smoothing, gradient, **non-maximum suppression** across the edge direction ([[Non-Maximum Suppression]]), and hysteresis thresholding.
+Thresholding the magnitude gives thick edge bands. Thin, connected edges need extra steps, as in the [[Canny Edge Detector]]: smoothing, gradient, **non-maximum suppression** across the edge direction ([[Non-Maximum Suppression]]), and hysteresis thresholding.
 
 *Source: [Sobel operator (Wikipedia)](https://en.wikipedia.org/wiki/Sobel_operator).*
 

@@ -22,6 +22,7 @@ Read in this order: node importance first, then two-mode networks.
 - [[Bipartite Networks]] - Two-mode graphs, biadjacency matrices, one-mode projections and weighting, co-occurrence matrices, and centrality across two node sets. Related: [[Recommendation Systems]].
 - [[Network Analysis Tools]] - NetworkX for analysis, Gephi for visual exploration, Graphviz for static diagrams.
 - [[Graph Neural Networks]] - Message passing, GCN, GraphSAGE, and GAT; learned alternatives to hand-made centrality.
+- [[Specification Models as Graphs]] - Adapter and intermediate-representation pipeline, multigraph construction choices, and rule-based consistency checks on a system model. Related: [[Model-Based Systems Engineering]].
 
 ## Simulation
 - [[Agent-Based Modeling]] - Emergence from simple agent rules, Schelling's segregation model, how it differs from LLM agent systems, and the Mesa framework. Related: [[Network Analysis Tools]], [[Agents MOC]].
