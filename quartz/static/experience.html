@@ -89,10 +89,11 @@
 
 <h2>Skills &amp; Certifications</h2>
 <ul>
-  <li><strong>Data Science:</strong> Python, Jupyter, Pandas, NumPy, scikit-learn, PyTorch, Anomaly Detection, XGBoost, Random Forest</li>
-  <li><strong>AI:</strong> LLMs, Prompt Engineering, Hugging Face Transformers, Semantic Search (FAISS), AI-assisted Coding (OpenAI, Claude)</li>
-  <li><strong>Data Engineering:</strong> Statistical Analysis, SQL, PostgreSQL, ETL, PySpark, IBM DataStage, SAP BusinessObjects, Data Visualization</li>
-  <li><strong>MLOps:</strong> Docker, Kubernetes, MLflow, KNIME, Git</li>
+  <li><strong>Data Science:</strong> Python, Pandas, NumPy, scikit-learn, XGBoost, Optuna, Anomaly Detection, Time-Series Forecasting, Statistical Analysis, Data Visualization</li>
+  <li><strong>Deep Learning:</strong> PyTorch, TensorFlow/Keras, CNNs, LSTMs/Seq2Seq, Autoencoders, Knowledge Distillation, Graph Neural Networks (PyTorch Geometric), Computer Vision (OpenCV)</li>
+  <li><strong>AI &amp; LLMs:</strong> vLLM, Hugging Face Transformers, RAG and Embeddings (FAISS, sentence-transformers), Semantic Caching, LLM Agents and Tool Use, Structured Output Validation, Prompt Engineering, OpenAI/Claude APIs</li>
+  <li><strong>Data Engineering:</strong> SQL, PostgreSQL, ETL, PySpark, Spark Structured Streaming, Apache Kafka, DuckDB, Parquet, IBM DataStage, Knowledge Graphs (NetworkX)</li>
+  <li><strong>MLOps &amp; Engineering:</strong> Docker, Kubernetes, MLflow, Slurm GPU Clusters, Git, pytest, uv, FastAPI, Streamlit</li>
   <li><strong>Certifications:</strong> AWS Cloud Practitioner, AWS Partner Accreditation (Technical), Azure Data Fundamentals, ISO 27001 Lead Auditor</li>
 </ul>
 
@@ -119,6 +120,20 @@
 </ul>
 
 <h2>Projects</h2>
+<div class="entry"><strong>Graph-Based Personal News Recommender, EM626 AI &amp; ML for Systems Project, <a href="https://github.com/engindenizdogu/personal-news" target="_blank" rel="noopener noreferrer">GitHub</a></strong><span class="date">11/2026 – Present</span></div>
+<ul>
+  <li>Building a personal news recommender that learns what one reader finds relevant from their own ratings (more like this, neutral, less like this), testing whether graph structure beats item text alone with GCN/GraphSAGE and graph Transformers (PyTorch Geometric) against random forest and gradient-boosted tree baselines.</li>
+  <li>Engineered a reproducible Python pipeline (feedparser, trafilatura, uv): idempotent collection from 9 RSS feeds (~1,500 items, 824 kept after a 2026 date filter) and polite article extraction that respects robots.txt and per-host rate limits.</li>
+  <li>Implemented validated LLM entity extraction (GLM 5.3 Flash via OpenRouter, temperature 0, JSON mode) with schema checks, a mention-in-text check that drops hallucinated entities, alias merging, and an input-hash cache, at about $0.0004 per item.</li>
+  <li>Built a heterogeneous graph (780 nodes, 902 edges) with statistics, centrality and homophily tests, and a Gephi export; found 90% of entities appear in one item only, motivating topic nodes and scaling to ~25 sources and ~1,000 items, evaluated with macro-F1 and PR-AUC on a time-based split.</li>
+</ul>
+<div class="entry"><strong>NY Harbor Vessel Traffic Analytics (vessel-watch), AAI627 Big Data Analytics Project, <a href="https://github.com/engindenizdogu/vessel-watch" target="_blank" rel="noopener noreferrer">GitHub</a></strong><span class="date">10/2026 – Present</span></div>
+<ul>
+  <li>Building a big data app that tracks New York Harbor ship traffic from AIS position reports, with Apache Spark 3.5 (batch and Structured Streaming), Apache Kafka (KRaft, Docker), Parquet, DuckDB, and a Streamlit dashboard shared through a Cloudflare tunnel.</li>
+  <li>Engineered a resumable NOAA ingestion and cleaning pipeline that processes about 1 GB per day of raw AIS one day at a time, producing 58 days and 15.6M cleaned reports, with one cleaning module shared by batch and streaming to avoid training-serving skew.</li>
+  <li>Designed a calibrated signal-gap detector with feed-outage guards and learned shutdown spots; on 58 days it found 7,882 gaps from 525 vessels, and on a time split it labeled 87% of routine berth shutdowns while leaving 89% of real moving gaps flagged.</li>
+  <li>Defined entrance gate crossings as the forecast target (11.9 inbound cargo ships and tankers per day) after terminal arrivals proved too sparse; seasonal-naive baseline, off-route alerts, and injected-anomaly evaluation in progress, with 72 pytest tests.</li>
+</ul>
 <div class="entry"><strong>Budget-Aware Long-Context Execution in LLMs, Advisor: Prof. William Eiers, <a href="https://github.com/adarsh-vatsa/RLMs" target="_blank" rel="noopener noreferrer">GitHub</a></strong><span class="date">01/2026 – 06/2026</span></div>
 <ul>
   <li>Built a budget-aware long-context pipeline (vLLM, Qwen3.6-35B) with a FAISS semantic answer cache and an LLM source verifier; on LongBench-v2 the cache cut total token usage by 49.3% and raised accuracy 3.4 points over the uncached baseline; retrieval beat truncation by 17 points on AA-LCR (54% vs 37%) and 13 on MRCR v2 (51% vs 38%).</li>

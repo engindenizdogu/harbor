@@ -10,66 +10,57 @@ tags:
   - auto-captured
 draft: false
 ---
-> A transportation analytics web app that forecasts vessel arrivals and flags signal gaps and off-route movement in New York Harbor from public AIS position reports.
+> A transportation analytics web app (vessel-watch) that tracks ship traffic in New York Harbor from public AIS position reports, forecasts inbound ships at the harbor entrance, and flags vessels whose signal goes dark.
 
 ## Quick Facts
-- **Context:** AAI 627 Big Data Analytics for Engineering Design, Fall 2026 course project (Option 1: build a big data analytics app). In progress; due in the first week of December 2026 (exact date unconfirmed).
-- **Tech Stack:** Python 3.10/3.11, **Apache Spark 3.5** (batch and Structured Streaming), **Apache Kafka** (single broker, KRaft, Docker), Parquet, DuckDB, scikit-learn/LightGBM, FastAPI, Streamlit with pydeck
-- **Data:** NOAA/BOEM MarineCadastre AIS archive (historical) and a free live AIS WebSocket feed (to be confirmed for harbor coverage)
-- **Links:** None yet; a project plan and repo-level CLAUDE.md were drafted separately and the repository is being set up
+- **Context:** AAI 627 Big Data Analytics for Engineering Design, Fall 2026 course project (Option 1: build a big data analytics app). In progress; due in the first week of December 2026, with a feature freeze on November 15.
+- **Tech Stack:** Python 3.11 with uv, **Apache Spark 3.5** (batch and Structured Streaming, Java 17), **Apache Kafka** (single broker, KRaft, Docker Compose), Parquet, **DuckDB**, pandas, **Streamlit** with pydeck, scikit-learn/LightGBM (planned), pytest, Makefile, Cloudflare Quick Tunnel
+- **Data:** NOAA/BOEM MarineCadastre AIS archive (historical, daily CSVs of about 1 GB each) and the AISStream live WebSocket feed
+- **Links:** [GitHub Repo](https://github.com/engindenizdogu/vessel-watch)
 
 ## Overview and Problem
-Vessels broadcast AIS position reports continuously, producing a large, noisy, fast-moving dataset. The goal is a pipeline that cleans historical and live AIS data with Spark, forecasts hourly vessel arrivals, and raises alerts for signal gaps and off-route vessels, all shown on an interactive dashboard with a live map, a forecast chart, and an alert feed. Related background: [[Apache Spark]], [[Stream Processing and Event Streaming]], [[Correlation Drift Monitoring with Spark]].
-
-## What I Built
-Planned components (build under way, status as of October 2026):
-- **Engineer** a Spark batch pipeline that cleans NOAA AIS data (invalid MMSI, out-of-range coordinates, duplicates, impossible speeds) into date-partitioned Parquet.
-- **Implement** a Kafka ingestion path (included deliberately to learn the technology): a live WebSocket producer and a replay producer share one topic (`ais.raw`, keyed by MMSI), consumed by Spark Structured Streaming.
-- **Build** a training-data branch: a second consumer group writes features to Parquet for offline model training.
-- **Train** an arrival forecast (hourly arrivals per geofence) against a seasonal-naive baseline using time-based splits.
-- **Design** anomaly detection: a signal-gap rule and an off-route check against a density grid learned from history, evaluated on injected anomalies; an isolation forest on per-vessel features is an optional stretch for comparison with the rules.
-- **Deliver** a Streamlit dashboard with live map, forecast chart, and alert feed over a thin FastAPI layer.
+Vessels broadcast AIS position reports every few seconds to minutes, producing a large, noisy, fast-moving dataset. The goal is a pipeline that cleans historical and live AIS data with Spark, forecasts hourly inbound ship traffic, and raises alerts for signal gaps and off-route movement, all shown on an interactive dashboard. Related background: [[Apache Spark]], [[Stream Processing and Event Streaming]], [[Correlation Drift Monitoring with Spark]].
 
 ```mermaid
 flowchart LR
     N["NOAA AIS archive"] --> B["Spark batch clean"]
-    B --> P["Parquet"]
-    L["Live AIS feed"] --> K["Kafka ais.raw"]
-    R["Replay producer"] --> K
+    B --> P["Parquet by date"]
+    P --> G["Gaps, gates,<br/>profile jobs"]
+    L["AISStream live feed"] --> K["Kafka ais.raw"]
+    R["Replay producer<br/>(planned)"] --> K
     K --> S["Spark Structured Streaming"]
-    K --> T["Training sink"]
-    S --> D["DuckDB"]
-    T --> M["Forecast model"]
-    M --> S
-    D --> A["FastAPI"]
-    A --> U["Streamlit dashboard"]
+    S --> V["Serving Parquet"]
+    S --> H["Live history<br/>(hourly compaction)"]
+    V --> D["DuckDB"]
+    G --> D
+    D --> U["Streamlit dashboard"]
 ```
 
+## What I Built
+Status as of November 6, 2026 (weeks 1 to 3 of 7 done):
+- **Engineered** a resumable NOAA history pipeline (`make history`) that samples random blocks of consecutive days, then downloads, cleans and deletes one raw day at a time, so only about 1.4 GB of raw data is on disk at once. Result: **58 days, 15.6 million reports, 247 MB** of date-partitioned Parquet.
+- **Implemented** one shared cleaning module for batch and streaming: crop to the harbor box, drop invalid MMSIs and out-of-range positions, null AIS "not available" codes (heading 511, speed 102.3), deduplicate, and drop position spikes only when the implied speed is impossible from both neighbors. Row counts are logged after each step.
+- **Built** the live path: an AISStream producer into Kafka (keyed by vessel), Spark Structured Streaming into serving Parquet (one file per 60-second micro-batch to avoid small files), and a second query that keeps every live report and compacts it hourly into one cleaned file per day.
+- **Designed** a calibrated signal-gap detector: a vessel that was reporting regularly goes silent longer than the larger of a state minimum (10 min moving, 30 min stopped) and 8 times its recent median interval. It skips vessels near the box edge and never raises gaps across feed outages (1,134 outage minutes found in the archive). On 58 days it found **7,882 gaps from 525 vessels**; 6,368 started at one of **119 learned shutdown spots** (ferries and tour boats switching AIS off at the berth), leaving 1,514 worth a look.
+- **Replaced** terminal geofences with **gate crossings** as the forecast target after terminal arrivals proved too sparse (0.28 per hour at Port Newark). Four gate lines (sea entrance, the Narrows, Throgs Neck, George Washington Bridge) count crossings by direction and vessel group; the target is inbound cargo ships and tankers at the sea entrance: **11.9 per day, 0.49 per hour, 63% of hours zero**.
+- **Delivered** a Streamlit dashboard with Live (positions from the last 15 minutes, refreshed every 30 s), History (any NOAA day with a Play button and vessels-per-hour chart) and Data Dictionary pages, plus a public demo link through a Cloudflare Quick Tunnel. Covered by **72 pytest tests**.
+
+Planned (weeks 4 to 7):
+- **Build** a replay producer and a stateful streaming gap detector (`applyInPandasWithState`) that must reproduce the batch gaps on replayed NOAA days.
+- **Train** the inbound-ship forecast against a seasonal-naive baseline (also testing 3-hour bins, since the hourly target is sparse) and add off-route alerts from a traffic-density grid.
+- **Evaluate** both detectors on injected anomalies (detection and false-alert rates), optionally against an isolation forest, then integrate the live map, forecast chart and alert feed.
+
 ## Key Results and Impact
-Targets (not yet measured):
-- Aim to **beat a seasonal-naive baseline** on held-out MAE for hourly arrivals, using a time-based train/test split.
-- Measure **detection rate and false-alert rate** for gap and off-route alerts on injected test anomalies, since real labels do not exist.
-- Keep **one cleaning and feature code path** shared by replay, live, and training to avoid training-serving skew.
-- Gate each phase with data checks: usable report density by Oct 25, Kafka reading into Spark by Oct 30, feature freeze Nov 15.
-
-## Schedule
-
-| Week | Dates | Focus | Deliverable |
-| :-- | :-- | :-- | :-- |
-| 1 | Oct 19-25 | Data access, definitions, first preprocessing | Project repo and environment setup; test the data source (sample set, first cleaned Parquet); "arrival" and "anomaly" defined |
-| 2 | Oct 26-Nov 1 | Kafka setup, historical pipeline | Kafka broker and Spark pipeline; replay feed for Spark |
-| 3 | Nov 2-8 | Live ingestion, arrival forecast | Live Kafka producer on the live AIS feed (the replay producer already covers the dataset); naive baselines: seasonal-naive for the arrival forecast, rule-based for anomalies, used for comparing model results |
-| 4 | Nov 9-15 | Anomaly detection | Model training pipeline (separate consumer to Parquet, offline training) and an arrival forecast beating the baseline; anomaly detector with signal-gap and off-route alerts, detection and false-alert rates measured on injected test anomalies; **no new features after Nov 15** |
-| 5 | Nov 16-22 | Dashboard and integration | Live map, forecast chart, alert feed, working end to end |
-| 6 | Nov 23-29 | Final checks and writeup | Results, architecture diagram, rehearsed demo |
-| 7 | Nov 30-Dec 6 | Buffer week | Final fixes and submission |
-
-If time runs short, cut in this order: off-route alerts (keep the signal-gap rule), then live feed (demo from replay), then forecast tuning.
+- Achieved a working end-to-end batch and live pipeline over **15.6 million reports** with a public demo link, ahead of the week 5 integration milestone.
+- Cut alert noise by labeling gaps at learned shutdown spots: on a time split (spots learned from 2023, applied to 16 days of 2024), **87% of berth shutdowns** (1,631 of 1,877) were labeled while **89% of real moving gaps** (314 of 351) stayed unlabeled, leaving about 48 unexplained gaps per day.
+- Validated the data coverage: gate lines seal their channels (extending any line by 25% adds no cargo ships; cargo crossings balance 474 in and 474 out), and reception does not drop near the box edges (median report interval 70 s within 2 km of an edge vs. 67 s inside).
+- Targets still to measure: beat the seasonal-naive baseline on held-out MAE with a time-based split, and report detection and false-alert rates on injected anomalies.
 
 ## Core Learnings
-- Trade-offs between a live feed and a replay path: replay makes demos and anomaly tests reproducible, while live data proves the architecture.
-- Keying Kafka messages by vessel keeps per-vessel ordering, which gap detection depends on.
-- With no ground-truth labels, injected anomalies and a naive baseline are what make the evaluation defensible.
+- Calibrate definitions on data, not intuition: the declared navigational status was unreliable (most "under way" gaps were vessels doing under 1 knot), so the gap rule uses speed instead.
+- Most "anomalies" in raw AIS are expected behavior; learning where vessels routinely go silent matters more than a tighter threshold.
+- A sparse target (63% zero hours) can sink a forecast, so switching from terminal arrivals to entrance gate crossings was worth a day of rework.
+- Keying Kafka messages by vessel keeps per-vessel ordering, and one cleaning module shared by batch and streaming avoids training-serving skew.
 
 ---
-*Related:* [[Projects/index|Projects MOC]]
+*Related:* [[Projects/index|Projects MOC]] | [[Apache Spark]] | [[Stream Processing and Event Streaming]]

@@ -9,6 +9,7 @@ draft: false
 - [[Budget-Aware Long-Context Execution]]
 - [[Automatic Tag Generation and Clustering with LLMs]]
 - [[NY Harbor Vessel Traffic Analytics]]
+- [[Graph-Based Personal News Recommender]]
 - [[Kaggle BirdCLEF 2026 Case Study]]
 - [[Viral Scope]]
 - [[YELP Help]]

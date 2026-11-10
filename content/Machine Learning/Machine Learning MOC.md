@@ -17,6 +17,7 @@ Core vocabulary, problem types, and evaluation, located in the `Foundations/` di
 - [[Regularization]] - L1/L2/Elastic Net, why lasso gives sparsity, coefficient paths, tuning, and regularization in logistic regression and beyond.
 - [[Exploratory Data Analysis]] - The crucial first step of inspecting and understanding your data.
 - [[Feature Selection Methods]] - Filter, wrapper, and embedded methods; variance, correlation, chi-square, and mutual information with a worked example.
+- [[Feature Importance Methods]] - Coefficients, impurity, permutation importance, and SHAP, with when each misleads.
 - [[Scaling Techniques]] - Methods for normalization and when to use them.
 - [[AI Open-Ended Questions]] - Open-ended concept and application questions on Transformers, pre-training, reinforcement learning, and learning from human feedback.
 
