@@ -14,3 +14,4 @@ quartz/cli/tui/dist/
 .turbo/
 _Private/
 .scripts/queue/
+.claude/launch.json
