@@ -5,12 +5,19 @@ draft: false
 ---
 **Feature selection** keeps the useful input variables and drops the rest. It reduces overfitting, speeds up training, cuts storage and measurement cost, and makes models easier to interpret. It differs from dimensionality reduction (such as PCA), which builds new features instead of keeping a subset of the originals.
 
+## Why Not Use All Features?
+A natural question is why not hand every feature to the model and let it decide. Four reasons:
+- **Overfitting:** with more features than samples ($p > n$), a model can fit the training data perfectly by also fitting the noise. Training scores look excellent while test scores collapse.
+- **Occam's razor:** simpler models with fewer inputs are easier to explain and trust.
+- **Garbage in, garbage out:** non-informative features distract the learning process and degrade the output.
+- **Cost:** every extra feature adds training time, memory, and often a real-world cost to measure or collect it.
+
 ## Three Families
-| Family | How it works | Cost | Examples |
-|---|---|---|---|
-| **Filter** | Score each feature with a statistic, independent of any model | cheapest | variance, correlation, chi-square, mutual information |
-| **Wrapper** | Train a model on candidate subsets and keep the best | most expensive | recursive feature elimination, forward/backward selection |
-| **Embedded** | Selection happens during training | moderate | L1 regularization, tree feature importances (see [[Regularization]]) |
+| Family | How it works | Strengths | Weaknesses | Examples |
+|---|---|---|---|---|
+| **Filter** | Score each feature with a statistic, independent of any model | fast, scalable, model-independent | ignores interactions between features | variance, correlation, chi-square, mutual information |
+| **Wrapper** | Search subsets by training a model on each candidate | captures interactions, often the most accurate | expensive; overfits unless cross-validated | forward selection, backward elimination, RFE |
+| **Embedded** | Selection happens during training | efficient, built into model fitting | tied to one model and its tuning | Lasso (L1), decision trees, random forest importance |
 
 Filter methods scale to large data, but most score features one at a time, so they miss interactions between features. Wrapper methods are covered in their own section below; for ranking features by how much a trained model relies on them, see [[Feature Importance Methods]].
 
@@ -82,6 +89,25 @@ Wrappers search over feature subsets by training a model on each candidate. All 
 
 **Forward vs. backward.** Backward elimination sees all features together from the start, so it handles features that matter only in combination better than forward selection. It needs more samples than features, though.
 
+## Embedded Methods
+The model selects features as a side effect of training.
+
+| Method | How it selects | Strengths | Weaknesses |
+|---|---|---|---|
+| **Lasso (L1)** | the penalty $\lambda\sum_j \lvert w_j\rvert$ drives some weights to exactly zero | automatic, fast, good for high-dimensional sparse data (text, genomics) | drops one of a group of correlated features arbitrarily; result depends on $\lambda$ |
+| **Decision tree** | features that split the data well earn high impurity-reduction scores | nonlinear, no scaling needed | single trees overfit; biased toward features with many levels |
+| **Random forest** | averages tree importances over many trees | more robust to noise than one tree | higher cost on large data; less interpretable |
+
+**Penalty strength sets the feature count.** On the diabetes regression dataset (10 standardized features), Lasso keeps:
+
+| `alpha` | 0.01 | 0.1 | 1 | 5 | 10 | 20 |
+|---|---|---|---|---|---|---|
+| Non-zero coefficients | 10 | 9 | 7 | 5 | 4 | 3 |
+
+Tune `alpha` by cross-validation (`LassoCV`) rather than picking it by hand. See [[Regularization]] for why L1 produces exact zeros.
+
+**Common snippet pitfall.** `SelectFromModel(LogisticRegression(penalty="l1"))` raises an error in current scikit-learn, because the default `lbfgs` solver supports only L2. Pass `solver="liblinear"` or `solver="saga"`. With `max_features=k`, also set `threshold=-np.inf` to get exactly the top $k$ by importance.
+
 ## scikit-learn Patterns
 Tested on the breast cancer dataset with a stratified 70/30 split:
 
@@ -107,12 +133,42 @@ cross_val_score(pipe, X, y, cv=5, scoring="roc_auc")
 ```
 This gave AUC 0.987, versus 0.995 with all 30 features and no selection. Selection did not improve accuracy here; its payoff is speed, interpretability, and robustness on noisy high-dimensional data.
 
+## Evaluating a Selection
+A selected subset is only as good as what it does to the final model. Compare models with and without selection on:
+
+| Criterion | What to measure |
+|---|---|
+| **Predictive performance** | accuracy, F1, RMSE on cross-validation or a hold-out set |
+| **Cost** | training and inference time, memory |
+| **Simplicity** | number of features kept |
+| **Generalization** | gap between training and validation scores; a smaller gap means less overfitting |
+| **Stability** | whether the same features are chosen across data splits or bootstrap samples |
+
+Stability is the criterion most often skipped. Measure it by running the selector on bootstrap samples and computing the average pairwise **Jaccard similarity** $\lvert A\cap B\rvert / \lvert A\cup B\rvert$ of the selected sets.
+
+![[feature-selection-stability.png]]
+
+Breast cancer dataset, top 10 of 30 features on 20 bootstrap samples. Univariate filters were the most stable (0.93 and 0.89), random forest next (0.83), L1 lower (0.73) and RFE the least stable (0.57). The data has many near-duplicate features (radius, perimeter and area), and model-based methods swap between them from sample to sample. Low stability does not mean low accuracy: the swapped features carry the same information. It does mean the individual feature names should not be over-interpreted.
+
+## Feature Selection at Big Data Scale
+- **Filters parallelize easily**, since each feature is scored independently, so they are the usual first step on very wide data.
+- **Wrappers become expensive** because each step retrains a model on the full dataset. Prefer embedded methods or RFE with a large `step`.
+- **Spark MLlib** provides `VarianceThresholdSelector`, `UnivariateFeatureSelector` (F-test or chi-square depending on whether features and label are continuous or categorical, keeping top-$k$, a percentile, or by false-positive/discovery rate), and `ChiSqSelector`. L1 selection uses `LogisticRegression` or `LinearRegression` with `elasticNetParam=1.0`, and tree models expose `featureImportances`. See [[Apache Spark]].
+
+## Applications
+- **Bioinformatics:** pick a few genes or proteins out of thousands for disease or cancer-subtype classification.
+- **Finance:** select the key indicators for credit scoring and risk models.
+- **Text classification:** keep the most informative words or n-grams for spam detection or sentiment analysis.
+- **Sensors and IoT:** choose the most informative signals for predictive maintenance or health monitoring with wearables.
+- **Marketing:** find the variables that drive churn or campaign response.
+
 ## Choosing and Using
 1. **Start with variance**, then drop highly correlated feature pairs.
 2. **Pick the score by data type:** correlation for linear relations, mutual information when relations may be nonlinear, chi-square for categorical features and target.
 3. **Select inside cross-validation.** Choosing features on the full dataset before splitting leaks test information and inflates scores. Put the selector in a `Pipeline`.
 4. **Choose the number of features** (`SelectKBest(k=...)` or `SelectPercentile`) by validation performance, not by a fixed cutoff.
-5. **Know the blind spot.** A feature that looks useless alone can matter in combination, such as an XOR pattern where neither input predicts the target alone. Wrapper and embedded methods can catch these.
+5. **Match the family to the budget.** Filters for very wide data or a quick first pass, embedded methods when the model is already chosen, wrappers when accuracy matters most and the feature count is modest.
+6. **Know the blind spot.** A feature that looks useless alone can matter in combination, such as an XOR pattern where neither input predicts the target alone. Wrapper and embedded methods can catch these.
 
 ## Related Notes
 - [[Correlation Coefficients]]: Pearson, Spearman and Kendall in detail.
