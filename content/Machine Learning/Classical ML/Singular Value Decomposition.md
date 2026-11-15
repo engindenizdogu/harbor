@@ -39,11 +39,13 @@ Decompose $A = \begin{bmatrix} 3 & 0 \\ 4 & 5 \end{bmatrix}$ as $A = U\Sigma V^T
 
 **Step 1: Find $V$ and $\Sigma$ from $A^TA$.**
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 A^TA &= \begin{bmatrix} 25 & 20 \\ 20 & 25 \end{bmatrix} \\
 \det(A^TA - \lambda I) &= (25-\lambda)^2 - 400 = 0 \\
 \lambda_1 &= 45, \quad \lambda_2 = 5
-\end{aligned}$$
+\end{aligned}
+$$
 
 The singular values are the square roots of the eigenvalues, sorted in descending order: $\sigma_1 = \sqrt{45} = 3\sqrt{5} \approx 6.71$ and $\sigma_2 = \sqrt{5} \approx 2.24$.
 
@@ -53,19 +55,23 @@ $$v_1 = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix}, \quad v_2 = \fra
 
 **Reminder: how to get $v_1$ and $v_2$.** For each eigenvalue, solve $(A^TA - \lambda I)v = 0$ (find the null space), then divide by the vector's length so it has unit norm.
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \lambda_1 = 45:\quad & \begin{bmatrix} -20 & 20 \\ 20 & -20 \end{bmatrix}v = 0 \;\Rightarrow\; -20v_a + 20v_b = 0 \;\Rightarrow\; v \propto \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \quad \left\|\begin{bmatrix} 1 \\ 1 \end{bmatrix}\right\| = \sqrt{2} \\
 \lambda_2 = 5:\quad & \begin{bmatrix} 20 & 20 \\ 20 & 20 \end{bmatrix}v = 0 \;\Rightarrow\; 20v_a + 20v_b = 0 \;\Rightarrow\; v \propto \begin{bmatrix} 1 \\ -1 \end{bmatrix}, \quad \left\|\begin{bmatrix} 1 \\ -1 \end{bmatrix}\right\| = \sqrt{2}
-\end{aligned}$$
+\end{aligned}
+$$
 
 Because $A^TA$ is symmetric, $v_1 \perp v_2$ automatically. See [[2. Linear Algebra]] for eigenvectors.
 
 **Step 2: Find $U$ from $Av_i = \sigma_i u_i$.**
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 u_1 &= \frac{Av_1}{\sigma_1} = \frac{1}{3\sqrt{5}} \cdot \frac{1}{\sqrt{2}}\begin{bmatrix} 3 \\ 9 \end{bmatrix} = \frac{1}{\sqrt{10}}\begin{bmatrix} 1 \\ 3 \end{bmatrix} \\
 u_2 &= \frac{Av_2}{\sigma_2} = \frac{1}{\sqrt{5}} \cdot \frac{1}{\sqrt{2}}\begin{bmatrix} 3 \\ -1 \end{bmatrix} = \frac{1}{\sqrt{10}}\begin{bmatrix} 3 \\ -1 \end{bmatrix}
-\end{aligned}$$
+\end{aligned}
+$$
 
 **Step 3: Assemble.**
 

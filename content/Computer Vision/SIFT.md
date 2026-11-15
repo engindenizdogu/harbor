@@ -36,7 +36,9 @@ Each candidate is refined and filtered:
 - **Low contrast removed:** extrema with $|D(\hat{\mathbf x})| < 0.03$ are discarded (pixel values scaled to $[0, 1]$), since they are unstable under noise.
 - **Edge responses removed:** a DoG peak along an edge is strong in one direction and weak across it, so its position slides along the edge. Using the $2 \times 2$ Hessian $H$ of the DoG, with $r$ the ratio of its two eigenvalues, a keypoint is kept only if
 
-$$\frac{\operatorname{Tr}(H)^2}{\operatorname{Det}(H)} < \frac{(r + 1)^2}{r}, \qquad r = 10$$
+$$
+\frac{\operatorname{Tr}(H)^2}{\operatorname{Det}(H)} < \frac{(r + 1)^2}{r}, \qquad r = 10
+$$
 
 This is the same ratio-of-curvatures idea that Harris uses to tell edges from corners. In the paper's example, the contrast filter reduces 832 candidates to 729 and the edge filter to **536**.
 
@@ -44,8 +46,12 @@ This is the same ratio-of-curvatures idea that Harris uses to tell edges from co
 
 To make the keypoint **rotation invariant**, everything is measured relative to a **dominant gradient direction**. At the keypoint's scale, gradient magnitude and direction come from pixel differences of the blurred image $L$:
 
-$$m(x, y) = \sqrt{\big(L(x{+}1, y) - L(x{-}1, y)\big)^2 + \big(L(x, y{+}1) - L(x, y{-}1)\big)^2}, \qquad
-\theta(x, y) = \operatorname{atan2}\big(L(x, y{+}1) - L(x, y{-}1),\ L(x{+}1, y) - L(x{-}1, y)\big)$$
+$$
+\begin{aligned}
+m(x, y) &= \sqrt{\big(L(x{+}1, y) - L(x{-}1, y)\big)^2 + \big(L(x, y{+}1) - L(x, y{-}1)\big)^2} \\
+\theta(x, y) &= \operatorname{atan2}\big(L(x, y{+}1) - L(x, y{-}1),\ L(x{+}1, y) - L(x{-}1, y)\big)
+\end{aligned}
+$$
 
 - Build a **36-bin histogram** (10 degrees per bin) of $\theta$ in a region around the keypoint, weighting each sample by $m$ and by a Gaussian window with $\sigma$ equal to **1.5 times the keypoint's scale**.
 - The **highest peak** gives the orientation. Any other peak within **80%** of it creates an **additional keypoint** at the same place with that orientation (about 15% of points get several).

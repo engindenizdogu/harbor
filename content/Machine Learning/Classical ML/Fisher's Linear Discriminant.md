@@ -32,10 +32,8 @@ $$S_W = S_+ + S_-$$
 > $S_+$ or $S_-$ takes the form
 > 
 > $$
-\begin{aligned}
-\begin{bmatrix} var(x_1) && cov(x_1,x_2) \\ cov(x_1,x_2) && var(x_2) \end{bmatrix}
-\end{aligned}
-$$
+> \begin{bmatrix} \operatorname{var}(x_1) & \operatorname{cov}(x_1,x_2) \\ \operatorname{cov}(x_1,x_2) & \operatorname{var}(x_2) \end{bmatrix}
+> $$
 
 $$S_B = (m_+-m_-)(m_+-m_-)^T$$
 

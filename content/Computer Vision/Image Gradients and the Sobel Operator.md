@@ -7,9 +7,11 @@ An **edge** is a place where intensity changes sharply. The **image gradient** m
 
 ## The Gradient
 
-$$\nabla I = \begin{pmatrix} \partial I / \partial x \\ \partial I / \partial y \end{pmatrix} = \begin{pmatrix} G_x \\ G_y \end{pmatrix}, \qquad
+$$
+\nabla I = \begin{pmatrix} \partial I / \partial x \\ \partial I / \partial y \end{pmatrix} = \begin{pmatrix} G_x \\ G_y \end{pmatrix}, \qquad
 \lVert \nabla I \rVert = \sqrt{G_x^2 + G_y^2}, \qquad
-\theta = \operatorname{atan2}(G_y, G_x)$$
+\theta = \operatorname{atan2}(G_y, G_x)
+$$
 
 - **Magnitude** says how strong the edge is.
 - **Direction** $\theta$ points across the edge, perpendicular to it.
@@ -19,8 +21,10 @@ On discrete images derivatives are **finite differences**, which are computed by
 
 ## Sobel Kernels
 
-$$S_x = \begin{pmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{pmatrix}, \qquad
-S_y = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 0 & 0 \\ -1 & -2 & -1 \end{pmatrix}$$
+$$
+S_x = \begin{pmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{pmatrix}, \qquad
+S_y = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 0 & 0 \\ -1 & -2 & -1 \end{pmatrix}
+$$
 
 ![[sobel-gradients-example.png]]
 

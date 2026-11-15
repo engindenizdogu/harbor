@@ -7,10 +7,12 @@ Both operations slide a small array (the **kernel** or **template**) over an ima
 
 ## Definitions (2D, discrete)
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \text{Cross-correlation:}\quad (f \star h)[y, x] &= \sum_{k, l} f[y + l,\, x + k]\; h[l, k] \\
 \text{Convolution:}\quad (f * h)[y, x] &= \sum_{k, l} f[y - l,\, x - k]\; h[l, k]
-\end{aligned}$$
+\end{aligned}
+$$
 
 Convolution is the same as correlation with the kernel rotated by 180 degrees.
 
