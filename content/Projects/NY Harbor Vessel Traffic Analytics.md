@@ -14,9 +14,9 @@ draft: false
 
 ## Quick Facts
 - **Context:** AAI 627 Big Data Analytics for Engineering Design, Fall 2026 course project (Option 1: build a big data analytics app). In progress; due in the first week of December 2026, with a feature freeze on November 15.
-- **Tech Stack:** Python 3.11 with uv, **Apache Spark 3.5** (batch and Structured Streaming, Java 17), **Apache Kafka** (single broker, KRaft, Docker Compose), Parquet, **DuckDB**, pandas, **Streamlit** with pydeck, scikit-learn/LightGBM (planned), pytest, Makefile, Cloudflare Quick Tunnel
+- **Tech Stack:** Python 3.11 with uv, **Apache Spark 3.5** (batch and Structured Streaming, Java 17), **Apache Kafka** (single broker, KRaft, Docker Compose), Parquet, **DuckDB**, pandas, **Streamlit** with pydeck, scikit-learn/LightGBM (planned), pytest, Makefile, **Azure VM** (deployment)
 - **Data:** NOAA/BOEM MarineCadastre AIS archive (historical, daily CSVs of about 1 GB each) and the AISStream live WebSocket feed
-- **Links:** [GitHub Repo](https://github.com/engindenizdogu/vessel-watch)
+- **Links:** [GitHub Repo](https://github.com/engindenizdogu/vessel-watch) | [Live App](https://vessel-watch.northcentralus.cloudapp.azure.com)
 
 ## Overview and Problem
 Vessels broadcast AIS position reports every few seconds to minutes, producing a large, noisy, fast-moving dataset. The goal is a pipeline that cleans historical and live AIS data with Spark, forecasts hourly inbound ship traffic, and raises alerts for signal gaps and off-route movement, all shown on an interactive dashboard. Related background: [[Apache Spark]], [[Stream Processing and Event Streaming]], [[Correlation Drift Monitoring with Spark]].
@@ -43,7 +43,7 @@ Status as of November 6, 2026 (weeks 1 to 3 of 7 done):
 - **Built** the live path: an AISStream producer into Kafka (keyed by vessel), Spark Structured Streaming into serving Parquet (one file per 60-second micro-batch to avoid small files), and a second query that keeps every live report and compacts it hourly into one cleaned file per day.
 - **Designed** a calibrated signal-gap detector: a vessel that was reporting regularly goes silent longer than the larger of a state minimum (10 min moving, 30 min stopped) and 8 times its recent median interval. It skips vessels near the box edge and never raises gaps across feed outages (1,134 outage minutes found in the archive). On 58 days it found **7,882 gaps from 525 vessels**; 6,368 started at one of **119 learned shutdown spots** (ferries and tour boats switching AIS off at the berth), leaving 1,514 worth a look.
 - **Replaced** terminal geofences with **gate crossings** as the forecast target after terminal arrivals proved too sparse (0.28 per hour at Port Newark). Four gate lines (sea entrance, the Narrows, Throgs Neck, George Washington Bridge) count crossings by direction and vessel group; the target is inbound cargo ships and tankers at the sea entrance: **11.9 per day, 0.49 per hour, 63% of hours zero**.
-- **Delivered** a Streamlit dashboard with Live (positions from the last 15 minutes, refreshed every 30 s), History (any NOAA day with a Play button and vessels-per-hour chart) and Data Dictionary pages, plus a public demo link through a Cloudflare Quick Tunnel. Covered by **72 pytest tests**.
+- **Delivered** a Streamlit dashboard with Live (positions from the last 15 minutes, refreshed every 30 s), History (any NOAA day with a Play button and vessels-per-hour chart) and Data Dictionary pages, deployed on an Azure VM ([live app](https://vessel-watch.northcentralus.cloudapp.azure.com)). Covered by **72 pytest tests**.
 
 Planned (weeks 4 to 7):
 - **Build** a replay producer and a stateful streaming gap detector (`applyInPandasWithState`) that must reproduce the batch gaps on replayed NOAA days.

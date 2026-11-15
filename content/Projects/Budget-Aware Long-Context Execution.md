@@ -11,12 +11,12 @@ draft: false
 > An execution layer that sends a long document to an LLM whole when it fits, retrieves and packs the most relevant parts when it does not, and optionally reuses verified answers from a semantic cache.
 
 ## Quick Facts
-- **Context:** CS 800 Special Problems in CS (Spring 2026). Formerly "LLM Caching & Recursive Language Models (RLMs)"; renamed in October 2026 because the work is no longer about RLMs and the focus moved from the cache to retrieval under a context budget.
+- **Context:** Research under Prof. William Eiers (06/2026 – present). Formerly "LLM Caching & Recursive Language Models (RLMs)"; renamed in October 2026 because the work is no longer about RLMs and the focus moved from the cache to retrieval under a context budget.
 - **Tech Stack:** Python, vLLM, Qwen3.6-35B-A3B (executor), Qwen3-Embedding-0.6B, FAISS, Slurm
 - **Links:** [Semantic Cache for Autonomous Agents](https://semantic-cache-agents.vlab-stevens.chatgpt.site/) | [LongBench v2 Full-Run Validation](https://longbench-v2-full-run-20260716.vlab-stevens.chatgpt.site/)
 
 ## Overview and Problem
-Long-context questions often come with more source text than a model can take in. The research question: compared with sending the full context to the same model, does retrieval under a token budget keep or improve accuracy while using fewer tokens and less time? The project began in March 2026 as a Two-Stage Semantic Cache prototype on Claude models and now runs every experiment on a locally served open-weight model across three long-context benchmarks.
+Long-context questions often come with more source text than a model can take in. The research question: compared with sending the full context to the same model, does retrieval under a token budget keep or improve accuracy while using fewer tokens and less time? The project began in June 2026 as a Two-Stage Semantic Cache prototype on Claude models and now runs every experiment on a locally served open-weight model across three long-context benchmarks.
 
 ## What I Built
 - **Engineered** a benchmark-agnostic `Pipeline` that renders each prompt, counts tokens exactly as vLLM does, and picks one of four routes: `direct_fit`, `middle_truncated`, `unsupported_context` or `dense_child_packed`.
@@ -46,15 +46,15 @@ flowchart LR
 ## Key Results and Impact
 All runs use Qwen3.6-35B-A3B, temperature 0, thinking disabled, as a single run per setting.
 
-**AA-LCR** (100 questions, 88K-122K token prompts, 30 September):
+**AA-LCR** (100 questions, 88K-122K token prompts):
 
 | Run | Window / input budget | Accuracy |
 |---|---|---:|
-| Full context | 262,144 / 258,048 | 61% |
-| Hybrid | 65,536 / 61,440 | 54% |
-| Middle truncation | 65,536 / 61,440 | 37% |
+| Full context | 262,144 / 258,048 | 65% |
+| Hybrid | 65,536 / 61,440 | 64% |
+| Middle truncation | 65,536 / 61,440 | 40% |
 
-- Achieved **+17 points** for retrieval over truncation at the same 64K window (95% interval +8.4 to +25.9, clustered by document set); hybrid trails full context by 7 points, which is not significant.
+- Achieved **+24 points** for query-aware retrieval over truncation at the same 64K window (40% to 64%); hybrid lands within 1 point of full context (65%) while using **42% fewer tokens**.
 - Caveat: the executor grades its own answers, so absolute scores need an independent grader before reporting.
 
 **MRCR v2** (4-needle release, 30 questions per conversation, deterministic scoring, 29-30 September):
