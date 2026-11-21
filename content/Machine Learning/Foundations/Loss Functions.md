@@ -3,6 +3,7 @@ title: Loss Functions
 tags:
   - machine-learning
   - model-evaluation
+  - auto-captured
 draft: false
 ---
 In machine learning, **loss functions** (or cost functions) are mathematical formulas used to measure the difference between a model's predicted output and the actual target values. The model uses this error metric during training to update its weights and improve its accuracy. 
@@ -45,13 +46,14 @@ $$H(p, q) = -\sum_{x} p(x)\,\log q(x)$$
 - A confident, wrong prediction gives a very large loss, since $-\log q \to \infty$ as $q \to 0$.
 - It is tied to KL divergence: $H(p, q) = H(p) + D_{KL}(p \,\|\, q)$. Because the label entropy $H(p)$ is constant, minimizing cross-entropy is the same as minimizing KL divergence, which equals maximum likelihood estimation.
 
-| Predicted probability of the true class | Loss $-\ln q$ | Reading |
-|---|---|---|
-| 0.99 | 0.010 | Confident and right |
-| 0.90 | 0.105 | Good |
-| 0.50 | 0.693 | Coin flip |
-| 0.10 | 2.303 | Bad |
-| 0.01 | 4.605 | Confident and wrong |
+| Predicted probability of the true class | Loss $-\ln q$ | Reading             |
+| --------------------------------------- | ------------- | ------------------- |
+| 0.99                                    | 0.010         | Confident and right |
+| 0.90                                    | 0.105         | Good                |
+| 0.50                                    | 0.693         | Coin flip           |
+| 0.10                                    | 2.303         | Bad                 |
+| 0.01                                    | 4.605         | Confident and wrong |
+|                                         |               |                     |
 
 ### Binary Cross-Entropy (BCE / Log Loss)
 Used when there are **two classes** and the model outputs a single probability $\hat{y} = P(y=1)$, usually through a **sigmoid** $\sigma(z) = \frac{1}{1+e^{-z}}$.
@@ -137,6 +139,103 @@ print(nn.BCEWithLogitsLoss()(logit, torch.tensor([1.0])))  # tensor(0.1054)
 - Stanford CS231n, [Linear classification: Softmax classifier](https://cs231n.github.io/linear-classify/): softmax and cross-entropy walkthrough with numeric examples.
 - PyTorch, [CrossEntropyLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html): expects unnormalized logits; supports `weight` and `label_smoothing`.
 - PyTorch, [BCEWithLogitsLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html): sigmoid and BCE fused for numerical stability; supports `pos_weight`.
+
+## 4. Other Loss Functions Worth Knowing
+
+The losses above handle plain regression and classification. Many tasks need a loss shaped to the problem: imbalanced classes, similarity rather than labels, sequences without alignment, or generative models.
+
+| Loss                        | Used for                                      | Core idea                                                      |
+| --------------------------- | --------------------------------------------- | -------------------------------------------------------------- |
+| **Focal loss**              | Object detection with extreme class imbalance | Down-weight easy examples so hard ones dominate                |
+| **Dice loss**               | Segmentation                                  | Optimize overlap directly, robust to small foreground          |
+| **IoU / GIoU loss**         | Bounding-box regression                       | Optimize the box overlap, not coordinate distance              |
+| **Quantile (pinball) loss** | Predicting a quantile or interval             | Asymmetric penalty for over- and under-prediction              |
+| **Contrastive loss**        | Similarity learning with pairs                | Pull similar pairs together, push dissimilar apart by a margin |
+| **Triplet loss**            | Embeddings (face recognition, retrieval)      | Anchor closer to positive than to negative by a margin         |
+| **InfoNCE**                 | Self-supervised and multimodal learning       | Pick the true match out of many negatives                      |
+| **Perceptual loss**         | Image generation and style transfer           | Compare deep features instead of pixels                        |
+| **CTC loss**                | Speech and handwriting recognition            | Sum over all alignments of labels to input frames              |
+| **Adversarial (GAN) loss**  | Generative models                             | A discriminator supplies the training signal                   |
+| **ELBO / KL term**          | Variational autoencoders                      | Reconstruction plus a KL regularizer                           |
+
+### Focal loss: ignore the easy examples
+
+In a detector, a handful of positions contain objects and thousands are easy background. Plain cross-entropy gives every easy background position a small loss, but thousands of them add up and drown out the few hard cases. **Focal loss** (Lin et al., 2017) multiplies the cross-entropy by a factor that shrinks for well-classified examples:
+
+$$\text{FL}(p_t) = -\alpha_t\,(1 - p_t)^{\gamma}\,\log p_t$$
+
+Here $p_t$ is the probability the model gives to the **true** class, and $\gamma \ge 0$ controls the focus. With $\gamma = 2$, which is a typical setting:
+
+| Model confidence in true class $p_t$ | Weight $(1 - p_t)^2$ | Effect |
+| ------------------------------------ | -------------------- | ------ |
+| 0.9 (easy) | 0.01 | Loss cut to 1% |
+| 0.5 | 0.25 | Cut to 25% |
+| 0.1 (hard) | 0.81 | Almost unchanged |
+
+Setting $\gamma = 0$ recovers ordinary cross-entropy. The paper's point is that this removes most of the accuracy gap between one-stage and two-stage detectors.
+
+### Dice and IoU losses: optimize overlap directly
+
+For segmentation, the foreground (a tumor, a road) often covers a small share of the pixels, so an all-background prediction already scores well on pixel accuracy. The **Dice coefficient** measures overlap between prediction $P$ and ground truth $G$, and the loss is one minus it. Using probabilities $p_i$ and labels $g_i$ makes it differentiable:
+
+$$\mathcal{L}_{\text{Dice}} = 1 - \frac{2\sum_i p_i g_i}{\sum_i p_i + \sum_i g_i}$$
+
+It was used as the training objective in V-Net for volumetric medical segmentation, where foreground voxels are strongly outnumbered by background. For boxes, **IoU loss** is $1 - \text{IoU}$, and **GIoU** adds a penalty based on the smallest box enclosing both boxes, so it still gives a gradient when the boxes do not overlap.
+
+### Quantile (pinball) loss: predicting a range
+
+MSE and MAE predict the mean or median. To predict a **quantile** $\tau$ (for example the 90th percentile), penalize the two kinds of error differently:
+
+$$L_\tau(y, \hat y) = \max\big(\tau\,(y - \hat y),\ (\tau - 1)\,(y - \hat y)\big)$$
+
+At $\tau = 0.5$ this is half the absolute error, which gives the median. At $\tau = 0.9$ under-predicting costs 9 times as much as over-predicting, so the model learns an upper bound. Training two quantiles gives a prediction interval.
+
+### Metric learning: contrastive, triplet and InfoNCE
+
+Sometimes there are no class labels, only a notion of "similar". These losses train an **embedding** where distance means similarity ([[Word2Vec]] is an early example of the idea in NLP).
+
+- **Contrastive loss** works on pairs with distance $D$ between their embeddings and $Y = 0$ for similar, $Y = 1$ for dissimilar:
+
+$$L = (1 - Y)\,\tfrac12 D^2 + Y\,\tfrac12 \max(0,\ m - D)^2$$
+
+Similar pairs are pulled together, and dissimilar pairs are pushed apart only until they are $m$ away (the **margin**).
+
+- **Triplet loss** uses an **anchor** $a$, a **positive** $p$ (same identity) and a **negative** $n$ (different identity):
+
+$$L = \max\big(0,\ d(a, p) - d(a, n) + m\big)$$
+
+The anchor must be closer to the positive than to the negative by at least $m$, otherwise the loss is zero. FaceNet used it to learn a compact embedding where distance reflects face similarity (128 bytes per face), with online mining of informative triplets, since most random triplets are already satisfied and contribute nothing.
+
+- **InfoNCE** (from contrastive predictive coding) treats the problem as classification: given a query $q$, pick its true partner $k^+$ out of $K$ candidates,
+
+$$L = -\log \frac{\exp(\text{sim}(q, k^+)/\tau)}{\sum_{k=1}^{K} \exp(\text{sim}(q, k)/\tau)}$$
+
+It is cross-entropy over similarities with a temperature $\tau$. Larger batches supply more negatives. Variants of this form train many self-supervised and image-text models.
+
+### CTC: sequences without alignment
+
+In speech or handwriting recognition the input has many more frames than the output has characters, and nobody labelled which frame belongs to which character. **Connectionist temporal classification (CTC)** adds a blank symbol and defines the loss as the negative log of the **total probability of all alignments** that collapse to the correct text (repeats merged, blanks removed). A dynamic-programming recursion computes the sum efficiently.
+
+### Perceptual loss: compare features, not pixels
+
+A pixel-wise MSE between two images punishes a tiny shift heavily and favours blurry outputs. A **perceptual loss** (Johnson et al., 2016) feeds both images through a pretrained network and compares their **feature maps**, so images that look alike to the network score as close. It is widely used in super-resolution and style transfer.
+
+### Adversarial and variational losses
+
+- **GAN loss:** a discriminator $D$ learns to tell real from generated samples, and the generator is trained to fool it, in the original formulation $\min_G \max_D\ \mathbb E[\log D(x)] + \mathbb E[\log(1 - D(G(z)))]$. The loss is a moving target set by the opponent ([[Generative Adversarial Networks]]). The **Wasserstein** variant replaces it with a distance between distributions that gives smoother gradients.
+- **ELBO:** a variational autoencoder minimizes a **reconstruction loss** plus a **KL divergence** that keeps the latent distribution close to a prior ([[Variational Autoencoders]]). This is the KL divergence from section 2 used as a regularizer.
+
+### Losses vs. training tricks
+
+Some things that look like losses are really modifications: **label smoothing** (soften one-hot targets, for example 0.9 and 0.1 instead of 1 and 0), **class weights** (scale each class's loss), and **regularization** terms added to any loss ([[Regularization]]). Ranking tasks use pairwise or listwise losses ([[Learning To Rank]]).
+
+### Sources for this section
+
+- Lin et al., [Focal Loss for Dense Object Detection](https://arxiv.org/abs/1708.02002): the class-imbalance problem and the down-weighting of easy examples.
+- Schroff, Kalenichenko and Philbin, [FaceNet](https://arxiv.org/abs/1503.03832): triplets of matching and non-matching face patches, online triplet mining, 128 bytes per face.
+- van den Oord, Li and Vinyals, [Representation Learning with Contrastive Predictive Coding](https://arxiv.org/abs/1807.03748): a probabilistic contrastive loss with negative sampling (the abstract does not use the name InfoNCE, which comes from the paper's body).
+- Milletari, Navab and Ahmadi, [V-Net](https://arxiv.org/abs/1606.04797): the Dice-coefficient objective for strongly imbalanced foreground and background.
+- Formulas for quantile, contrastive, CTC, perceptual, GAN and ELBO losses, the focal-loss setting $\gamma = 2$, and the IoU and GIoU remarks are from my own knowledge and were not checked against the papers (Hadsell et al., 2006; Graves et al., 2006; Johnson et al., 2016; Goodfellow et al., 2014).
 
 ---
 *Source: Synthesized from [BuiltIn](https://builtin.com/machine-learning/common-loss-functions), [DataCamp](https://www.datacamp.com), and [IBM](https://www.ibm.com) technical documentation.*

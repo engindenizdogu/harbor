@@ -9,7 +9,8 @@ Map of Contents. Learning path from classical text processing to Transformers an
 - [[Glossary (NLP)]] - Key NLP terms and definitions.
 - [[What is NLP?]] - NLP is a field of linguistics and machine learning focused on understanding human language.
 - [[Language Modeling & N-grams]] - Predicting the next word; statistical language models.
-- [[Tokenization]] - Character, word, and subword tokenization schemes.
+- [[Part-of-Speech Tagging]] - Tag sets, ambiguity, HMM and Viterbi, and neural taggers.
+- [[Tokenization]] - Character, word, and subword tokenization, with a worked byte pair encoding example.
 
 ## Representations
 - [[Word Vectors]] - Knowledge-based vs. distributional word representations.
@@ -30,6 +31,7 @@ Map of Contents. Learning path from classical text processing to Transformers an
 - [[Large Language Models]] - Characteristics, scale, and training of LLMs.
 - [[GPT-2 and GPT-3]] - Zero-shot and few-shot in-context learning, and how scale changed the GPT recipe.
 - [[Evolution of Text Generation Models]] - Timeline from rule-based systems to large pre-trained Transformers.
+- [[Retrieval-Augmented Generation]] - Retrieve-then-generate, the baseline RAG pipeline, and GraphRAG for corpus-wide questions.
 - [[KV Cache]] - Storing Key and Value vectors of previous tokens to speed up generation.
 - [[LM Benchmarks]] - Coding, reasoning, and general benchmarks for language models.
 

@@ -79,4 +79,4 @@ Spark does not replace storage: it commonly runs on top of HDFS or object storag
 - **Interactive exploration** of big tables through SQL or notebooks.
 
 ## Related
-[[Big Data Fundamentals and Architecture]] places Spark in the processing layer; [[Big Data Integration and Orchestration]] covers how jobs are scheduled. For Python-native ML, tuning, and serving workloads, see [[Ray]].
+[[Big Data Fundamentals and Architecture]] places Spark in the processing layer; [[Big Data Integration and Orchestration]] covers how jobs are scheduled. For the PySpark API (DataFrames, joins, windows, UDFs, MLlib pipelines, streaming), see [[PySpark Cheat Sheet]]. For Python-native ML, tuning, and serving workloads, see [[Ray]].

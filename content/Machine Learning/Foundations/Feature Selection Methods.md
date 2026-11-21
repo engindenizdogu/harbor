@@ -153,7 +153,7 @@ Breast cancer dataset, top 10 of 30 features on 20 bootstrap samples. Univariate
 ## Feature Selection at Big Data Scale
 - **Filters parallelize easily**, since each feature is scored independently, so they are the usual first step on very wide data.
 - **Wrappers become expensive** because each step retrains a model on the full dataset. Prefer embedded methods or RFE with a large `step`.
-- **Spark MLlib** provides `VarianceThresholdSelector`, `UnivariateFeatureSelector` (F-test or chi-square depending on whether features and label are continuous or categorical, keeping top-$k$, a percentile, or by false-positive/discovery rate), and `ChiSqSelector`. L1 selection uses `LogisticRegression` or `LinearRegression` with `elasticNetParam=1.0`, and tree models expose `featureImportances`. See [[Apache Spark]].
+- **Spark MLlib** provides `VarianceThresholdSelector`, `UnivariateFeatureSelector` (F-test or chi-square depending on whether features and label are continuous or categorical, keeping top-$k$, a percentile, or by false-positive/discovery rate), and `ChiSqSelector`. L1 selection uses `LogisticRegression` or `LinearRegression` with `elasticNetParam=1.0`, and tree models expose `featureImportances`. In a local test, `UnivariateFeatureSelector(numTopFeatures=5)` on the breast cancer data returned the first five columns instead of the strongest ones, so check Spark selectors against a known ranking. Code and details in [[PySpark Cheat Sheet]]; architecture in [[Apache Spark]].
 
 ## Applications
 - **Bioinformatics:** pick a few genes or proteins out of thousands for disease or cancer-subtype classification.

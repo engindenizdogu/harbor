@@ -13,7 +13,7 @@ Core vocabulary, problem types, and evaluation, located in the `Foundations/` di
 - [[ROC and AUC Curves]] - Threshold sweeps, AUC meaning, ROC vs. precision-recall under class imbalance, and choosing thresholds.
 - [[Probability Calibration]] - Reliability diagrams, Brier score, Platt and isotonic calibration, and why AUC does not imply good probabilities.
 - [[Clustering Evaluation Metrics]] - Purity, Rand Index, Adjusted Rand Index, NMI, and silhouette for judging clusters.
-- [[Loss Functions]] - How models measure error (MSE, Cross-Entropy).
+- [[Loss Functions]] - How models measure error: MSE, cross-entropy, and other losses such as focal, Dice, triplet, InfoNCE, CTC, and GAN losses.
 - [[Regularization]] - L1/L2/Elastic Net, why lasso gives sparsity, coefficient paths, tuning, and regularization in logistic regression and beyond.
 - [[Exploratory Data Analysis]] - The crucial first step of inspecting and understanding your data.
 - [[Feature Selection Methods]] - Why select features; filter, wrapper, and embedded methods; evaluating selections (stability); scaling to big data with Spark.

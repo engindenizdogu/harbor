@@ -96,3 +96,5 @@ Separates **resource management** (the ResourceManager allocates CPU and memory 
 | Handles structured, semi-structured, and unstructured data | Poor fit for iterative algorithms and interactive queries |
 
 Today many teams keep HDFS or cloud object storage and YARN or Kubernetes for resources, but run Spark or Flink instead of classic MapReduce for the compute step.
+
+For the shuffle in detail, a runnable word count, joins, top-N, combiners, and skew handling, see [[MapReduce Patterns]].

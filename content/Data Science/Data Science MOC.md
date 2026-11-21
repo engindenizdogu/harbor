@@ -31,7 +31,9 @@ Read in this order: node importance first, then two-mode networks.
 Read in this order: foundations, storage and batch compute, then streaming, plumbing, and analytics.
 - [[Big Data Fundamentals and Architecture]] - The four Vs, layered architecture, storage options, CAP trade-offs, and responsible use. Related: [[Database Types]], [[Database Selection]].
 - [[Hadoop and MapReduce]] - HDFS, YARN, the map-shuffle-reduce model, and the Hadoop ecosystem.
+- [[MapReduce Patterns]] - Shuffle internals, Hadoop Streaming word count, combiners, joins, top-N, matrix multiplication, skew and salting.
 - [[Apache Spark]] - In-memory engine: RDDs, DataFrames, lineage, and how it differs from MapReduce.
+- [[PySpark Cheat Sheet]] - Tested PySpark reference: DataFrames, joins, windows, UDFs, I/O, performance, MLlib pipelines, feature selectors, and streaming.
 - [[Stream Processing and Event Streaming]] - Batch vs. stream, Kafka, Storm, Flink, Spark Streaming, and cloud services.
 - [[Big Data Integration and Orchestration]] - NiFi, Kafka, Flume, Airflow, and Oozie for ingestion and scheduling.
 - [[Distributed Machine Learning and Graph Processing]] - Mahout, MLlib, Giraph, GraphX, and Neo4j.
