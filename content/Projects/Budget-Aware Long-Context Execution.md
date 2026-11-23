@@ -8,23 +8,23 @@ tags:
   - auto-captured
 draft: false
 ---
-> An execution layer that sends a long document to an LLM whole when it fits, retrieves and packs the most relevant parts when it does not, and optionally reuses verified answers from a semantic cache.
+> An execution layer that sends a long document to an LLM whole when it fits and, when it does not, rebuilds the input from the chunks that match the question, kept in source order.
 
 ## Quick Facts
 - **Context:** Research under Prof. William Eiers (06/2026 – present). Formerly "LLM Caching & Recursive Language Models (RLMs)"; renamed in October 2026 because the work is no longer about RLMs and the focus moved from the cache to retrieval under a context budget.
-- **Tech Stack:** Python, vLLM, Qwen3.6-35B-A3B (executor), Qwen3-Embedding-0.6B, FAISS, Slurm
-- **Links:** [Semantic Cache for Autonomous Agents](https://semantic-cache-agents.vlab-stevens.chatgpt.site/) | [LongBench v2 Full-Run Validation](https://longbench-v2-full-run-20260716.vlab-stevens.chatgpt.site/)
+- **Tech Stack:** Python, vLLM, Qwen3.6-35B-A3B (executor), BM25, Qwen3-Embedding-0.6B, FAISS, Slurm
+- **Links:** [GitHub](https://github.com/adarsh-vatsa/RLMs)
 
 ## Overview and Problem
 Long-context questions often come with more source text than a model can take in. The research question: compared with sending the full context to the same model, does retrieval under a token budget keep or improve accuracy while using fewer tokens and less time? The project began in June 2026 as a Two-Stage Semantic Cache prototype on Claude models and now runs every experiment on a locally served open-weight model across three long-context benchmarks.
 
 ## What I Built
-- **Engineered** a benchmark-agnostic `Pipeline` that renders each prompt, counts tokens exactly as vLLM does, and picks one of four routes: `direct_fit`, `middle_truncated`, `unsupported_context` or `dense_child_packed`.
-- **Implemented** hybrid retrieval that embeds chunks with Qwen3-Embedding-0.6B, ranks them with FAISS, packs them up to the input budget and restores source order.
-- **Designed** small task adapters (documents, question, `render` function) so AA-LCR, MRCR v2 and LongBench-v2 share one pipeline with no benchmark-specific branching.
-- **Built** an optional exact and semantic answer cache with a verifier model, kept off by default so gold answers never reach the cache or the verifier.
-- **Automated** runs on two GPU servers: a single 96 GB RTX PRO 6000 (AA-LCR, MRCR v2) and a Slurm cluster of 4x L40S nodes (LongBench-v2), with preflight routing reports and dry-run launchers.
-- **Validated** the plumbing with 215 unit tests (mocked clients, synthetic fixtures) that run in about 3 seconds.
+- **Engineered** a benchmark-agnostic `Pipeline` that counts tokens on the fully rendered request with the served model's tokenizer and chat template. Inputs that fit go through unchanged; longer ones are cut with middle truncation or rebuilt by query-aware selection.
+- **Implemented** three query-aware selectors: BM25, dense (Qwen3-Embedding-0.6B with FAISS), and reciprocal-rank fusion of the two, with neighbor expansion, fill packing up to the budget, a per-document floor, and source order restored.
+- **Designed** small task adapters (documents, question, `render` function) so AA-LCR, MRCR v2 and LongBench-v2 run through one pipeline, with gold answers kept out of solver inputs.
+- **Prototyped** a FAISS semantic answer cache with an LLM equivalence verifier, which cut token usage by **49%** on original and paraphrased LongBench-v2 questions.
+- **Pre-registered** the conditions and primary comparisons in a plan before any reported run, with Holm-corrected tests and a hand-audited LLM judge.
+- **Automated** **93 experimental conditions** on two GPU setups: a single 96 GB RTX PRO 6000 and a Slurm cluster of 4x L40S nodes, with preflight routing reports, dry-run launchers and **264 unit tests**.
 
 **Architecture overview**
 
@@ -36,7 +36,7 @@ flowchart LR
     R --> F{Fits input budget?}
     F -->|yes| D[direct_fit: send everything]
     F -->|no, direct mode| T[middle_truncated: keep head and tail]
-    F -->|no, hybrid mode| H[dense_child_packed: retrieve and pack chunks]
+    F -->|no, query-aware mode| H[BM25 / dense / RRF: select and pack chunks]
     D --> M[Executor model]
     T --> M
     H --> M
@@ -51,32 +51,30 @@ All runs use Qwen3.6-35B-A3B, temperature 0, thinking disabled, as a single run 
 | Run | Window / input budget | Accuracy |
 |---|---|---:|
 | Full context | 262,144 / 258,048 | 65% |
-| Hybrid | 65,536 / 61,440 | 64% |
+| Query-aware truncation | 65,536 / 61,440 | 64% |
 | Middle truncation | 65,536 / 61,440 | 40% |
 
-- Achieved **+24 points** for query-aware retrieval over truncation at the same 64K window (40% to 64%); hybrid lands within 1 point of full context (65%) while using **42% fewer tokens**.
-- Caveat: the executor grades its own answers, so absolute scores need an independent grader before reporting.
+- Achieved **+24 points** for query-aware retrieval over truncation at the same 64K window (40% to 64%); query-aware truncation is level with full context (65%) on **42% fewer input tokens**.
+- Answers are scored by an LLM judge whose verdicts were audited by hand.
 
-**MRCR v2** (4-needle release, 30 questions per conversation, deterministic scoring, 29-30 September):
+**MRCR v2** (4-needle release, deterministic exact-match scoring):
 
-| Conversation | Direct (middle truncation) | Hybrid |
-|---:|---:|---:|
-| 133K | 63% | 63% |
-| 267K | 53% | 50% |
-| 533K | 27% | **60%** |
-| 1.06M | 10% | **30%** |
-| All 120 | 38% | **51%** |
+| Setting | Middle truncation | Query-aware |
+|---|---:|---:|
+| 262K window, all conversations | 38% | **62%** (equal to oracle) |
+| 533K-token conversations | 27% | **70%** |
+| 1.06M-token conversations | 10% | **63%** |
 
-- Reached **51% vs 38%** overall (20 gained, 5 lost, p = 0.004); hybrid gains only once the conversation exceeds the window, because retrieval finds the needles about twice as often as truncation keeps them.
-- Found that most remaining errors copy the wrong occurrence of a real needle, so the model's counting is the limit.
+- Raised exact match from **38% to 62%** at 262K, matching an oracle that always keeps the needed text.
+- Showed that the cost of middle truncation grows with how much it cuts: the longer the conversation, the more needles truncation drops, while query-aware selection holds up.
 
-**LongBench-v2** (503 questions, August, older runner): on the 107 questions that did not fit, hybrid scored **56.1% vs 41.1%** for truncation (p = 0.0025), and the semantic cache answered 493 of 503 paraphrased questions while roughly halving total tokens. A rerun on the shared pipeline is next.
+**LongBench-v2**: full context beats middle truncation by only 5.9 points, so there is little to recover, and the query-aware gains were not significant after Holm correction.
 
 ## Core Learnings
-- Retrieval pays off only when the input exceeds the window; on prompts that fit, direct and hybrid send identical requests.
+- Query-aware selection pays off in proportion to how much truncation would cut; on prompts that fit, every condition sends the identical request.
 - Budget flags do not change the server: vLLM fixes the served window at launch, so the runner's budget must stay within it.
-- A run in which every request fails can still finish with a score of 0 unless it fails fast, and a self-grading executor inflates confidence in absolute scores.
-- Open work: LongBench-v2 on the shared pipeline, independent AA-LCR grading, separating the MRCR chunk-size effect (3,500 vs 7,500 tokens), and testing the answer cache beyond mocks.
+- A run in which every request fails can still finish with a score of 0 unless it fails fast, and an unaudited LLM judge inflates confidence in absolute scores.
+- Fixing conditions and comparisons before running, then correcting for multiple tests, keeps a 93-condition sweep from turning into a search for significant results.
 
 ---
 *Related:* [[Projects/index|Projects MOC]], [[LM Benchmarks]], [[KV Cache]], [[Agentic Information Traversal]]

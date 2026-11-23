@@ -12,6 +12,8 @@ Welcome to the Code Snippets Map of Contents. This dashboard organizes reusable 
 - [[SVD Snippets]] - NumPy decomposition, reconstruction, low-rank approximation, and full vs. reduced shapes.
 
 ## Deep Learning Snippets
+- [[PyTorch Training Template]] - Reusable PyTorch skeleton: Dataset/DataLoader, model, train and eval loops, early stopping, checkpointing, and inference.
+- [[Loss Curve Plotting Snippets]] - Matplotlib plots of train vs. validation/test loss and error, smoothing, run comparison, and how to read the curves.
 - [[Autoencoder Snippets]] - Keras code for standard and supervised autoencoders: data prep, model building, multi-output training, and 2D latent space visualization.
 
 ## NLP Snippets
@@ -29,6 +31,7 @@ Welcome to the Code Snippets Map of Contents. This dashboard organizes reusable 
 
 ## Visualization & Tools
 - [[Matplotlib Snippets]] - Basic plotting and visualization templates.
+- [[Loss Curve Plotting Snippets]] - Learning-curve plots for training diagnostics.
 
 ---
 ## To Research / Inbox
